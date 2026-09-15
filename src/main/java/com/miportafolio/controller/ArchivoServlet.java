@@ -74,8 +74,11 @@ public class ArchivoServlet extends HttpServlet {
         }
 
         // Loader animado solo en primer acceso tras login
-        boolean justLoggedIn = Boolean.TRUE.equals(session.getAttribute("justLoggedIn"));
-        if (justLoggedIn) session.removeAttribute("justLoggedIn");
+        boolean justLoggedIn = false;
+        if (session != null) {
+            justLoggedIn = Boolean.TRUE.equals(session.getAttribute("justLoggedIn"));
+            if (justLoggedIn) session.removeAttribute("justLoggedIn");
+        }
 
         // Parámetros de navegación
         String tab = req.getParameter("tab");

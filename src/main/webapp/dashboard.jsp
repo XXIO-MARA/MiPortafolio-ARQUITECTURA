@@ -1042,6 +1042,7 @@ bgLoop();
         }
     }, 22);
 })();
+<% } %>
 /* ════════════════════════════════════════════════════════════════
  *  CYBER AUDIO & INNOVATION FX SYSTEM (Web Audio API)
  *  100% Nativo • Synthwave Procedural • Efectos Sci-Fi
