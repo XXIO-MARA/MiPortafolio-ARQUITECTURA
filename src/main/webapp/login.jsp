@@ -116,9 +116,9 @@
             font-weight: bold;
             pointer-events: none;
         }
-        input[type='password'] {
+        .input-pass, input[type='password'] {
             width: 100%;
-            padding: 15px 15px 15px 48px;
+            padding: 15px 50px 15px 48px;
             background: rgba(28,10,56,0.95);
             border: 1.5px solid rgba(216,132,255,0.35);
             border-radius: 14px;
@@ -127,12 +127,36 @@
             color: #00f3ff;
             outline: none;
             transition: .3s;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             font-weight: 700;
         }
-        input[type='password']:focus {
+        .input-pass:focus, input[type='password']:focus {
             border-color: #ff007f;
             box-shadow: 0 0 22px rgba(255,0,127,.5);
+        }
+        .toggle-pass-btn {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #d884ff;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .25s;
+            filter: drop-shadow(0 0 6px rgba(216,132,255,0.6));
+            border-radius: 8px;
+        }
+        .toggle-pass-btn:hover {
+            color: #00f3ff;
+            transform: translateY(-50%) scale(1.18);
+            filter: drop-shadow(0 0 12px #00f3ff);
+            background: rgba(255,255,255,0.06);
         }
         .btn-login {
             width: 100%;
@@ -251,9 +275,12 @@
         <form action="<%= ctx %>/login" method="POST">
             <div class="input-group">
                 <span class="input-prefix">&gt;_</span>
-                <input type="password" name="codigo"
+                <input type="password" name="codigo" id="passInput" class="input-pass"
                        placeholder="Ingresa clave alumna..."
                        autofocus autocomplete="off">
+                <button type="button" class="toggle-pass-btn" id="togglePassBtn" onclick="togglePass()" title="Mostrar u ocultar contraseña">
+                    <span id="eyeIcon">👁️</span>
+                </button>
             </div>
             <button type="submit" class="btn-login">&#9889; ENTRAR COMO ALUMNA</button>
         </form>
@@ -361,6 +388,20 @@
         requestAnimationFrame(loop);
     }
     loop();
+
+    function togglePass() {
+        const inp = document.getElementById('passInput');
+        const icon = document.getElementById('eyeIcon');
+        if (!inp) return;
+        if (inp.type === 'password') {
+            inp.type = 'text';
+            icon.innerText = '🙈';
+        } else {
+            inp.type = 'password';
+            icon.innerText = '👁️';
+        }
+        inp.focus();
+    }
 </script>
 </body>
 </html>
