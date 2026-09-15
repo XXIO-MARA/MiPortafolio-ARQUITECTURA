@@ -258,16 +258,7 @@
             <button type="submit" class="btn-login">&#9889; ENTRAR COMO ALUMNA</button>
         </form>
 
-        <!-- Botón directo para el Inge o visitantes: SIN LOGIN -->
-        <div style="display:flex;align-items:center;text-align:center;margin:12px 0 16px;">
-            <div style="flex:1;border-bottom:1px dashed rgba(216,132,255,0.3);"></div>
-            <span style="padding:0 10px;font-family:'Fira Code',monospace;font-size:10px;color:#d884ff;letter-spacing:1px;">¿ERES EL INGE O VISITANTE?</span>
-            <div style="flex:1;border-bottom:1px dashed rgba(216,132,255,0.3);"></div>
-        </div>
 
-        <a href="<%= ctx %>/portafolio" class="btn-sin-pass">
-            &#128065;&#65039; ENTRAR AL PORTAFOLIO (SIN LOGIN)
-        </a>
 
         <div class="telemetry">
             <span>SISTEMA DE PERSISTENCIA ACTIVO</span>
