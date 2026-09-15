@@ -813,12 +813,15 @@
                     </div>
                 </div>
                 <div style="margin-top:24px;padding-top:20px;border-top:1px dashed rgba(216,132,255,.25);">
-                    <span class="neon-sub">// TRANSMISIÓN DIRECTA AL BUZÓN INSTITUCIONAL</span>
-                    <form action="<%= ctx %>/contacto/enviar" method="POST" style="margin-top:12px;display:flex;gap:10px;">
-                        <input type="text" name="mensaje" class="cyber-input" style="margin:0;"
+                    <span class="neon-sub">// TRANSMISIÓN DIRECTA AL BUZÓN INSTITUCIONAL (s01269h@upla.edu.pe)</span>
+                    <form action="<%= ctx %>/contacto/enviar" method="POST" onsubmit="prepararTransmision(event)" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+                        <input type="text" id="buzonMensaje" name="mensaje" class="cyber-input" style="margin:0;flex:1;min-width:260px;"
                                placeholder="Escribe un mensaje institucional para Flor..." required>
-                        <button type="submit" class="submit-btn" style="margin:0;width:auto;padding:0 24px;">ENVIAR</button>
+                        <button type="submit" class="submit-btn" style="margin:0;width:auto;padding:12px 24px;">&#128640; TRANSMITIR</button>
                     </form>
+                    <div style="font-family:'Fira Code',monospace;font-size:10.5px;color:#00f3ff;margin-top:8px;">
+                        &#9993;&#65039; Destinatario: <b>s01269h@upla.edu.pe</b> &bull; Transmisión cifrada al buzón estudiantil UPLA.
+                    </div>
                 </div>
             </div>
         </div>
@@ -1257,6 +1260,16 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function prepararTransmision(e) {
+    const val = document.getElementById('buzonMensaje')?.value;
+    if (val && val.trim()) {
+        try {
+            const mailUrl = 'mailto:s01269h@upla.edu.pe?subject=' + encodeURIComponent('Mensaje Académico - Portafolio Arquitectura de Software') + '&body=' + encodeURIComponent(val.trim());
+            window.open(mailUrl, '_blank');
+        } catch(err){}
+    }
+}
 </script>
 </body>
 </html>
