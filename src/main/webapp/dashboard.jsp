@@ -245,24 +245,102 @@
         .michi-input { flex: 1; background: rgba(28,10,56,.85); border: 1px solid rgba(216,132,255,.3); border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 12px; outline: none; }
         .michi-send-btn { background: #ff007f; border: none; border-radius: 10px; color: #fff; padding: 0 14px; font-size: 12px; cursor: pointer; font-weight: 800; }
 
-        /* ── CYBER AUDIO & INNOVATION FX ── */
-        .hud-audio-box { display: flex; align-items: center; gap: 7px; margin-left: 6px; }
-        .btn-audio { background: rgba(22,8,46,.9); border: 1.5px solid #00f3ff; color: #00f3ff; padding: 7px 15px; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: .3s; box-shadow: 0 0 15px rgba(0,243,255,.35); letter-spacing: 0.5px; }
-        .btn-audio:hover { background: #00f3ff; color: #05020c; box-shadow: 0 0 25px rgba(0,243,255,.8); transform: translateY(-2px); }
-        .btn-audio.active-playing { border-color: #ff007f; color: #ff80df; box-shadow: 0 0 22px rgba(255,0,127,.6); background: rgba(40,10,60,.9); }
-        .btn-audio-mini { background: rgba(22,8,46,.9); border: 1.5px solid rgba(216,132,255,.4); color: #d884ff; padding: 7px 11px; border-radius: 12px; font-size: 13px; cursor: pointer; transition: .3s; }
-        .btn-audio-mini:hover { border-color: #00f3ff; color: #00f3ff; box-shadow: 0 0 15px rgba(0,243,255,.5); transform: translateY(-2px); }
-        .eq-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 13px; }
-        .eq-bar { width: 3px; height: 3px; background: #00f3ff; border-radius: 2px; transition: height .15s ease; }
-        .btn-audio.active-playing .eq-bar:nth-child(1) { animation: eqJump 0.5s infinite alternate ease-in-out; background: #00f3ff; }
-        .btn-audio.active-playing .eq-bar:nth-child(2) { animation: eqJump 0.35s 0.1s infinite alternate ease-in-out; background: #ff007f; }
-        .btn-audio.active-playing .eq-bar:nth-child(3) { animation: eqJump 0.65s 0.2s infinite alternate ease-in-out; background: #d884ff; }
-        .btn-audio.active-playing .eq-bar:nth-child(4) { animation: eqJump 0.45s 0.15s infinite alternate ease-in-out; background: #00ff88; }
-        @keyframes eqJump { 0% { height: 3px; } 100% { height: 14px; } }
+        /* ── CYBER MATRIX INNOVATION FX & ULTRA ANIMACIONES ── */
+        .hud-reactor-box { display: flex; align-items: center; gap: 10px; background: rgba(22,8,46,.92); border: 1.5px solid #00f3ff; padding: 6px 14px; border-radius: 14px; box-shadow: 0 0 20px rgba(0,243,255,.35), inset 0 0 10px rgba(0,243,255,.15); transition: .3s; }
+        .hud-reactor-box:hover { border-color: #ff007f; box-shadow: 0 0 30px rgba(255,0,127,.6); transform: translateY(-2px); }
+        .reactor-ring { width: 22px; height: 22px; border-radius: 50%; border: 2.5px dashed #00f3ff; display: flex; align-items: center; justify-content: center; animation: reactorSpin 3s linear infinite; box-shadow: 0 0 10px #00f3ff; }
+        @keyframes reactorSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .reactor-core { width: 8px; height: 8px; border-radius: 50%; background: #ff007f; box-shadow: 0 0 12px #ff007f; animation: pulseDot 1s infinite alternate; }
+        .reactor-info { display: flex; flex-direction: column; font-family: 'Fira Code', monospace; line-height: 1.2; }
+        .reactor-title { font-size: 9.5px; font-weight: 800; color: #ff80df; letter-spacing: 1px; }
+        .reactor-val { font-size: 11px; font-weight: 800; color: #fff; }
+        .reactor-val b { color: #00f3ff; }
+        .reactor-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 14px; }
+        .r-bar { width: 3px; background: #00f3ff; border-radius: 2px; }
+        .r-bar:nth-child(1) { animation: rBarJump 0.6s infinite alternate ease-in-out; background: #00f3ff; }
+        .r-bar:nth-child(2) { animation: rBarJump 0.4s 0.1s infinite alternate ease-in-out; background: #ff007f; }
+        .r-bar:nth-child(3) { animation: rBarJump 0.7s 0.2s infinite alternate ease-in-out; background: #d884ff; }
+        .r-bar:nth-child(4) { animation: rBarJump 0.5s 0.15s infinite alternate ease-in-out; background: #00ff88; }
+        .r-bar:nth-child(5) { animation: rBarJump 0.8s 0.05s infinite alternate ease-in-out; background: #ffe600; }
+        @keyframes rBarJump { 0% { height: 3px; } 100% { height: 14px; } }
 
-        /* ── ONDA DE CHOQUE AL HACER CLIC (CLICK SHOCKWAVE) ── */
-        .cyber-click-wave { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: clickWaveAnim 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; z-index: 999999; }
-        @keyframes clickWaveAnim { 0% { width: 0; height: 0; opacity: 1; border: 2.5px solid #00f3ff; box-shadow: 0 0 22px #00f3ff; } 100% { width: 130px; height: 130px; opacity: 0; border: 1px solid #ff007f; box-shadow: 0 0 35px #ff007f; } }
+        /* ── ANIMACIONES EXAGERADAS DE BORDES NEÓN Y TARJETAS ── */
+        @keyframes neonAuraShift {
+            0% {
+                border-color: rgba(0, 243, 255, 0.75);
+                box-shadow: 0 0 35px rgba(0, 243, 255, 0.35), 0 15px 45px rgba(0,0,0,0.7), inset 0 0 20px rgba(0, 243, 255, 0.15);
+            }
+            33% {
+                border-color: rgba(255, 0, 127, 0.85);
+                box-shadow: 0 0 45px rgba(255, 0, 127, 0.45), 0 15px 45px rgba(0,0,0,0.7), inset 0 0 25px rgba(255, 0, 127, 0.2);
+            }
+            66% {
+                border-color: rgba(216, 132, 255, 0.85);
+                box-shadow: 0 0 45px rgba(216, 132, 255, 0.45), 0 15px 45px rgba(0,0,0,0.7), inset 0 0 25px rgba(216, 132, 255, 0.2);
+            }
+            100% {
+                border-color: rgba(0, 243, 255, 0.75);
+                box-shadow: 0 0 35px rgba(0, 243, 255, 0.35), 0 15px 45px rgba(0,0,0,0.7), inset 0 0 20px rgba(0, 243, 255, 0.15);
+            }
+        }
+        .hero-showcase { animation: neonAuraShift 6s ease-in-out infinite alternate; }
+        .student-id-card { animation: neonAuraShift 4.5s ease-in-out infinite alternate-reverse; }
+        .docente-card-pro { animation: neonAuraShift 7s ease-in-out infinite alternate; }
+        .week-card.active-week { animation: fadeInWeek .4s ease forwards, neonAuraShift 5s ease-in-out infinite alternate; }
+
+        /* ── GLITCH Y BARRIDO LUMINOSO DE TÍTULOS ── */
+        @keyframes cyberGlitch {
+            0%, 93%, 100% { transform: none; filter: drop-shadow(0 0 15px rgba(216,132,255,.75)); }
+            94% { transform: skew(1.5deg, -0.8deg) translate(-2px, 1px); filter: drop-shadow(-3px 0 #00f3ff) drop-shadow(3px 0 #ff007f); }
+            96% { transform: skew(-1.8deg, 1deg) translate(2px, -1px); filter: drop-shadow(3px 0 #00f3ff) drop-shadow(-3px 0 #ff007f); }
+            98% { transform: none; filter: drop-shadow(0 0 20px rgba(255,0,127,.8)); }
+        }
+        .neon-title { animation: cyberGlitch 5s infinite; }
+
+        /* ── EFECTO SHIMMER EN BOTONES Y PESTAÑAS ── */
+        .submit-btn, .tab-active, .edit-profile-btn, .btn-exit { position: relative; overflow: hidden; }
+        .submit-btn::after, .tab-active::after, .edit-profile-btn::after {
+            content: ''; position: absolute; top: -50%; left: -80%; width: 50%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+            transform: rotate(25deg);
+            animation: lightSweep 3.2s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes lightSweep { 0% { left: -80%; } 30%, 100% { left: 160%; } }
+
+        /* ── RESPLANDOR DEL CURSOR (CYBER GLOW ORB) ── */
+        #cursorGlow {
+            position: fixed; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,243,255,0.12) 0%, rgba(255,0,127,0.06) 40%, transparent 70%);
+            pointer-events: none; transform: translate(-50%, -50%); z-index: 1;
+            transition: width .25s ease, height .25s ease, opacity .25s ease;
+            mix-blend-mode: screen;
+        }
+
+        /* ── ONDAS DE CHOQUE Y CHISPAS AL HACER CLIC ── */
+        .cyber-click-wave { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: clickWaveAnim 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; z-index: 999999; }
+        @keyframes clickWaveAnim {
+            0% { width: 0; height: 0; opacity: 1; border: 3px solid #00f3ff; box-shadow: 0 0 25px #00f3ff, inset 0 0 15px #00f3ff; }
+            50% { border: 2px solid #ff007f; box-shadow: 0 0 40px #ff007f, inset 0 0 20px #ff007f; }
+            100% { width: 170px; height: 170px; opacity: 0; border: 1px solid #d884ff; box-shadow: 0 0 50px #d884ff; }
+        }
+        .cyber-spark {
+            position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 999999;
+            animation: sparkFly .7s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
+        }
+        @keyframes sparkFly {
+            0% { opacity: 1; transform: translate(0, 0) scale(1.5); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2); }
+        }
+        .cyber-floating-tag {
+            position: fixed; pointer-events: none; z-index: 999999; font-family: 'Fira Code', monospace;
+            font-size: 12px; font-weight: 900; letter-spacing: 1px;
+            animation: floatTagUp .9s ease-out forwards;
+        }
+        @keyframes floatTagUp {
+            0% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -65px) scale(1.15); }
+        }
 
         /* ── EFECTO SCANLINE SUTIL ── */
         body::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 26, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); z-index: 999; background-size: 100% 3px, 6px 100%; pointer-events: none; opacity: 0.55; }
@@ -284,6 +362,7 @@
 </head>
 <body>
 <canvas id="bgCanvas"></canvas>
+<div id="cursorGlow"></div>
 
 <%-- ── CYBER LOADER (solo en primer login) ─────────────── --%>
 <% if (justLoggedIn) { %>
@@ -318,21 +397,20 @@
         <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">PORT: <b>8080</b></div>
-        <!-- Cyber Audio & Innovation System -->
-        <div class="hud-audio-box" id="hudAudioBox">
-            <button id="bgmToggleBtn" class="btn-audio" onclick="toggleBGM()" title="Activar / Pausar Música Synthwave Cyberpunk">
-                <span id="bgmIcon">🎵</span>
-                <span id="bgmText">MÚSICA</span>
-                <div class="eq-bars" id="eqBars">
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                </div>
-            </button>
-            <button id="sfxToggleBtn" class="btn-audio-mini" onclick="toggleSFX()" title="Efectos de sonido de interfaz">
-                <span id="sfxIcon">🔊</span>
-            </button>
+        <!-- Cyber Matrix Innovation Widget (100% Visual • Sin Música) -->
+        <div class="hud-reactor-box" title="Motor Cuántico de Animación">
+            <div class="reactor-ring"><span class="reactor-core"></span></div>
+            <div class="reactor-info">
+                <span class="reactor-title">CYBER FX</span>
+                <span class="reactor-val">FPS: <b id="liveFps">60</b> • <b>MAX</b></span>
+            </div>
+            <div class="reactor-bars">
+                <span class="r-bar"></span>
+                <span class="r-bar"></span>
+                <span class="r-bar"></span>
+                <span class="r-bar"></span>
+                <span class="r-bar"></span>
+            </div>
         </div>
         <% if (esAdmin) { %>
             <span class="user-badge-admin">&#127800; ALUMNA TITULAR: <%= nombreAlumna %></span>
@@ -968,9 +1046,13 @@ window.addEventListener('mousemove', e => {
     }
 });
 
+let gridOffset = 0;
+let fpsCount = 0, lastFpsTime = performance.now();
+
 function bgLoop() {
     cx.clearRect(0, 0, W, H);
 
+    // ── ESTRELLAS Y CONSTELACIONES ──
     for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
         s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
@@ -988,6 +1070,7 @@ function bgLoop() {
         }
     }
 
+    // ── METEOROS CIBERNÉTICOS ──
     for (let i = meteors.length-1; i >= 0; i--) {
         const m = meteors[i];
         const tx = m.x - Math.cos(m.angle)*m.len,
@@ -1003,6 +1086,7 @@ function bgLoop() {
         if (m.life <= 0) meteors.splice(i,1);
     }
 
+    // ── ESTELA DE PARTÍCULAS DEL CURSOR ──
     for (let i = trail.length-1; i >= 0; i--) {
         const p = trail[i];
         p.x += p.vx; p.y += p.vy; p.alpha -= p.decay; p.r *= .96;
@@ -1011,6 +1095,59 @@ function bgLoop() {
         cx.fillStyle=p.color; cx.globalAlpha=p.alpha;
         cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2); cx.fill(); cx.restore();
     }
+
+    // ── 3D TRON CYBER HORIZON GRID ──
+    const horizonY = H * 0.74;
+    gridOffset = (gridOffset + 0.8) % 36;
+    const vpX = W / 2;
+
+    cx.save();
+    // Línea de horizonte de neón con resplandor
+    cx.beginPath();
+    cx.moveTo(0, horizonY);
+    cx.lineTo(W, horizonY);
+    cx.strokeStyle = 'rgba(0, 243, 255, 0.45)';
+    cx.lineWidth = 1.6;
+    cx.shadowBlur = 14;
+    cx.shadowColor = '#00f3ff';
+    cx.stroke();
+
+    // Líneas de perspectiva radiantes
+    const numPerspLines = Math.floor(W / 85);
+    for (let i = -numPerspLines; i <= numPerspLines; i++) {
+        const bottomX = vpX + i * 115;
+        cx.beginPath();
+        cx.moveTo(vpX + i * 6, horizonY);
+        cx.lineTo(bottomX, H);
+        cx.strokeStyle = 'rgba(0, 243, 255, 0.16)';
+        cx.lineWidth = 1;
+        cx.stroke();
+    }
+
+    // Líneas transversales que avanzan
+    for (let y = gridOffset; y < (H - horizonY); y += 34) {
+        const normY = y / (H - horizonY);
+        const curveY = horizonY + Math.pow(normY, 1.55) * (H - horizonY);
+        const alpha = Math.min(1, normY * 1.3) * 0.28;
+        cx.beginPath();
+        cx.moveTo(0, curveY);
+        cx.lineTo(W, curveY);
+        cx.strokeStyle = `rgba(255, 0, 127, ${alpha})`;
+        cx.lineWidth = 1.2;
+        cx.stroke();
+    }
+    cx.restore();
+
+    // Telemetría FPS
+    fpsCount++;
+    const now = performance.now();
+    if (now - lastFpsTime >= 800) {
+        const fpsEl = document.getElementById('liveFps');
+        if (fpsEl) fpsEl.innerText = Math.round((fpsCount * 1000) / (now - lastFpsTime));
+        fpsCount = 0;
+        lastFpsTime = now;
+    }
+
     requestAnimationFrame(bgLoop);
 }
 bgLoop();
@@ -1044,227 +1181,81 @@ bgLoop();
 })();
 <% } %>
 /* ════════════════════════════════════════════════════════════════
- *  CYBER AUDIO & INNOVATION FX SYSTEM (Web Audio API)
- *  100% Nativo • Synthwave Procedural • Efectos Sci-Fi
+ *  SISTEMA DE ULTRA ANIMACIONES CIBERNÉTICAS (100% VISUAL • SIN MÚSICA)
+ *  Fuegos Artificiales • Resplandor de Cursor • 3D Tilt Neón
  * ════════════════════════════════════════════════════════════════ */
-let audioCtx = null;
-let bgmGain = null;
-let sfxGain = null;
-let isBgmPlaying = false;
-let isSfxEnabled = true;
-let bgmOscillators = [];
-let bgmTimer = null;
 
-function initAudio() {
-    if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-        bgmGain = audioCtx.createGain();
-        bgmGain.gain.setValueAtTime(0, audioCtx.currentTime);
-        sfxGain = audioCtx.createGain();
-        sfxGain.gain.setValueAtTime(0.22, audioCtx.currentTime);
-        bgmGain.connect(audioCtx.destination);
-        sfxGain.connect(audioCtx.destination);
+// ── SEGUIDOR DE CURSOR CON RESPLANDOR NEÓN ──
+const cursorGlowEl = document.getElementById('cursorGlow');
+window.addEventListener('mousemove', e => {
+    if (cursorGlowEl) {
+        cursorGlowEl.style.left = e.clientX + 'px';
+        cursorGlowEl.style.top = e.clientY + 'px';
     }
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-}
-
-/* ── MÚSICA SYNTHWAVE CYBER AMBIENT DE FONDO ───────────── */
-function startBGM() {
-    initAudio();
-    stopBGM(false);
-    isBgmPlaying = true;
-    const btn = document.getElementById('bgmToggleBtn');
-    if (btn) btn.classList.add('active-playing');
-    const txt = document.getElementById('bgmText');
-    if (txt) txt.innerText = 'MÚSICA: ON';
-
-    const progressions = [
-        [146.83, 220.00, 261.63, 349.23], // Dm7
-        [116.54, 174.61, 233.08, 293.66], // Bbmaj7
-        [130.81, 196.00, 261.63, 329.63], // C7
-        [110.00, 164.81, 220.00, 261.63]  // Am7
-    ];
-    let chordIdx = 0;
-
-    bgmGain.gain.cancelScheduledValues(audioCtx.currentTime);
-    bgmGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    bgmGain.gain.exponentialRampToValueAtTime(0.11, audioCtx.currentTime + 2.0);
-
-    function playChordStep() {
-        if (!isBgmPlaying) return;
-        const freqs = progressions[chordIdx];
-        chordIdx = (chordIdx + 1) % progressions.length;
-
-        bgmOscillators.forEach(o => {
-            try {
-                o.gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
-                setTimeout(() => { o.osc.stop(); o.osc.disconnect(); }, 1300);
-            } catch(e){}
-        });
-        bgmOscillators = [];
-
-        freqs.forEach((freq, i) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            const filter = audioCtx.createBiquadFilter();
-
-            osc.type = (i === 0) ? 'sawtooth' : 'triangle';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(650 + (i * 200), audioCtx.currentTime);
-
-            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.07 / (i + 1), audioCtx.currentTime + 0.8);
-
-            osc.connect(filter);
-            filter.connect(gain);
-            gain.connect(bgmGain);
-            osc.start();
-            bgmOscillators.push({ osc, gain });
-        });
-
-        bgmTimer = setTimeout(playChordStep, 4500);
-    }
-    playChordStep();
-}
-
-function stopBGM(updateUI = true) {
-    if (bgmTimer) { clearTimeout(bgmTimer); bgmTimer = null; }
-    if (bgmGain && audioCtx) {
-        try {
-            bgmGain.gain.cancelScheduledValues(audioCtx.currentTime);
-            bgmGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.6);
-        } catch(e){}
-    }
-    setTimeout(() => {
-        bgmOscillators.forEach(o => {
-            try { o.osc.stop(); o.osc.disconnect(); } catch(e){}
-        });
-        bgmOscillators = [];
-    }, 700);
-
-    isBgmPlaying = false;
-    if (updateUI) {
-        const btn = document.getElementById('bgmToggleBtn');
-        if (btn) btn.classList.remove('active-playing');
-        const txt = document.getElementById('bgmText');
-        if (txt) txt.innerText = 'MÚSICA: OFF';
-    }
-}
-
-function toggleBGM() {
-    if (isBgmPlaying) {
-        stopBGM(true);
-        playCyberSFX('click');
-    } else {
-        startBGM();
-        playCyberSFX('tab');
-    }
-}
-
-/* ── EFECTOS DE SONIDO FUTURISTAS (SFX) ────────────────── */
-function toggleSFX() {
-    isSfxEnabled = !isSfxEnabled;
-    const btn = document.getElementById('sfxToggleBtn');
-    if (isSfxEnabled) {
-        btn.innerText = '🔊';
-        btn.title = 'Efectos de sonido: ACTIVADOS';
-        playCyberSFX('click');
-    } else {
-        btn.innerText = '🔇';
-        btn.title = 'Efectos de sonido: MUTED';
-    }
-}
-
-function playCyberSFX(type) {
-    if (!isSfxEnabled) return;
-    try {
-        initAudio();
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(sfxGain);
-
-        if (type === 'hover') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(1100, now);
-            osc.frequency.exponentialRampToValueAtTime(1500, now + 0.04);
-            gain.gain.setValueAtTime(0.03, now);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
-            osc.start(now);
-            osc.stop(now + 0.04);
-        } else if (type === 'click') {
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(750, now);
-            osc.frequency.exponentialRampToValueAtTime(1500, now + 0.07);
-            gain.gain.setValueAtTime(0.12, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
-            osc.start(now);
-            osc.stop(now + 0.07);
-        } else if (type === 'tab') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(520, now);
-            osc.frequency.exponentialRampToValueAtTime(880, now + 0.14);
-            gain.gain.setValueAtTime(0.09, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
-            osc.start(now);
-            osc.stop(now + 0.14);
-        } else if (type === 'week') {
-            osc.type = 'sawtooth';
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(950, now);
-            osc.disconnect();
-            osc.connect(filter);
-            filter.connect(gain);
-            osc.frequency.setValueAtTime(320, now);
-            osc.frequency.exponentialRampToValueAtTime(680, now + 0.12);
-            gain.gain.setValueAtTime(0.08, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-            osc.start(now);
-            osc.stop(now + 0.12);
-        }
-    } catch(e){}
-}
-
-/* ── EVENTOS INTERACTIVOS Y ONDA DE CHOQUE ─────────────── */
-window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.tab-link, .nav-arrow-btn, .btn-exit, .btn-view, .btn-down').forEach(el => {
-        el.addEventListener('click', () => playCyberSFX('tab'));
-        el.addEventListener('mouseenter', () => playCyberSFX('hover'));
-    });
-    document.querySelectorAll('.week-pill, .doc-card, .radio-btn-label').forEach(el => {
-        el.addEventListener('click', () => playCyberSFX('week'));
-        el.addEventListener('mouseenter', () => playCyberSFX('hover'));
-    });
-
-    // Efecto 3D Tilt en tarjetas
-    const tiltElements = document.querySelectorAll('.week-card, .hero-showcase, .student-id-card, .docente-card-pro, .stat-box');
-    tiltElements.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            card.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-3px)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
 });
 
+// ── PALETA DE COLORES Y ETIQUETAS DE IMPACTO CYBER ──
+const sparkColors = ['#00f3ff', '#ff007f', '#d884ff', '#00ff88', '#ffe600', '#ffffff'];
+const cyberTags = ['⚡ SYNC', '✨ MATRIX FX', '🚀 OVERDRIVE', '🌟 ARQ-2026', '🔥 100% ONLINE', '💎 HYPER-UPLA', '⚡ CYBERCORE'];
+
+// ── EXPLOSIÓN EXAGERADA DE CHISPAS Y ONDAS AL HACER CLIC ──
 document.addEventListener('click', e => {
-    if (!audioCtx) initAudio();
+    // 1. Onda de choque expansiva neón
     const wave = document.createElement('div');
     wave.className = 'cyber-click-wave';
     wave.style.left = e.clientX + 'px';
     wave.style.top = e.clientY + 'px';
     document.body.appendChild(wave);
-    setTimeout(() => wave.remove(), 600);
+    setTimeout(() => wave.remove(), 650);
+
+    // 2. Ráfaga de 26 chispas de fuegos artificiales
+    for (let i = 0; i < 26; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'cyber-spark';
+        const color = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+        spark.style.background = color;
+        spark.style.boxShadow = '0 0 8px ' + color + ', 0 0 16px ' + color;
+        spark.style.left = e.clientX + 'px';
+        spark.style.top = e.clientY + 'px';
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * 80 + 25;
+        spark.style.setProperty('--tx', (Math.cos(angle) * dist) + 'px');
+        spark.style.setProperty('--ty', (Math.sin(angle) * dist) + 'px');
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 700);
+    }
+
+    // 3. Etiqueta flotante holográfica
+    const tag = document.createElement('div');
+    tag.className = 'cyber-floating-tag';
+    const tagText = cyberTags[Math.floor(Math.random() * cyberTags.length)];
+    tag.innerText = tagText;
+    const tColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+    tag.style.color = tColor;
+    tag.style.textShadow = '0 0 12px ' + tColor;
+    tag.style.left = e.clientX + 'px';
+    tag.style.top = (e.clientY - 15) + 'px';
+    document.body.appendChild(tag);
+    setTimeout(() => tag.remove(), 900);
+});
+
+// ── EFECTO 3D TILT EXAGERADO CON RESPLANDOR DINÁMICO ──
+window.addEventListener('DOMContentLoaded', () => {
+    const tiltElements = document.querySelectorAll('.week-card, .hero-showcase, .student-id-card, .docente-card-pro, .stat-box, .unit-card, .cyber-card, .social-card');
+    tiltElements.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = 'perspective(1000px) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 8) + 'deg) translateY(-4px)';
+            const glowColor = x > 0 ? 'rgba(255,0,127,0.45)' : 'rgba(0,243,255,0.45)';
+            card.style.boxShadow = '0 20px 50px rgba(0,0,0,0.8), 0 0 35px ' + glowColor;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+        });
+    });
 });
 </script>
 </body>
