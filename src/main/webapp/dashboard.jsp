@@ -38,6 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Portafolio &bull; Arquitectura de Software | <%= nombreAlumna %></title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #05020c; color: #f5edff; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
@@ -245,22 +246,194 @@
         .michi-input { flex: 1; background: rgba(28,10,56,.85); border: 1px solid rgba(216,132,255,.3); border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 12px; outline: none; }
         .michi-send-btn { background: #ff007f; border: none; border-radius: 10px; color: #fff; padding: 0 14px; font-size: 12px; cursor: pointer; font-weight: 800; }
 
-        /* ── RESPONSIVO ── */
-        @media (max-width: 900px) {
-            .hud-top { flex-direction: column; gap: 12px; padding: 14px 16px; }
-            .hero-showcase { grid-template-columns: 1fr; text-align: center; padding: 24px 20px; }
-            .tabs-bar { flex-direction: column; gap: 8px; }
-            .dossier-grid, .units-grid, .week-dual-grid,
-            .contact-hub-grid, .form-grid, .contact-links-grid,
-            .docente-spec-grid { grid-template-columns: 1fr !important; }
-            .carousel-nav { flex-direction: column; gap: 8px; }
-            .nav-arrow-btn { width: 100%; text-align: center; }
-            .main-content  { padding: 15px 12px 120px; }
-            #michiWindow   { width: calc(100% - 30px) !important; right: 15px !important; }
+        /* ── ESCANER LASER HOLOGRAFICO EXTRAVAGANTE ── */
+        .cyber-laser-scan {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0,243,255,0.8) 25%, #ff007f 50%, rgba(0,243,255,0.8) 75%, transparent 100%);
+            box-shadow: 0 0 15px #00f3ff, 0 0 30px #ff007f;
+            z-index: 999998;
+            pointer-events: none;
+            opacity: 0.75;
+            animation: cyberLaserScan 5.5s linear infinite;
+        }
+        @keyframes cyberLaserScan {
+            0%   { top: 0%; opacity: 0; }
+            5%   { opacity: 0.85; }
+            95%  { opacity: 0.85; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* ── CYBER FX PILL WIDGET (AUDIO & FPS EXACTO A LA IMAGEN) ── */
+        .cyber-fx-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(10, 4, 25, 0.94);
+            border: 1.8px solid #00f3ff;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 0 18px rgba(0, 243, 255, 0.4), inset 0 0 12px rgba(0, 243, 255, 0.12);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .cyber-fx-pill:hover {
+            transform: translateY(-2px) scale(1.04);
+            border-color: #ff007f;
+            box-shadow: 0 0 28px rgba(255, 0, 127, 0.65), inset 0 0 15px rgba(255, 0, 127, 0.2);
+        }
+        .cyber-fx-wheel {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px dashed #00f3ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.75);
+            flex-shrink: 0;
+            transition: border-color 0.3s;
+        }
+        .cyber-fx-pill.playing .cyber-fx-wheel {
+            animation: spinWheel 3.5s linear infinite;
+        }
+        .cyber-fx-wheel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #b80d6b;
+            box-shadow: 0 0 8px #ff007f;
+        }
+        .cyber-fx-pill.playing .cyber-fx-wheel-dot {
+            animation: pulseDot 1s ease-in-out infinite;
+        }
+        @keyframes spinWheel {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .cyber-fx-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.15;
+        }
+        .cyber-fx-title {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ff3bb6;
+            letter-spacing: 1.2px;
+            text-shadow: 0 0 10px rgba(255, 59, 182, 0.75);
+        }
+        .cyber-fx-fps {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+        .cyber-fx-fps b {
+            color: #00f3ff;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.7);
+        }
+        .cyber-fx-max {
+            color: #00f3ff;
+            font-weight: 900;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+        }
+        .cyber-fx-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 3.5px;
+            height: 18px;
+            padding: 0 2px;
+        }
+        .eq-bar {
+            width: 4px;
+            border-radius: 4px;
+            transition: height 0.12s ease;
+            height: 4px;
+        }
+        .eq-teal   { background: #00f3ff; box-shadow: 0 0 8px #00f3ff; }
+        .eq-pink   { background: #ff007f; box-shadow: 0 0 8px #ff007f; }
+        .eq-purple { background: #d884ff; box-shadow: 0 0 8px #d884ff; }
+        .eq-yellow { background: #ffe600; box-shadow: 0 0 8px #ffe600; }
+
+        .cyber-fx-pill.playing .eq-teal {
+            animation: eqAnim1 0.45s ease-in-out infinite alternate;
+        }
+        .cyber-fx-pill.playing .eq-pink {
+            animation: eqAnim2 0.32s ease-in-out infinite alternate;
+        }
+        .cyber-fx-pill.playing .eq-purple {
+            animation: eqAnim3 0.42s ease-in-out infinite alternate;
+        }
+        .cyber-fx-pill.playing .eq-yellow {
+            animation: eqAnim4 0.28s ease-in-out infinite alternate;
+        }
+
+        /* ── CONTROLADOR FLOTANTE DE AUDIO CÓSMICO ── */
+        .audio-floating-hud {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 99998;
+            background: rgba(14, 5, 30, 0.94);
+            border: 1.5px solid #00f3ff;
+            border-radius: 20px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 25px rgba(0,243,255,0.35);
+            transition: .3s;
+            user-select: none;
+        }
+        .audio-floating-hud:hover {
+            transform: translateY(-3px) scale(1.03);
+            border-color: #ff007f;
+            box-shadow: 0 0 35px rgba(255,0,127,0.6);
+        }
+        .afh-icon {
+            width: 34px; height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(0,243,255,0.2), rgba(255,0,127,0.2));
+            border: 1px solid #00f3ff;
+            display: flex; align-items: center; justify-content: center;
+            color: #00f3ff; font-size: 15px;
+        }
+        .audio-floating-hud.playing .afh-icon {
+            color: #ff007f;
+            border-color: #ff007f;
+            animation: pulseDot 1.2s infinite;
+        }
+        .afh-details { display: flex; flex-direction: column; text-align: left; }
+        .afh-title   { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 800; color: #fff; }
+        .afh-sub     { font-family: 'Fira Code', monospace; font-size: 9.5px; color: #a890c8; }
+        .afh-badge   { background: rgba(0,243,255,0.2); border: 1px solid #00f3ff; color: #00f3ff; padding: 4px 10px; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 800; }
+        .audio-floating-hud.playing .afh-badge { background: rgba(255,0,127,0.2); border-color: #ff007f; color: #ff80df; }
+
+        /* ── INTERACTIVE 3D TILT EFFECT FOR CARDS ── */
+        .cyber-card, .week-card, .student-id-card, .docente-card-pro, .hero-showcase {
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
     </style>
 </head>
 <body>
+<!-- ESCANER LASER HOLOGRAFICO EXTRAVAGANTE -->
+<div class="cyber-laser-scan"></div>
+
+<!-- REPRODUCTOR DE AUDIO PRINCIPAL (Música Synthwave Cyberpunk Real) -->
+<audio id="cyberAudio" src="<%= ctx %>/cyber_music.wav" loop preload="auto"></audio>
+
 <canvas id="bgCanvas"></canvas>
 
 <%-- ── CYBER LOADER (solo en primer login) ─────────────── --%>
@@ -293,6 +466,22 @@
         </div>
     </div>
     <div class="telemetry-hud">
+        <!-- Widget CYBER FX (Audio + FPS dinámico + Ecualizador exacto a la imagen) -->
+        <div class="cyber-fx-pill" id="cyberFxBtn" onclick="toggleCyberMusic(event)" title="Haz clic para activar o pausar la música Cyber">
+            <div class="cyber-fx-wheel">
+                <div class="cyber-fx-wheel-dot"></div>
+            </div>
+            <div class="cyber-fx-info">
+                <span class="cyber-fx-title">CYBER FX</span>
+                <span class="cyber-fx-fps">FPS: <b id="cyberFpsNum">60</b> &bull; <span class="cyber-fx-max">MAX</span></span>
+            </div>
+            <div class="cyber-fx-eq">
+                <span class="eq-bar eq-teal"></span>
+                <span class="eq-bar eq-pink"></span>
+                <span class="eq-bar eq-purple"></span>
+                <span class="eq-bar eq-yellow"></span>
+            </div>
+        </div>
         <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">PORT: <b>8080</b></div>
@@ -972,9 +1161,107 @@ function bgLoop() {
         cx.fillStyle=p.color; cx.globalAlpha=p.alpha;
         cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2); cx.fill(); cx.restore();
     }
+    updateCyberFps();
     requestAnimationFrame(bgLoop);
 }
 bgLoop();
+
+/* ── CONTADOR DE FPS REAL (CYBER FX) ──────────────────── */
+let lastFpsTime = performance.now();
+let frameCounter = 0;
+const fpsValEl = document.getElementById('cyberFpsNum');
+
+function updateCyberFps() {
+    frameCounter++;
+    const now = performance.now();
+    const delta = now - lastFpsTime;
+    if (delta >= 250) {
+        const fps = Math.min(Math.round((frameCounter * 1000) / delta), 144);
+        if (fpsValEl) fpsValEl.innerText = fps > 0 ? fps : 60;
+        frameCounter = 0;
+        lastFpsTime = now;
+    }
+}
+
+/* ── REPRODUCTOR DE AUDIO CÓSMICO CYBERPUNK ───────────── */
+const cyberAudio = document.getElementById('cyberAudio');
+const cyberFxBtn = document.getElementById('cyberFxBtn');
+const afhHud = document.getElementById('audioFloatingHud');
+const afhStatus = document.getElementById('afhStatus');
+const afhBadge = document.getElementById('afhBadge');
+let isAudioPlaying = false;
+
+function syncAudioUi(playing) {
+    isAudioPlaying = playing;
+    if (playing) {
+        if (cyberFxBtn) cyberFxBtn.classList.add('playing');
+        if (afhHud) afhHud.classList.add('playing');
+        if (afhStatus) afhStatus.innerText = 'SONANDO // VÓRTICE CÓSMICO';
+        if (afhBadge) afhBadge.innerText = 'PAUSA';
+    } else {
+        if (cyberFxBtn) cyberFxBtn.classList.remove('playing');
+        if (afhHud) afhHud.classList.remove('playing');
+        if (afhStatus) afhStatus.innerText = 'PAUSADO // CLIC PARA ACTIVAR';
+        if (afhBadge) afhBadge.innerText = 'PLAY';
+    }
+}
+
+function startMusic() {
+    if (!cyberAudio) return;
+    cyberAudio.volume = 0.55;
+    const playPromise = cyberAudio.play();
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            syncAudioUi(true);
+        }).catch(err => {
+            console.log('Autoplay requiere interacción previa:', err);
+        });
+    }
+}
+
+function pauseMusic() {
+    if (!cyberAudio) return;
+    cyberAudio.pause();
+    syncAudioUi(false);
+}
+
+function toggleCyberMusic(e) {
+    if (e) e.stopPropagation();
+    if (!cyberAudio) return;
+    if (cyberAudio.paused) {
+        startMusic();
+    } else {
+        pauseMusic();
+    }
+}
+
+/* Desbloqueo automático al primer clic en cualquier parte de la pantalla */
+window.addEventListener('click', () => {
+    if (cyberAudio && cyberAudio.paused) {
+        startMusic();
+    }
+}, { once: true });
+
+/* ── 3D TILT EFFECT INTERACTIVO EXTRAVAGANTE ─────────── */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cyber-card, .week-card, .student-id-card, .docente-card-pro, .hero-showcase').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotX = ((y - centerY) / centerY) * -6;
+            const rotY = ((x - centerX) / centerX) * 6;
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.boxShadow = `0 18px 45px rgba(0, 243, 255, 0.3)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            card.style.boxShadow = '';
+        });
+    });
+});
 
 /* ── LOADER 0→100% ────────────────────────────────────── */
 <% if (justLoggedIn) { %>
@@ -1005,5 +1292,17 @@ bgLoop();
 })();
 <% } %>
 </script>
+
+<!-- CONTROLADOR FLOTANTE DE AUDIO CÓSMICO -->
+<div class="audio-floating-hud" id="audioFloatingHud" onclick="toggleCyberMusic(event)" title="Controlador de Música Cyberpunk">
+    <div class="afh-icon"><i class="fas fa-volume-up" id="afhIcon"></i></div>
+    <div class="afh-details">
+        <span class="afh-title">CYBER SOUNDTRACK</span>
+        <span class="afh-sub" id="afhStatus">PAUSADO &bull; CLIC PARA ACTIVAR</span>
+    </div>
+    <div class="afh-badge" id="afhBadge">PLAY</div>
+</div>
+
 </body>
 </html>
+
