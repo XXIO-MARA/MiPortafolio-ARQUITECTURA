@@ -246,141 +246,6 @@
         .michi-input { flex: 1; background: rgba(28,10,56,.85); border: 1px solid rgba(216,132,255,.3); border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 12px; outline: none; }
         .michi-send-btn { background: #ff007f; border: none; border-radius: 10px; color: #fff; padding: 0 14px; font-size: 12px; cursor: pointer; font-weight: 800; }
 
-        /* ── ESCANER LASER HOLOGRAFICO EXTRAVAGANTE ── */
-        .cyber-laser-scan {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(0,243,255,0.8) 25%, #ff007f 50%, rgba(0,243,255,0.8) 75%, transparent 100%);
-            box-shadow: 0 0 15px #00f3ff, 0 0 30px #ff007f;
-            z-index: 999998;
-            pointer-events: none;
-            opacity: 0.75;
-            animation: cyberLaserScan 5.5s linear infinite;
-        }
-        @keyframes cyberLaserScan {
-            0%   { top: 0%; opacity: 0; }
-            5%   { opacity: 0.85; }
-            95%  { opacity: 0.85; }
-            100% { top: 100%; opacity: 0; }
-        }
-
-        /* ── CYBER FX PILL WIDGET (AUDIO & FPS EXACTO A LA IMAGEN) ── */
-        .cyber-fx-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(10, 4, 25, 0.94);
-            border: 1.8px solid #00f3ff;
-            border-radius: 9999px;
-            padding: 6px 16px;
-            cursor: pointer;
-            user-select: none;
-            box-shadow: 0 0 18px rgba(0, 243, 255, 0.4), inset 0 0 12px rgba(0, 243, 255, 0.12);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-        .cyber-fx-pill:hover {
-            transform: translateY(-2px) scale(1.04);
-            border-color: #ff007f;
-            box-shadow: 0 0 28px rgba(255, 0, 127, 0.65), inset 0 0 15px rgba(255, 0, 127, 0.2);
-        }
-        .cyber-fx-wheel {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px dashed #00f3ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.75);
-            flex-shrink: 0;
-            transition: border-color 0.3s;
-        }
-        .cyber-fx-pill.playing .cyber-fx-wheel {
-            animation: spinWheel 3.5s linear infinite;
-        }
-        .cyber-fx-wheel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #b80d6b;
-            box-shadow: 0 0 8px #ff007f;
-        }
-        .cyber-fx-pill.playing .cyber-fx-wheel-dot {
-            animation: pulseDot 1s ease-in-out infinite;
-        }
-        @keyframes spinWheel {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .cyber-fx-info {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            line-height: 1.15;
-        }
-        .cyber-fx-title {
-            font-family: 'Fira Code', monospace;
-            font-size: 11px;
-            font-weight: 800;
-            color: #ff3bb6;
-            letter-spacing: 1.2px;
-            text-shadow: 0 0 10px rgba(255, 59, 182, 0.75);
-        }
-        .cyber-fx-fps {
-            font-family: 'Fira Code', monospace;
-            font-size: 11px;
-            font-weight: 800;
-            color: #ffffff;
-            white-space: nowrap;
-        }
-        .cyber-fx-fps b {
-            color: #00f3ff;
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.7);
-        }
-        .cyber-fx-max {
-            color: #00f3ff;
-            font-weight: 900;
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
-        }
-        .cyber-fx-eq {
-            display: flex;
-            align-items: flex-end;
-            gap: 3.5px;
-            height: 18px;
-            padding: 0 2px;
-        }
-        .eq-bar {
-            width: 4px;
-            border-radius: 4px;
-            transition: height 0.12s ease;
-            height: 4px;
-        }
-        .eq-teal   { background: #00f3ff; box-shadow: 0 0 8px #00f3ff; }
-        .eq-pink   { background: #ff007f; box-shadow: 0 0 8px #ff007f; }
-        .eq-purple { background: #d884ff; box-shadow: 0 0 8px #d884ff; }
-        .eq-yellow { background: #ffe600; box-shadow: 0 0 8px #ffe600; }
-
-        .cyber-fx-pill.playing .eq-teal {
-            animation: eqAnim1 0.45s ease-in-out infinite alternate;
-        }
-        .cyber-fx-pill.playing .eq-pink {
-            animation: eqAnim2 0.32s ease-in-out infinite alternate;
-        }
-        .cyber-fx-pill.playing .eq-purple {
-            animation: eqAnim3 0.42s ease-in-out infinite alternate;
-        }
-        .cyber-fx-pill.playing .eq-yellow {
-            animation: eqAnim4 0.28s ease-in-out infinite alternate;
-        }
-        @keyframes eqAnim1 { 0% { height: 4px; } 100% { height: 16px; } }
-        @keyframes eqAnim2 { 0% { height: 15px; } 100% { height: 5px; } }
-        @keyframes eqAnim3 { 0% { height: 6px; } 100% { height: 18px; } }
-        @keyframes eqAnim4 { 0% { height: 16px; } 100% { height: 7px; } }
-        @keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.35); opacity: 1; } }
-
         /* ── BOTÓN ACCESO ALUMNA (MODIFICAR) ── */
         .btn-alumna-login {
             background: linear-gradient(135deg, #d884ff 0%, #ff007f 100%);
@@ -403,50 +268,14 @@
             box-shadow: 0 0 35px #ff007f;
             filter: brightness(1.15);
         }
-
-        /* ── CYBER TOAST HUD (NOTIFICACIÓN DE EFECTOS) ── */
-        .cyber-toast {
-            position: fixed;
-            top: 90px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            z-index: 999999;
-            background: rgba(12, 4, 30, 0.95);
-            border: 1.5px solid #00f3ff;
-            border-radius: 18px;
-            padding: 10px 24px;
-            color: #00f3ff;
-            font-family: 'Fira Code', monospace;
-            font-size: 12px;
-            font-weight: 800;
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .cyber-toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* ── INTERACTIVE 3D TILT EFFECT FOR CARDS ── */
-        .cyber-card, .week-card, .student-id-card, .docente-card-pro, .hero-showcase {
-            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
-            transform-style: preserve-3d;
-            will-change: transform;
-        }
     </style>
 </head>
 <body>
-<!-- ESCANER LASER HOLOGRAFICO EXTRAVAGANTE -->
-<div class="cyber-laser-scan"></div>
-<div id="cyberToast" class="cyber-toast"></div>
-
 <canvas id="bgCanvas"></canvas>
 
 <%-- ── CYBER LOADER (solo en primer login) ─────────────── --%>
 <% if (justLoggedIn) { %>
-<div id="cyberLoader">
+<div id="cyberLoader" onclick="this.style.opacity='0'; setTimeout(() => this.remove(), 250);" style="cursor:pointer;" title="Clic para omitir y entrar">
     <div class="loader-card">
         <img src="<%= ctx %>/IMG/image.png" alt="UPLA"
              style="height:75px;filter:drop-shadow(0 0 20px #d884ff);margin-bottom:10px;"
@@ -474,22 +303,6 @@
         </div>
     </div>
     <div class="telemetry-hud">
-        <!-- Widget CYBER FX (Modos Visuales Extravagantes + FPS dinámico + Telemetría) -->
-        <div class="cyber-fx-pill playing" id="cyberFxBtn" onclick="cycleCyberFxMode()" title="Haz clic para alternar los modos visuales extravagantes (Warp / Matriz / Neón)">
-            <div class="cyber-fx-wheel">
-                <div class="cyber-fx-wheel-dot"></div>
-            </div>
-            <div class="cyber-fx-info">
-                <span class="cyber-fx-title" id="cyberFxModeText">CYBER FX</span>
-                <span class="cyber-fx-fps">FPS: <b id="cyberFpsNum">60</b> &bull; <span class="cyber-fx-max">MAX</span></span>
-            </div>
-            <div class="cyber-fx-eq">
-                <span class="eq-bar eq-teal"></span>
-                <span class="eq-bar eq-pink"></span>
-                <span class="eq-bar eq-purple"></span>
-                <span class="eq-bar eq-yellow"></span>
-            </div>
-        </div>
         <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">PORT: <b>8080</b></div>
@@ -1171,71 +984,22 @@ window.addEventListener('mousemove', e => {
     }
 });
 
-/* ── MODOS VISUALES EXTRAVAGANTES (CYBER FX) ─────────── */
-let fxMode = 0;
-const fxModes = [
-    { name: 'WARP SPEED', speed: 3.2, color: '#00f3ff', label: '&#128640; MODO HIPERESPACIO ACTIVADO (WARP SPEED 3.2X) // ACELERADOR DE PARTÍCULAS' },
-    { name: 'QUANTUM MATRIX', speed: 1.6, color: '#00ff88', label: '&#128154; MODO MATRIZ CUÁNTICA // RED DE DATOS CIBERNÉTICOS VERDE NEÓN' },
-    { name: 'COSMIC NEON', speed: 1.0, color: '#ff007f', label: '&#128302; MODO NEÓN CÓSMICO // CONSTELACIÓN GRAVITACIONAL VIOLETA' }
-];
-
-function cycleCyberFxMode() {
-    fxMode = (fxMode + 1) % fxModes.length;
-    const cur = fxModes[fxMode];
-    const modeText = document.getElementById('cyberFxModeText');
-    if (modeText) {
-        modeText.innerText = cur.name;
-        modeText.style.color = cur.color;
-    }
-    showCyberToast(cur.label);
-}
-
-function showCyberToast(msg) {
-    const t = document.getElementById('cyberToast');
-    if (!t) return;
-    t.innerHTML = msg;
-    t.classList.add('show');
-    clearTimeout(window._cyberToastTimeout);
-    window._cyberToastTimeout = setTimeout(() => {
-        t.classList.remove('show');
-    }, 2800);
-}
-
 function bgLoop() {
     cx.clearRect(0, 0, W, H);
-    const curMode = fxModes[fxMode];
-    const spd = curMode.speed;
-    const themeCol = curMode.color;
 
     for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        s.x += s.vx * spd; s.y += s.vy * spd; s.alpha += s.dAlpha;
+        s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
         if (s.alpha <= .1 || s.alpha >= 1) s.dAlpha *= -1;
-        if (s.x < 0) s.x = W;
-        if (s.x > W) s.x = 0;
-        if (s.y < 0) s.y = H;
-        if (s.y > H) s.y = 0;
-
-        if (spd > 2.0) {
-            cx.beginPath();
-            cx.moveTo(s.x, s.y);
-            cx.lineTo(s.x - s.vx * 10, s.y - s.vy * 10);
-            cx.strokeStyle = `rgba(0,243,255,${s.alpha*.9})`;
-            cx.lineWidth = s.r * 1.5;
-            cx.stroke();
-        } else {
-            cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-            cx.fillStyle = fxMode === 1 ? `rgba(0,255,136,${s.alpha*.9})` : (fxMode === 2 ? `rgba(255,0,127,${s.alpha*.9})` : `rgba(216,132,255,${s.alpha*.85})`);
-            cx.fill();
-        }
-
+        if (s.x < 0 || s.x > W) s.vx *= -1;
+        if (s.y < 0 || s.y > H) s.vy *= -1;
+        cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        cx.fillStyle = `rgba(216,132,255,${s.alpha*.85})`; cx.fill();
         for (let j = i+1; j < stars.length; j++) {
             const s2 = stars[j], d = Math.hypot(s.x-s2.x, s.y-s2.y);
             if (d < 105) {
                 cx.beginPath(); cx.moveTo(s.x,s.y); cx.lineTo(s2.x,s2.y);
-                const lineAlpha = .25*(1-d/105);
-                cx.strokeStyle = fxMode === 1 ? `rgba(0,255,136,${lineAlpha})` : (fxMode === 2 ? `rgba(255,0,127,${lineAlpha})` : `rgba(216,132,255,${lineAlpha})`);
-                cx.lineWidth=.7; cx.stroke();
+                cx.strokeStyle = `rgba(216,132,255,${.25*(1-d/105)})`; cx.lineWidth=.7; cx.stroke();
             }
         }
     }
@@ -1245,25 +1009,14 @@ function bgLoop() {
         const tx = m.x - Math.cos(m.angle)*m.len,
               ty = m.y - Math.sin(m.angle)*m.len;
         const g = cx.createLinearGradient(m.x,m.y,tx,ty);
-        g.addColorStop(0,   fxMode === 1 ? `rgba(0,255,136,${m.life})` : (fxMode === 2 ? `rgba(255,0,127,${m.life})` : `rgba(0,243,255,${m.life})`));
+        g.addColorStop(0,   `rgba(0,243,255,${m.life})`);
         g.addColorStop(.35, `rgba(216,132,255,${m.life*.85})`);
         g.addColorStop(1,   'transparent');
         cx.beginPath(); cx.moveTo(m.x,m.y); cx.lineTo(tx,ty);
         cx.strokeStyle=g; cx.lineWidth=m.width*m.life; cx.lineCap='round'; cx.stroke();
-        m.x += Math.cos(m.angle)*(m.speed * spd); m.y += Math.sin(m.angle)*(m.speed * spd);
+        m.x += Math.cos(m.angle)*m.speed; m.y += Math.sin(m.angle)*m.speed;
         m.life -= m.decay;
         if (m.life <= 0) meteors.splice(i,1);
-    }
-
-    if (Math.random() < (spd > 2.0 ? 0.07 : 0.03) && meteors.length < 10) {
-        meteors.push({
-            x: Math.random()*W*1.2, y: -20,
-            len: Math.random()*120+60,
-            speed: Math.random()*7+5,
-            angle: Math.PI/4 + (Math.random()-.5)*.2,
-            life: 1, decay: Math.random()*.015+.008,
-            width: Math.random()*2+1
-        });
     }
 
     for (let i = trail.length-1; i >= 0; i--) {
@@ -1274,50 +1027,11 @@ function bgLoop() {
         cx.fillStyle=p.color; cx.globalAlpha=p.alpha;
         cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2); cx.fill(); cx.restore();
     }
-    updateCyberFps();
     requestAnimationFrame(bgLoop);
 }
 bgLoop();
 
-/* ── CONTADOR DE FPS REAL (CYBER FX) ──────────────────── */
-let lastFpsTime = performance.now();
-let frameCounter = 0;
-const fpsValEl = document.getElementById('cyberFpsNum');
-
-function updateCyberFps() {
-    frameCounter++;
-    const now = performance.now();
-    const delta = now - lastFpsTime;
-    if (delta >= 250) {
-        const fps = Math.min(Math.round((frameCounter * 1000) / delta), 144);
-        if (fpsValEl) fpsValEl.innerText = fps > 0 ? fps : 60;
-        frameCounter = 0;
-        lastFpsTime = now;
-    }
-}
-
-/* ── 3D TILT EFFECT INTERACTIVO EXTRAVAGANTE ─────────── */
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.cyber-card, .week-card, .student-id-card, .docente-card-pro, .hero-showcase').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotX = ((y - centerY) / centerY) * -6;
-            const rotY = ((x - centerX) / centerX) * 6;
-            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
-            card.style.boxShadow = `0 18px 45px rgba(0, 243, 255, 0.3)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-            card.style.boxShadow = '';
-        });
-    });
-});
-
-/* ── LOADER 0→100% ────────────────────────────────────── */
+/* ── LOADER 0→100% (RÁPIDO, FLUIDO Y SIN TRABARSE) ─────── */
 <% if (justLoggedIn) { %>
 (function() {
     let count = 0;
@@ -1326,23 +1040,36 @@ document.addEventListener('DOMContentLoaded', () => {
           statEl = document.getElementById('loaderStatus'),
           welcEl = document.getElementById('loaderWelcome'),
           ldrEl  = document.getElementById('cyberLoader');
+
+    function dismissLoader() {
+        if (!ldrEl) return;
+        ldrEl.style.pointerEvents = 'none';
+        ldrEl.style.opacity = '0';
+        setTimeout(() => {
+            ldrEl.style.display = 'none';
+            if (ldrEl.parentNode) ldrEl.parentNode.removeChild(ldrEl);
+        }, 250);
+    }
+
+    // Failsafe absoluto de 1.2 segundos: se retira sí o sí
+    const failsafe = setTimeout(dismissLoader, 1200);
+
     const timer = setInterval(() => {
-        count++;
-        pctEl.innerText  = (count<10?'00':(count<100?'0':'')) + count + '%';
-        fillEl.style.width = count + '%';
-        if (count === 30) statEl.innerText = 'CONECTANDO PERSISTENCIA RELACIONAL...';
-        if (count === 65) statEl.innerText = 'CARGANDO 16 SEMANAS Y VISTAS ARQUITECTÓNICAS...';
-        if (count === 90) statEl.innerText = 'INICIALIZANDO MOTOR CIBERNÉTICO...';
+        count += 3;
+        if (count > 100) count = 100;
+        if (pctEl) pctEl.innerText = (count < 10 ? '00' : (count < 100 ? '0' : '')) + count + '%';
+        if (fillEl) fillEl.style.width = count + '%';
+        if (count === 30 && statEl) statEl.innerText = 'CONECTANDO PERSISTENCIA RELACIONAL...';
+        if (count === 65 && statEl) statEl.innerText = 'CARGANDO 16 SEMANAS Y VISTAS ARQUITECTÓNICAS...';
+        if (count === 90 && statEl) statEl.innerText = 'INICIALIZANDO MOTOR CIBERNÉTICO...';
         if (count >= 100) {
             clearInterval(timer);
-            statEl.style.display = 'none';
-            welcEl.style.display = 'block';
-            setTimeout(() => {
-                ldrEl.style.opacity = '0';
-                setTimeout(() => { ldrEl.style.display = 'none'; }, 700);
-            }, 900);
+            clearTimeout(failsafe);
+            if (statEl) statEl.style.display = 'none';
+            if (welcEl) welcEl.style.display = 'block';
+            setTimeout(dismissLoader, 250);
         }
-    }, 22);
+    }, 16);
 })();
 <% } %>
 </script>
