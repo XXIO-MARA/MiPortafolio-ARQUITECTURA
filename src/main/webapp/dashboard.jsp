@@ -375,49 +375,59 @@
         .cyber-fx-pill.playing .eq-yellow {
             animation: eqAnim4 0.28s ease-in-out infinite alternate;
         }
+        @keyframes eqAnim1 { 0% { height: 4px; } 100% { height: 16px; } }
+        @keyframes eqAnim2 { 0% { height: 15px; } 100% { height: 5px; } }
+        @keyframes eqAnim3 { 0% { height: 6px; } 100% { height: 18px; } }
+        @keyframes eqAnim4 { 0% { height: 16px; } 100% { height: 7px; } }
+        @keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.35); opacity: 1; } }
 
-        /* ── CONTROLADOR FLOTANTE DE AUDIO CÓSMICO ── */
-        .audio-floating-hud {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            z-index: 99998;
-            background: rgba(14, 5, 30, 0.94);
-            border: 1.5px solid #00f3ff;
-            border-radius: 20px;
-            padding: 10px 18px;
-            display: flex;
+        /* ── BOTÓN ACCESO ALUMNA (MODIFICAR) ── */
+        .btn-alumna-login {
+            background: linear-gradient(135deg, #d884ff 0%, #ff007f 100%);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11.5px;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            transition: 0.3s;
+            white-space: nowrap;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 25px rgba(0,243,255,0.35);
-            transition: .3s;
-            user-select: none;
+            gap: 6px;
         }
-        .audio-floating-hud:hover {
-            transform: translateY(-3px) scale(1.03);
-            border-color: #ff007f;
-            box-shadow: 0 0 35px rgba(255,0,127,0.6);
+        .btn-alumna-login:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 35px #ff007f;
+            filter: brightness(1.15);
         }
-        .afh-icon {
-            width: 34px; height: 34px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, rgba(0,243,255,0.2), rgba(255,0,127,0.2));
-            border: 1px solid #00f3ff;
-            display: flex; align-items: center; justify-content: center;
-            color: #00f3ff; font-size: 15px;
+
+        /* ── CYBER TOAST HUD (NOTIFICACIÓN DE EFECTOS) ── */
+        .cyber-toast {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            z-index: 999999;
+            background: rgba(12, 4, 30, 0.95);
+            border: 1.5px solid #00f3ff;
+            border-radius: 18px;
+            padding: 10px 24px;
+            color: #00f3ff;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .audio-floating-hud.playing .afh-icon {
-            color: #ff007f;
-            border-color: #ff007f;
-            animation: pulseDot 1.2s infinite;
+        .cyber-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
-        .afh-details { display: flex; flex-direction: column; text-align: left; }
-        .afh-title   { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 800; color: #fff; }
-        .afh-sub     { font-family: 'Fira Code', monospace; font-size: 9.5px; color: #a890c8; }
-        .afh-badge   { background: rgba(0,243,255,0.2); border: 1px solid #00f3ff; color: #00f3ff; padding: 4px 10px; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 800; }
-        .audio-floating-hud.playing .afh-badge { background: rgba(255,0,127,0.2); border-color: #ff007f; color: #ff80df; }
 
         /* ── INTERACTIVE 3D TILT EFFECT FOR CARDS ── */
         .cyber-card, .week-card, .student-id-card, .docente-card-pro, .hero-showcase {
@@ -430,9 +440,7 @@
 <body>
 <!-- ESCANER LASER HOLOGRAFICO EXTRAVAGANTE -->
 <div class="cyber-laser-scan"></div>
-
-<!-- REPRODUCTOR DE AUDIO PRINCIPAL (Música Synthwave Cyberpunk Real) -->
-<audio id="cyberAudio" src="<%= ctx %>/cyber_music.wav" loop preload="auto"></audio>
+<div id="cyberToast" class="cyber-toast"></div>
 
 <canvas id="bgCanvas"></canvas>
 
@@ -466,13 +474,13 @@
         </div>
     </div>
     <div class="telemetry-hud">
-        <!-- Widget CYBER FX (Audio + FPS dinámico + Ecualizador exacto a la imagen) -->
-        <div class="cyber-fx-pill" id="cyberFxBtn" onclick="toggleCyberMusic(event)" title="Haz clic para activar o pausar la música Cyber">
+        <!-- Widget CYBER FX (Modos Visuales Extravagantes + FPS dinámico + Telemetría) -->
+        <div class="cyber-fx-pill playing" id="cyberFxBtn" onclick="cycleCyberFxMode()" title="Haz clic para alternar los modos visuales extravagantes (Warp / Matriz / Neón)">
             <div class="cyber-fx-wheel">
                 <div class="cyber-fx-wheel-dot"></div>
             </div>
             <div class="cyber-fx-info">
-                <span class="cyber-fx-title">CYBER FX</span>
+                <span class="cyber-fx-title" id="cyberFxModeText">CYBER FX</span>
                 <span class="cyber-fx-fps">FPS: <b id="cyberFpsNum">60</b> &bull; <span class="cyber-fx-max">MAX</span></span>
             </div>
             <div class="cyber-fx-eq">
@@ -487,10 +495,11 @@
         <div class="hud-stat">PORT: <b>8080</b></div>
         <% if (esAdmin) { %>
             <span class="user-badge-admin">&#127800; ALUMNA TITULAR: <%= nombreAlumna %></span>
+            <a href="<%= ctx %>/logout" class="btn-exit">[ CERRAR SESIÓN ]</a>
         <% } else { %>
-            <span class="user-badge-est">&#128065;&#65039; MODO AUDITOR: Visitante UPLA</span>
+            <span class="user-badge-est">&#128065;&#65039; MODO AUDITOR</span>
+            <a href="<%= ctx %>/login" class="btn-alumna-login">&#9889; ACCESO ALUMNA (MODIFICAR)</a>
         <% } %>
-        <a href="<%= ctx %>/logout" class="btn-exit">[ CERRAR SESIÓN ]</a>
     </div>
 </header>
 
@@ -1118,22 +1127,71 @@ window.addEventListener('mousemove', e => {
     }
 });
 
+/* ── MODOS VISUALES EXTRAVAGANTES (CYBER FX) ─────────── */
+let fxMode = 0;
+const fxModes = [
+    { name: 'WARP SPEED', speed: 3.2, color: '#00f3ff', label: '&#128640; MODO HIPERESPACIO ACTIVADO (WARP SPEED 3.2X) // ACELERADOR DE PARTÍCULAS' },
+    { name: 'QUANTUM MATRIX', speed: 1.6, color: '#00ff88', label: '&#128154; MODO MATRIZ CUÁNTICA // RED DE DATOS CIBERNÉTICOS VERDE NEÓN' },
+    { name: 'COSMIC NEON', speed: 1.0, color: '#ff007f', label: '&#128302; MODO NEÓN CÓSMICO // CONSTELACIÓN GRAVITACIONAL VIOLETA' }
+];
+
+function cycleCyberFxMode() {
+    fxMode = (fxMode + 1) % fxModes.length;
+    const cur = fxModes[fxMode];
+    const modeText = document.getElementById('cyberFxModeText');
+    if (modeText) {
+        modeText.innerText = cur.name;
+        modeText.style.color = cur.color;
+    }
+    showCyberToast(cur.label);
+}
+
+function showCyberToast(msg) {
+    const t = document.getElementById('cyberToast');
+    if (!t) return;
+    t.innerHTML = msg;
+    t.classList.add('show');
+    clearTimeout(window._cyberToastTimeout);
+    window._cyberToastTimeout = setTimeout(() => {
+        t.classList.remove('show');
+    }, 2800);
+}
+
 function bgLoop() {
     cx.clearRect(0, 0, W, H);
+    const curMode = fxModes[fxMode];
+    const spd = curMode.speed;
+    const themeCol = curMode.color;
 
     for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
+        s.x += s.vx * spd; s.y += s.vy * spd; s.alpha += s.dAlpha;
         if (s.alpha <= .1 || s.alpha >= 1) s.dAlpha *= -1;
-        if (s.x < 0 || s.x > W) s.vx *= -1;
-        if (s.y < 0 || s.y > H) s.vy *= -1;
-        cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        cx.fillStyle = `rgba(216,132,255,${s.alpha*.85})`; cx.fill();
+        if (s.x < 0) s.x = W;
+        if (s.x > W) s.x = 0;
+        if (s.y < 0) s.y = H;
+        if (s.y > H) s.y = 0;
+
+        if (spd > 2.0) {
+            cx.beginPath();
+            cx.moveTo(s.x, s.y);
+            cx.lineTo(s.x - s.vx * 10, s.y - s.vy * 10);
+            cx.strokeStyle = `rgba(0,243,255,${s.alpha*.9})`;
+            cx.lineWidth = s.r * 1.5;
+            cx.stroke();
+        } else {
+            cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+            cx.fillStyle = fxMode === 1 ? `rgba(0,255,136,${s.alpha*.9})` : (fxMode === 2 ? `rgba(255,0,127,${s.alpha*.9})` : `rgba(216,132,255,${s.alpha*.85})`);
+            cx.fill();
+        }
+
         for (let j = i+1; j < stars.length; j++) {
             const s2 = stars[j], d = Math.hypot(s.x-s2.x, s.y-s2.y);
             if (d < 105) {
                 cx.beginPath(); cx.moveTo(s.x,s.y); cx.lineTo(s2.x,s2.y);
-                cx.strokeStyle = `rgba(216,132,255,${.25*(1-d/105)})`; cx.lineWidth=.7; cx.stroke();
+                const lineAlpha = .25*(1-d/105);
+                cx.strokeStyle = fxMode === 1 ? `rgba(0,255,136,${lineAlpha})` : (fxMode === 2 ? `rgba(255,0,127,${lineAlpha})` : `rgba(216,132,255,${lineAlpha})`);
+                cx.lineWidth=.7; cx.stroke();
             }
         }
     }
@@ -1143,14 +1201,25 @@ function bgLoop() {
         const tx = m.x - Math.cos(m.angle)*m.len,
               ty = m.y - Math.sin(m.angle)*m.len;
         const g = cx.createLinearGradient(m.x,m.y,tx,ty);
-        g.addColorStop(0,   `rgba(0,243,255,${m.life})`);
+        g.addColorStop(0,   fxMode === 1 ? `rgba(0,255,136,${m.life})` : (fxMode === 2 ? `rgba(255,0,127,${m.life})` : `rgba(0,243,255,${m.life})`));
         g.addColorStop(.35, `rgba(216,132,255,${m.life*.85})`);
         g.addColorStop(1,   'transparent');
         cx.beginPath(); cx.moveTo(m.x,m.y); cx.lineTo(tx,ty);
         cx.strokeStyle=g; cx.lineWidth=m.width*m.life; cx.lineCap='round'; cx.stroke();
-        m.x += Math.cos(m.angle)*m.speed; m.y += Math.sin(m.angle)*m.speed;
+        m.x += Math.cos(m.angle)*(m.speed * spd); m.y += Math.sin(m.angle)*(m.speed * spd);
         m.life -= m.decay;
         if (m.life <= 0) meteors.splice(i,1);
+    }
+
+    if (Math.random() < (spd > 2.0 ? 0.07 : 0.03) && meteors.length < 10) {
+        meteors.push({
+            x: Math.random()*W*1.2, y: -20,
+            len: Math.random()*120+60,
+            speed: Math.random()*7+5,
+            angle: Math.PI/4 + (Math.random()-.5)*.2,
+            life: 1, decay: Math.random()*.015+.008,
+            width: Math.random()*2+1
+        });
     }
 
     for (let i = trail.length-1; i >= 0; i--) {
@@ -1182,65 +1251,6 @@ function updateCyberFps() {
         lastFpsTime = now;
     }
 }
-
-/* ── REPRODUCTOR DE AUDIO CÓSMICO CYBERPUNK ───────────── */
-const cyberAudio = document.getElementById('cyberAudio');
-const cyberFxBtn = document.getElementById('cyberFxBtn');
-const afhHud = document.getElementById('audioFloatingHud');
-const afhStatus = document.getElementById('afhStatus');
-const afhBadge = document.getElementById('afhBadge');
-let isAudioPlaying = false;
-
-function syncAudioUi(playing) {
-    isAudioPlaying = playing;
-    if (playing) {
-        if (cyberFxBtn) cyberFxBtn.classList.add('playing');
-        if (afhHud) afhHud.classList.add('playing');
-        if (afhStatus) afhStatus.innerText = 'SONANDO // VÓRTICE CÓSMICO';
-        if (afhBadge) afhBadge.innerText = 'PAUSA';
-    } else {
-        if (cyberFxBtn) cyberFxBtn.classList.remove('playing');
-        if (afhHud) afhHud.classList.remove('playing');
-        if (afhStatus) afhStatus.innerText = 'PAUSADO // CLIC PARA ACTIVAR';
-        if (afhBadge) afhBadge.innerText = 'PLAY';
-    }
-}
-
-function startMusic() {
-    if (!cyberAudio) return;
-    cyberAudio.volume = 0.55;
-    const playPromise = cyberAudio.play();
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            syncAudioUi(true);
-        }).catch(err => {
-            console.log('Autoplay requiere interacción previa:', err);
-        });
-    }
-}
-
-function pauseMusic() {
-    if (!cyberAudio) return;
-    cyberAudio.pause();
-    syncAudioUi(false);
-}
-
-function toggleCyberMusic(e) {
-    if (e) e.stopPropagation();
-    if (!cyberAudio) return;
-    if (cyberAudio.paused) {
-        startMusic();
-    } else {
-        pauseMusic();
-    }
-}
-
-/* Desbloqueo automático al primer clic en cualquier parte de la pantalla */
-window.addEventListener('click', () => {
-    if (cyberAudio && cyberAudio.paused) {
-        startMusic();
-    }
-}, { once: true });
 
 /* ── 3D TILT EFFECT INTERACTIVO EXTRAVAGANTE ─────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1292,16 +1302,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 <% } %>
 </script>
-
-<!-- CONTROLADOR FLOTANTE DE AUDIO CÓSMICO -->
-<div class="audio-floating-hud" id="audioFloatingHud" onclick="toggleCyberMusic(event)" title="Controlador de Música Cyberpunk">
-    <div class="afh-icon"><i class="fas fa-volume-up" id="afhIcon"></i></div>
-    <div class="afh-details">
-        <span class="afh-title">CYBER SOUNDTRACK</span>
-        <span class="afh-sub" id="afhStatus">PAUSADO &bull; CLIC PARA ACTIVAR</span>
-    </div>
-    <div class="afh-badge" id="afhBadge">PLAY</div>
-</div>
 
 </body>
 </html>
