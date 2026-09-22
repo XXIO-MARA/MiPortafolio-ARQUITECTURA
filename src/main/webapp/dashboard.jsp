@@ -498,7 +498,7 @@
             <a href="<%= ctx %>/logout" class="btn-exit">[ CERRAR SESIÓN ]</a>
         <% } else { %>
             <span class="user-badge-est">&#128065;&#65039; MODO AUDITOR</span>
-            <a href="<%= ctx %>/login" class="btn-alumna-login">&#9889; ACCESO ALUMNA (MODIFICAR)</a>
+            <a href="<%= ctx %>/login" class="btn-alumna-login" onclick="openAlumnaModal(event)">&#9889; ACCESO ALUMNA (MODIFICAR)</a>
         <% } %>
     </div>
 </header>
@@ -992,10 +992,54 @@
 </div>
 <% } %>
 
+<%-- ═══ MODAL ACCESO ALUMNA (MODIFICAR) ═════════════════ --%>
+<% if (!esAdmin) { %>
+<div id="alumnaModal" class="cyber-modal" style="display:none;">
+    <div class="modal-dialog" style="max-width:440px;">
+        <div class="modal-header">
+            <div class="modal-title">&#9889; ACCESO DE ALUMNA TITULAR</div>
+            <button class="modal-close" onclick="closeAlumnaModal()">&times;</button>
+        </div>
+        <form action="<%= ctx %>/login" method="POST">
+            <label style="font-size:11.5px;font-family:'Fira Code',monospace;color:#00f3ff;display:block;margin-bottom:6px;font-weight:700;">CÓDIGO O CELULAR (FLOR XIOMARA):</label>
+            <input type="text" name="codigo" id="modalCodigoInput" class="cyber-input" value="ADMIN949163067" required autofocus style="color:#00f3ff;letter-spacing:1px;font-weight:700;">
+            <div style="font-size:10.5px;color:#d884ff;margin:8px 0 16px;font-family:'Fira Code',monospace;">
+                &#128161; Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
+            </div>
+            <button type="submit" class="submit-btn" style="background:linear-gradient(135deg, #d884ff 0%, #ff007f 100%);">
+                &#9889; INGRESAR Y HABILITAR MODIFICACIONES
+            </button>
+            <div style="margin-top:14px;text-align:center;">
+                <a href="<%= ctx %>/login?alumna=1" style="font-family:'Fira Code',monospace;font-size:11px;color:#00f3ff;text-decoration:none;">
+                    &rarr; O entrar en 1 Clic Directo sin escribir &larr;
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<% } %>
+
 <%-- ═══════════════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════════════ --%>
 <script>
+function openAlumnaModal(e) {
+    if (e) e.preventDefault();
+    const m = document.getElementById('alumnaModal');
+    if (m) {
+        m.style.display = 'flex';
+        const inp = document.getElementById('modalCodigoInput');
+        if (inp) { inp.focus(); inp.select(); }
+    } else {
+        window.location.href = '<%= ctx %>/login';
+    }
+}
+
+function closeAlumnaModal() {
+    const m = document.getElementById('alumnaModal');
+    if (m) m.style.display = 'none';
+}
+
 /* ── CARRUSEL DE SEMANAS ──────────────────────────────── */
 let curWeek = 1;
 

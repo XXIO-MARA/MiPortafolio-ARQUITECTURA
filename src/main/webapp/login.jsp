@@ -219,19 +219,37 @@
         </div>
         <% } %>
 
-        <form action="<%= ctx %>/login" method="POST">
+        <form action="<%= ctx %>/login" method="POST" id="loginForm">
             <div class="input-group">
                 <span class="input-prefix">&gt;_</span>
-                <input type="password" name="codigo"
-                       placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                       required autofocus autocomplete="off">
+                <input type="text" name="codigo" id="inputCodigo"
+                       placeholder="Código o Celular (ej: ADMIN949163067)"
+                       required autofocus autocomplete="off"
+                       style="width: 100%; padding: 15px 15px 15px 48px; background: rgba(28,10,56,0.95); border: 1.5px solid rgba(216,132,255,0.35); border-radius: 14px; font-family: 'Fira Code', monospace; font-size: 14px; color: #00f3ff; outline: none; transition: .3s; font-weight: 700;">
             </div>
             <button type="submit" class="btn-login">&#9889; AUTENTICAR Y ACCEDER</button>
         </form>
 
+        <!-- ACCESO RÁPIDO PARA ALUMNA TITULAR (FLOR XIOMARA) -->
+        <button type="button" onclick="loginDirectoAlumna()"
+                style="width:100%;padding:14px;margin-bottom:18px;background:rgba(0,243,255,0.12);border:1.8px solid #00f3ff;border-radius:14px;font-family:'Fira Code',monospace;font-size:12px;font-weight:800;color:#00f3ff;cursor:pointer;box-shadow:0 0 20px rgba(0,243,255,0.3);transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px;"
+                onmouseover="this.style.background='rgba(0,243,255,0.25)';this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.background='rgba(0,243,255,0.12)';this.style.transform='none'">
+            &#9889; ENTRAR COMO ALUMNA FLOR XIOMARA (1 CLIC)
+        </button>
+
         <div class="lock-box">
-            &#128274; <b>PORTAFOLIO DE ACCESO PRIVADO</b><br>
-            <span style="color:#a892cb;">Autenticaci&oacute;n segura vinculada a Base de Datos MySQL</span>
+            &#128274; <b>ACCESO CON PRIVILEGIOS DE MODIFICACIÓN</b><br>
+            <span style="color:#00f3ff;font-size:10.5px;">Permite publicar tareas, subir archivos a las 16 semanas y editar perfil.</span><br>
+            <span style="color:#d884ff;font-size:10px;margin-top:4px;display:block;">Acepta: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b></span>
+        </div>
+
+        <div style="text-align:center;margin-bottom:14px;">
+            <a href="<%= ctx %>/visitar"
+               style="font-family:'Fira Code',monospace;font-size:11px;color:#80e0ff;text-decoration:none;"
+               onmouseover="this.style.color='#00f3ff'" onmouseout="this.style.color='#80e0ff'">
+                &larr; Volver al Portafolio en Modo Visitante
+            </a>
         </div>
 
         <div class="telemetry">
@@ -335,6 +353,15 @@
         requestAnimationFrame(loop);
     }
     loop();
+
+    function loginDirectoAlumna() {
+        var inp = document.getElementById('inputCodigo');
+        var form = document.getElementById('loginForm');
+        if (inp && form) {
+            inp.value = 'ADMIN949163067';
+            form.submit();
+        }
+    }
 </script>
 </body>
 </html>

