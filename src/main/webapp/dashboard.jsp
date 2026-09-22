@@ -22,6 +22,15 @@
 
     if (activeTab == null) activeTab = "presentacion";
     String ctx = request.getContextPath();
+
+    int initialSemana = 1;
+    String semParam = request.getParameter("semana");
+    if (semParam != null) {
+        try {
+            int parsedSem = Integer.parseInt(semParam.trim());
+            if (parsedSem >= 1 && parsedSem <= 16) initialSemana = parsedSem;
+        } catch (Exception ignored) {}
+    }
 %>
 <%!
     /* Método utilitario: semana 1-16 → tema del silabo */
@@ -303,7 +312,7 @@
         </div>
     </div>
     <div class="telemetry-hud">
-        <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b><%= totalArchivos %></b></div>
+        <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b id="hudTotalArchivos"><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
         <div class="hud-stat">PORT: <b>8080</b></div>
         <% if (esAdmin) { %>
@@ -534,13 +543,13 @@
     <%-- Carrusel de semanas --%>
     <div class="carousel-nav">
         <button class="nav-arrow-btn" onclick="changeWeek(-1)">&#9664; SEMANA ANTERIOR</button>
-        <span class="neon-sub" id="carouselStatus">NAVEGANDO SEMANA 01 DE 16</span>
+        <span class="neon-sub" id="carouselStatus">NAVEGANDO SEMANA <%= pad(initialSemana) %> DE 16</span>
         <button class="nav-arrow-btn" onclick="changeWeek(1)">SEMANA SIGUIENTE &#9654;</button>
     </div>
 
     <div class="week-pill-scroller">
     <% for (int s = 1; s <= 16; s++) { %>
-        <div class="week-pill <%= s == 1 ? "active-pill" : "" %>"
+        <div class="week-pill <%= s == initialSemana ? "active-pill" : "" %>"
              onclick="selectWeek(<%= s %>)" id="pill-<%= s %>">SEM <%= pad(s) %></div>
     <% } %>
     </div>
@@ -559,7 +568,7 @@
             }
         }
     %>
-    <div class="week-card <%= s == 1 ? "active-week" : "" %>" id="week-card-<%= s %>">
+    <div class="week-card <%= s == initialSemana ? "active-week" : "" %>" id="week-card-<%= s %>">
         <div class="week-card-header">
             <div>
                 <span class="week-badge-lg">SEMANA <%= pad(s) %> DE 16</span>
@@ -576,22 +585,22 @@
                 <% if (matList.isEmpty()) { %>
                     <div class="empty-slot">&#128237; Sin material de clase registrado</div>
                 <% } else { for (Archivo arc : matList) {
-                    String url = ctx + "/archivos/descargar/" + arc.getId();
+                    String urlDown = ctx + "/archivos/descargar/" + arc.getId();
+                    String urlVer  = ctx + "/archivos/ver/" + arc.getId();
+                    String safeTitulo = arc.getTitulo() != null ? arc.getTitulo().replace("'", "\\'").replace("\"", "&quot;") : "Material";
+                    String safeNombre = arc.getNombreArchivo() != null ? arc.getNombreArchivo().replace("'", "\\'").replace("\"", "&quot;") : "";
+                    String tipoDoc = arc.esPdf() ? "pdf" : (arc.esWord() ? "word" : "doc");
                 %>
-                    <div class="doc-card">
+                    <div class="doc-card" id="doc-card-<%= arc.getId() %>">
                         <div class="doc-title"><%= arc.getTitulo() %></div>
                         <div class="doc-desc"><%= arc.getDescripcion() %></div>
                         <div class="doc-actions">
-                            <a href="<%= url %>" class="btn-down" target="_blank">&#128229; Descargar</a>
-                            <% if (arc.esVisualizable()) { 
-                                String tipoDoc = arc.esPdf() ? "pdf" : (arc.esWord() ? "word" : "doc");
-                            %>
-                            <button class="btn-view" onclick="openDocModal('<%= url %>','<%= arc.getNombreArchivo() %>','<%= tipoDoc %>')">&#128065;&#65039; Ver <%= arc.esPdf() ? "PDF" : (arc.esWord() ? "Word" : "Doc") %></button>
+                            <a href="<%= urlDown %>" class="btn-down" target="_blank" title="Descargar archivo a tu equipo">&#128229; Descargar</a>
+                            <% if (arc.esVisualizable()) { %>
+                            <button type="button" class="btn-view" onclick="openDocModal('<%= urlVer %>','<%= safeTitulo %>','<%= tipoDoc %>','<%= urlDown %>')" title="Ver en visor integrado">&#128065;&#65039; Ver <%= arc.esPdf() ? "PDF" : (arc.esWord() ? "Word" : "Doc") %></button>
+                            <a href="<%= urlVer %>" target="_blank" class="btn-down" style="padding:7px 11px;border-color:#00f3ff;color:#00f3ff;" title="Abrir en pantalla completa directa">&#8599;&#65039; Pantalla Completa</a>
                             <% } %>
-                            <% if (esAdmin) { %>
-                            <a href="<%= ctx %>/archivos/eliminar/<%= arc.getId() %>" class="btn-del"
-                               onclick="return confirm('¿Eliminar este material?');">&#128465;&#65039;</a>
-                            <% } %>
+                            <button type="button" class="btn-del" onclick="abrirConfirmarEliminar(<%= arc.getId() %>, '<%= safeTitulo %>', <%= s %>, <%= esAdmin %>)" title="Eliminar este archivo">&#128465;&#65039; Eliminar</button>
                         </div>
                     </div>
                 <% } } %>
@@ -605,22 +614,22 @@
                 <% if (tarList.isEmpty()) { %>
                     <div class="empty-slot">&#128237; Sin tareas desarrolladas registradas aún</div>
                 <% } else { for (Archivo arc : tarList) {
-                    String url = ctx + "/archivos/descargar/" + arc.getId();
+                    String urlDown = ctx + "/archivos/descargar/" + arc.getId();
+                    String urlVer  = ctx + "/archivos/ver/" + arc.getId();
+                    String safeTitulo = arc.getTitulo() != null ? arc.getTitulo().replace("'", "\\'").replace("\"", "&quot;") : "Tarea";
+                    String safeNombre = arc.getNombreArchivo() != null ? arc.getNombreArchivo().replace("'", "\\'").replace("\"", "&quot;") : "";
+                    String tipoDoc = arc.esPdf() ? "pdf" : (arc.esWord() ? "word" : "doc");
                 %>
-                    <div class="doc-card" style="border-color:rgba(255,0,127,.35);">
+                    <div class="doc-card" id="doc-card-<%= arc.getId() %>" style="border-color:rgba(255,0,127,.35);">
                         <div class="doc-title" style="color:#ff80bf;"><%= arc.getTitulo() %></div>
                         <div class="doc-desc"><%= arc.getDescripcion() %></div>
                         <div class="doc-actions">
-                            <a href="<%= url %>" class="btn-down" style="border-color:#ff007f;color:#ff66b2;" target="_blank">&#128229; Descargar Tarea</a>
-                            <% if (arc.esVisualizable()) { 
-                                String tipoDoc = arc.esPdf() ? "pdf" : (arc.esWord() ? "word" : "doc");
-                            %>
-                            <button class="btn-view" onclick="openDocModal('<%= url %>','<%= arc.getNombreArchivo() %>','<%= tipoDoc %>')">&#128065;&#65039; Ver <%= arc.esPdf() ? "PDF" : (arc.esWord() ? "Word" : "Doc") %></button>
+                            <a href="<%= urlDown %>" class="btn-down" style="border-color:#ff007f;color:#ff66b2;" target="_blank" title="Descargar tarea a tu equipo">&#128229; Descargar Tarea</a>
+                            <% if (arc.esVisualizable()) { %>
+                            <button type="button" class="btn-view" style="border-color:#ff007f;color:#ff80df;" onclick="openDocModal('<%= urlVer %>','<%= safeTitulo %>','<%= tipoDoc %>','<%= urlDown %>')" title="Ver en visor integrado">&#128065;&#65039; Ver <%= arc.esPdf() ? "PDF" : (arc.esWord() ? "Word" : "Doc") %></button>
+                            <a href="<%= urlVer %>" target="_blank" class="btn-down" style="padding:7px 11px;border-color:#00f3ff;color:#00f3ff;" title="Abrir en pantalla completa directa">&#8599;&#65039; Pantalla Completa</a>
                             <% } %>
-                            <% if (esAdmin) { %>
-                            <a href="<%= ctx %>/archivos/eliminar/<%= arc.getId() %>" class="btn-del"
-                               onclick="return confirm('¿Eliminar esta tarea?');">&#128465;&#65039;</a>
-                            <% } %>
+                            <button type="button" class="btn-del" onclick="abrirConfirmarEliminar(<%= arc.getId() %>, '<%= safeTitulo %>', <%= s %>, <%= esAdmin %>)" title="Eliminar esta tarea">&#128465;&#65039; Eliminar</button>
                         </div>
                     </div>
                 <% } } %>
@@ -777,15 +786,87 @@
     </div>
 </div>
 
-<%-- ═══ MODAL VISOR PDF ══════════════════════════════════ --%>
+<%-- ═══ MODAL VISOR PDF Y DOCUMENTOS MEJORADO ═════════════ --%>
 <div id="pdfModal" class="cyber-modal" style="display:none;">
-    <div class="modal-dialog">
-        <div class="modal-header">
-            <div class="modal-title" id="pdfTitle">DOCUMENTO ACADÉMICO</div>
-            <button class="modal-close" onclick="document.getElementById('pdfModal').style.display='none';">CERRAR [X]</button>
+    <div class="modal-dialog" style="max-width:1150px; width:95%; height:90vh; display:flex; flex-direction:column; padding:22px; border: 1.5px solid #00f3ff; box-shadow: 0 0 50px rgba(0,243,255,0.4);">
+        <div class="modal-header" style="margin-bottom:12px; padding-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:22px;">&#128196;</span>
+                <div>
+                    <div class="modal-title" id="pdfTitle" style="color:#00f3ff; font-size:15px; font-weight:800; max-width:550px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">DOCUMENTO ACADÉMICO</div>
+                    <div style="font-family:'Fira Code',monospace; font-size:10px; color:#d884ff;">VISOR DE ALTA RESOLUCIÓN // ARQUITECTURA DE SOFTWARE</div>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <a id="modalFullscreenBtn" href="#" target="_blank" class="btn-down" style="border-color:#00f3ff; color:#00f3ff; padding:8px 14px; font-size:11px;" title="Abrir en pestaña nueva">
+                    &#8599;&#65039; PANTALLA COMPLETA
+                </a>
+                <a id="modalDownloadBtn" href="#" target="_blank" class="btn-down" style="padding:8px 14px; font-size:11px;" title="Descargar fichero">
+                    &#128229; DESCARGAR
+                </a>
+                <button type="button" class="modal-close" onclick="closeDocModal()">
+                    &#10005; CERRAR [ESC]
+                </button>
+            </div>
         </div>
-        <iframe id="pdfFrame" src="" style="width:100%;height:72vh;border:none;border-radius:14px;background:#fff;"></iframe>
+        <div style="flex:1; position:relative; background:#070210; border-radius:14px; overflow:hidden; border:1px solid rgba(216,132,255,0.3); display:flex; flex-direction:column;">
+            <iframe id="pdfFrame" src="" style="flex:1; width:100%; height:100%; border:none; background:#ffffff;"></iframe>
+        </div>
+        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; font-family:'Fira Code',monospace; font-size:11px; color:#cba6f7; flex-wrap:wrap; gap:8px;">
+            <span>&#128161; Si tu navegador restringe la visualización interna, presiona <b>PANTALLA COMPLETA</b>.</span>
+            <span style="color:#00f3ff;">UNIVERSIDAD PERUANA LOS ANDES &bull; 2026</span>
+        </div>
     </div>
+</div>
+
+<%-- ═══ MODAL ELIMINAR ARCHIVO (ELEGANTE Y EN SERIO) ═════ --%>
+<div id="deleteConfirmModal" class="cyber-modal" style="display:none;">
+    <div class="modal-dialog" style="max-width:520px; border: 1.8px solid #ff0055; box-shadow: 0 0 60px rgba(255,0,85,0.45); animation: fadeInWeek .3s ease;">
+        <div class="modal-header" style="border-color:rgba(255,0,85,0.3);">
+            <div class="modal-title" style="color:#ff4d6d; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:18px;">&#9888;&#65039;</span> CONFIRMAR ELIMINACIÓN PERMANENTE
+            </div>
+            <button type="button" class="modal-close" onclick="cerrarConfirmarEliminar()">&times;</button>
+        </div>
+        <div style="padding:10px 0 10px;">
+            <div style="text-align:center; margin-bottom:16px;">
+                <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,0,85,0.15); border:2px solid #ff0055; display:inline-flex; align-items:center; justify-content:center; font-size:32px; box-shadow:0 0 25px rgba(255,0,85,0.5);">
+                    &#128465;&#65039;
+                </div>
+            </div>
+            <div id="delDocTitleDisplay" style="font-size:15px; font-weight:900; color:#fff; text-align:center; margin-bottom:8px; line-height:1.4;">
+                Título del archivo
+            </div>
+            <p style="font-size:12px; color:#e0c3fc; text-align:center; line-height:1.6; margin-bottom:16px;">
+                ¿Estás seguro de que deseas eliminar este documento? Esta acción eliminará <b>definitivamente</b> el registro en MySQL y el archivo físico del servidor.
+            </p>
+
+            <div id="delAuthBox" style="<%= esAdmin ? "display:none;" : "display:block;" %> background:rgba(255,255,255,0.03); border:1px solid rgba(216,132,255,0.25); border-radius:14px; padding:14px; margin-bottom:16px;">
+                <label style="font-size:11px; font-family:'Fira Code',monospace; color:#00f3ff; display:block; margin-bottom:6px; font-weight:700;">
+                    &#128273; CÓDIGO O CELULAR DE ALUMNA TITULAR:
+                </label>
+                <input type="text" id="delTokenInput" class="cyber-input" value="ADMIN949163067" placeholder="Ej: 949163067 o ADMIN949163067" style="color:#00f3ff; font-weight:700; letter-spacing:1px;">
+                <div style="font-size:10px; color:#d884ff; font-family:'Fira Code',monospace; margin-top:6px;">
+                    &#128161; Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <button type="button" class="btn-exit" onclick="cerrarConfirmarEliminar()" style="flex:1; padding:12px; font-size:12px; text-align:center; cursor:pointer; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#cbd5e1;">
+                    CANCELAR
+                </button>
+                <button type="button" id="btnConfirmarDel" onclick="confirmarBorradoDefinitivo()" class="submit-btn" style="flex:1.5; margin:0; padding:12px 16px; font-size:12px; background:linear-gradient(135deg,#ff0055 0%,#b3003b 100%); box-shadow:0 0 25px rgba(255,0,85,0.6);">
+                    &#128465;&#65039; SÍ, ELIMINAR EN SERIO
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-- ═══ TOAST NOTIFICACIÓN CIBERNÉTICA ════════════════════ --%>
+<div id="cyberToast" style="position:fixed; bottom:25px; left:50%; transform:translateX(-50%); background:rgba(20,7,40,0.96); border:1.5px solid #00f3ff; border-radius:16px; padding:12px 24px; color:#fff; font-family:'Fira Code',monospace; font-size:12px; font-weight:800; box-shadow:0 0 35px rgba(0,243,255,0.5); z-index:999999; display:none; align-items:center; gap:10px; transition:opacity .3s ease;">
+    <span id="toastIcon">&#10024;</span>
+    <span id="toastMsg">Mensaje del sistema</span>
 </div>
 
 <%-- ═══ MODAL EDITAR NOMBRE (solo admin) ═════════════════ --%>
@@ -854,7 +935,7 @@ function closeAlumnaModal() {
 }
 
 /* ── CARRUSEL DE SEMANAS ──────────────────────────────── */
-let curWeek = 1;
+let curWeek = <%= initialSemana %>;
 
 function selectWeek(n) {
     curWeek = n;
@@ -871,6 +952,13 @@ function selectWeek(n) {
     if (st) st.innerText = 'NAVEGANDO SEMANA ' + (n < 10 ? '0' + n : n) + ' DE 16';
     const inp = document.getElementById('formSemanaInput');
     if (inp) inp.value = n;
+
+    // Mantener la semana activa en la URL sin recargar la página
+    try {
+        const u = new URL(window.location);
+        u.searchParams.set('semana', n);
+        window.history.replaceState({}, '', u);
+    } catch(e) {}
 }
 
 function changeWeek(d) {
@@ -921,21 +1009,170 @@ function sendMichi() {
     }, 380);
 }
 
+/* ── NOTIFICACIONES TOAST CIBERNÉTICAS ────────────────── */
+function mostrarToast(msg, tipo) {
+    const t = document.getElementById('cyberToast');
+    const m = document.getElementById('toastMsg');
+    const icon = document.getElementById('toastIcon');
+    if (!t || !m) return;
+    m.innerText = msg;
+    if (tipo === 'del') {
+        t.style.borderColor = '#ff0055';
+        t.style.boxShadow = '0 0 35px rgba(255,0,85,0.6)';
+        if (icon) icon.innerText = '🗑️';
+    } else {
+        t.style.borderColor = '#00f3ff';
+        t.style.boxShadow = '0 0 35px rgba(0,243,255,0.6)';
+        if (icon) icon.innerText = '✨';
+    }
+    t.style.display = 'flex';
+    t.style.opacity = '1';
+    setTimeout(() => {
+        t.style.opacity = '0';
+        setTimeout(() => { t.style.display = 'none'; }, 300);
+    }, 3500);
+}
+
 /* ── MODAL VISOR DOCUMENTO (PDF / WORD / DOC) ────────── */
-function openDocModal(url, title, type) {
-    document.getElementById('pdfTitle').innerText = 'DOCUMENTO: ' + title;
-    let targetUrl = url;
+function openDocModal(urlVer, title, type, urlDown) {
+    const titleEl = document.getElementById('pdfTitle');
+    if (titleEl) titleEl.innerText = (title || 'DOCUMENTO').toUpperCase();
+
+    // Configurar enlaces de acción rápida
+    const fsBtn = document.getElementById('modalFullscreenBtn');
+    if (fsBtn) fsBtn.href = urlVer;
+
+    const downBtn = document.getElementById('modalDownloadBtn');
+    if (downBtn) downBtn.href = urlDown || urlVer;
+
+    let targetUrl = urlVer;
     if (type === 'word') {
-        const fullUrl = url.startsWith('http') ? url : (window.location.origin + url);
+        const fullUrl = urlVer.startsWith('http') ? urlVer : (window.location.origin + urlVer);
         targetUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(fullUrl);
     }
-    document.getElementById('pdfFrame').src = targetUrl;
-    document.getElementById('pdfModal').style.display = 'flex';
+
+    const frame = document.getElementById('pdfFrame');
+    if (frame) frame.src = targetUrl;
+
+    const modal = document.getElementById('pdfModal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeDocModal() {
+    const modal = document.getElementById('pdfModal');
+    if (modal) modal.style.display = 'none';
+    const frame = document.getElementById('pdfFrame');
+    if (frame) frame.src = '';
 }
 
 function openPdfModal(url, title) {
-    openDocModal(url, title, 'pdf');
+    openDocModal(url, title, 'pdf', url);
 }
+
+/* ── ELIMINACIÓN DE ARCHIVO (ELEGANTE CON MODAL Y AJAX) ── */
+let archivoAEliminar = { id: null, semana: 1, esAdmin: false };
+
+function abrirConfirmarEliminar(id, titulo, semana, esAdmin) {
+    archivoAEliminar = { id: id, semana: semana, esAdmin: !!esAdmin };
+    const titleEl = document.getElementById('delDocTitleDisplay');
+    if (titleEl) titleEl.innerText = titulo || ('Archivo #' + id);
+
+    const authBox = document.getElementById('delAuthBox');
+    if (authBox) {
+        authBox.style.display = esAdmin ? 'none' : 'block';
+    }
+
+    const modal = document.getElementById('deleteConfirmModal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function cerrarConfirmarEliminar() {
+    const modal = document.getElementById('deleteConfirmModal');
+    if (modal) modal.style.display = 'none';
+    archivoAEliminar = { id: null, semana: 1, esAdmin: false };
+    const btn = document.getElementById('btnConfirmarDel');
+    if (btn) {
+        btn.disabled = false;
+        btn.innerText = '🗑️ SÍ, ELIMINAR EN SERIO';
+    }
+}
+
+function confirmarBorradoDefinitivo() {
+    if (!archivoAEliminar.id) return;
+
+    const btn = document.getElementById('btnConfirmarDel');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerText = '⏳ ELIMINANDO DE BD Y DISCO...';
+    }
+
+    const tokenInput = document.getElementById('delTokenInput');
+    const token = tokenInput ? tokenInput.value.trim() : '';
+
+    let url = '<%= ctx %>/archivos/eliminar/' + archivoAEliminar.id + '?format=json&semana=' + archivoAEliminar.semana;
+    if (token) {
+        url += '&token=' + encodeURIComponent(token);
+    }
+
+    fetch(url, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data && data.success) {
+            const idEliminado = archivoAEliminar.id;
+            cerrarConfirmarEliminar();
+
+            // Animación suave de salida para la tarjeta eliminada
+            const card = document.getElementById('doc-card-' + idEliminado);
+            if (card) {
+                card.style.transition = 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.transform = 'scale(0.85) translateY(-25px)';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    const parent = card.parentNode;
+                    card.remove();
+                    // Si el compartimento quedó sin archivos, mostrar slot vacío
+                    if (parent && parent.querySelectorAll('.doc-card').length === 0) {
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.className = 'empty-slot';
+                        emptyDiv.innerHTML = '📭 Sin archivos registrados en este compartimento';
+                        parent.appendChild(emptyDiv);
+                    }
+                }, 450);
+            }
+
+            // Actualizar contadores del HUD superior en vivo
+            const hudEl = document.getElementById('hudTotalArchivos');
+            if (hudEl) {
+                let n = parseInt(hudEl.innerText) || 0;
+                if (n > 0) hudEl.innerText = (n - 1);
+            }
+
+            mostrarToast('🗑️ Archivo eliminado permanentemente de MySQL y del servidor.', 'del');
+        } else {
+            alert('Aviso: ' + (data && data.message ? data.message : 'No se pudo eliminar. Verifica tu código de Alumna Titular.'));
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = '🗑️ SÍ, ELIMINAR EN SERIO';
+            }
+        }
+    })
+    .catch(err => {
+        // Fallback a redirección clásica en caso de falla de red
+        window.location.href = '<%= ctx %>/archivos/eliminar/' + archivoAEliminar.id + '?semana=' + archivoAEliminar.semana + (token ? ('&token=' + encodeURIComponent(token)) : '');
+    });
+}
+
+/* ── TECLADO: CERRAR MODALES CON ESCAPE ──────────────── */
+window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeDocModal();
+        cerrarConfirmarEliminar();
+        closeAlumnaModal();
+    }
+});
 
 /* ── FONDO CÓSMICO ────────────────────────────────────── */
 const c  = document.getElementById('bgCanvas'),
@@ -1072,6 +1309,11 @@ bgLoop();
     }, 16);
 })();
 <% } %>
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof selectWeek === 'function') {
+        selectWeek(curWeek);
+    }
+});
 </script>
 
 </body>

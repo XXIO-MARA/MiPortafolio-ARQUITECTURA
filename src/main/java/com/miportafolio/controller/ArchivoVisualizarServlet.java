@@ -69,6 +69,8 @@ public class ArchivoVisualizarServlet extends HttpServlet {
         res.setHeader("Content-Disposition",
                 "inline; filename=\"" + archivo.getNombreArchivo()
                 + "\"; filename*=UTF-8''" + encoded);
+        res.setHeader("X-Content-Type-Options", "nosniff");
+        res.setHeader("Cache-Control", "public, max-age=3600");
 
         // Streaming
         try (InputStream in  = new BufferedInputStream(new FileInputStream(f));
