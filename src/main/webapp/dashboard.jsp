@@ -390,14 +390,70 @@
         .modal-title  { font-size: 16px; font-weight: 900; color: #00f3ff; font-family: 'Fira Code', monospace; }
         .modal-close  { background: rgba(255,0,80,.2); border: 1px solid #ff0055; color: #ff6688; padding: 7px 14px; border-radius: 9px; cursor: pointer; font-weight: 800; font-size: 12.5px; }
 
-        /* ── MICHI ── */
-        #cyberCatContainer { position: fixed; bottom: 25px; right: 25px; z-index: 99998; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: transform .3s; }
-        #cyberCatContainer:hover { transform: scale(1.12) translateY(-6px); }
-        .cat-bubble { background: rgba(18,6,36,.94); border: 1.5px solid #00f3ff; color: #00f3ff; font-family: 'Fira Code', monospace; font-size: 10.5px; font-weight: 800; padding: 5px 12px; border-radius: 14px; margin-bottom: 8px; box-shadow: 0 0 16px rgba(0,243,255,.45); animation: bubbleBounce 2s ease-in-out infinite alternate; pointer-events: none; white-space: nowrap; }
-        .cat-sprite { width: 90px; height: 80px; filter: drop-shadow(0 0 15px rgba(255,0,127,.7)); }
+        /* ── FLOR-CHAN ANIME MASCOT ── */
+        #cyberCatContainer { 
+            position: fixed; 
+            bottom: 25px; 
+            right: 25px; 
+            z-index: 99998; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            transition: transform .3s ease; 
+            animation: animeFloatIdle 3.2s ease-in-out infinite alternate;
+        }
+        #cyberCatContainer:hover { 
+            transform: scale(1.15) translateY(-8px); 
+        }
+        @keyframes animeFloatIdle {
+            0%   { transform: translateY(0px) rotate(0deg); }
+            50%  { transform: translateY(-8px) rotate(1.2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes animeEyeBlink {
+            0%, 92%, 100% { transform: scaleY(1); }
+            96% { transform: scaleY(0.08); }
+        }
+        @keyframes animeHairSwayL {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-4deg); }
+        }
+        @keyframes animeHairSwayR {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+        }
+        @keyframes animeSparkleGlow {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 8px #ff77aa); }
+        }
+        .cat-bubble { 
+            background: rgba(28, 8, 36, 0.94); 
+            border: 1.5px solid var(--accent-pink); 
+            color: #fff0f7; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            font-size: 11px; 
+            font-weight: 800; 
+            padding: 6px 14px; 
+            border-radius: 16px; 
+            margin-bottom: 8px; 
+            box-shadow: 0 0 20px rgba(255, 102, 178, 0.5); 
+            animation: bubbleBounce 2s ease-in-out infinite alternate; 
+            pointer-events: none; 
+            white-space: nowrap; 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .anime-mascot-sprite { 
+            width: 100px; 
+            height: 100px; 
+            filter: drop-shadow(0 0 20px rgba(255, 102, 178, 0.75)); 
+            transition: transform 0.2s ease;
+        }
         #michiWindow { position: fixed; bottom: 115px; right: 25px; width: 410px; max-height: 580px; height: 80vh; background: rgba(18,6,36,.96); border: 1.5px solid #d884ff; border-radius: 24px; box-shadow: 0 15px 60px rgba(0,0,0,.85); backdrop-filter: blur(25px); z-index: 99999; display: none; flex-direction: column; overflow: hidden; }
         .michi-head  { background: rgba(30,10,60,.85); border-bottom: 1px solid rgba(216,132,255,.25); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
-        .michi-title { font-size: 13.5px; font-weight: 900; color: #00f3ff; font-family: 'Fira Code', monospace; }
+        .michi-title { font-size: 13.5px; font-weight: 900; color: #ff77aa; font-family: 'Fira Code', monospace; display: flex; align-items: center; gap: 8px; }
         .michi-body  { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .michi-msg   { max-width: 88%; padding: 11px 15px; border-radius: 14px; font-size: 12.5px; line-height: 1.5; }
         .msg-bot     { background: rgba(216,132,255,.14); border: 1px solid rgba(216,132,255,.32); color: #f5edff; align-self: flex-start; }
@@ -672,7 +728,7 @@
 </head>
 <body>
 <canvas id="bgCanvas"></canvas>
-<audio id="bgMusicPlayer" src="<%= ctx %>/cyber_music.wav" loop preload="auto"></audio>
+<audio id="bgMusicPlayer" src="<%= ctx %>/sakura_lofi.mp3" loop preload="auto"></audio>
 
 <%-- ── CYBER LOADER (solo en primer login) ─────────────── --%>
 <% if (justLoggedIn) { %>
@@ -799,7 +855,7 @@
         <% } else { %>
             <span class="user-badge-est" title="Navegación libre para docentes, auditores y visitantes">&#128065;&#65039; MODO AUDITOR</span>
             <button type="button" class="btn-acceso-top" onclick="openAlumnaModal(event)" title="Acceso exclusivo para Flor Xiomara Medina Salazar (Modificar, Subir Tareas y Administrar)">
-                <i class="fas fa-lock-open"></i> ACCESO // LOGIN
+                <i class="fas fa-lock"></i> 🔐 ACCESO
             </button>
         <% } %>
     </div>
@@ -1212,44 +1268,113 @@
 </main>
 
 <%-- ═══════════════════════════════════════════════════════
-     MICHI — Asistente flotante
+     FLOR-CHAN — Asistente Anime Flotante
 ═══════════════════════════════════════════════════════ --%>
-<div id="cyberCatContainer" onclick="toggleMichi()">
-    <div class="cat-bubble">&#128062; ¡Miau! ¿Tienes dudas? ¡Tócame!</div>
-    <svg class="cat-sprite" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 30 65 Q 10 50 15 35 Q 20 20 10 15 Q 5 25 10 40 Q 15 60 30 70 Z" fill="url(#cg)" stroke="#00f3ff" stroke-width="1.5"/>
-        <ellipse cx="35" cy="74" rx="10" ry="6" fill="#d884ff" stroke="#ff007f" stroke-width="1.5"/>
-        <ellipse cx="68" cy="74" rx="10" ry="6" fill="#d884ff" stroke="#ff007f" stroke-width="1.5"/>
-        <ellipse cx="50" cy="58" rx="28" ry="22" fill="url(#cg)" stroke="#d884ff" stroke-width="2"/>
-        <path d="M 32 46 Q 50 56 68 46" stroke="#ff007f" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="50" cy="52" r="4" fill="#00f3ff"/>
-        <polygon points="30,30 22,8 42,20" fill="url(#cg)" stroke="#ff007f" stroke-width="1.5"/>
-        <polygon points="70,30 78,8 58,20" fill="url(#cg)" stroke="#ff007f" stroke-width="1.5"/>
-        <circle cx="50" cy="32" r="22" fill="url(#cg)" stroke="#d884ff" stroke-width="2"/>
-        <ellipse cx="42" cy="30" rx="4.5" ry="6" fill="#00f3ff"/>
-        <ellipse cx="58" cy="30" rx="4.5" ry="6" fill="#00f3ff"/>
-        <circle cx="43.5" cy="28.5" r="1.8" fill="#fff"/>
-        <circle cx="59.5" cy="28.5" r="1.8" fill="#fff"/>
-        <polygon points="50,37 47,34 53,34" fill="#ff80df"/>
-        <path d="M 47 38 Q 50 41 53 38" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M 36 34 L 20 31 M 36 37 L 18 38 M 64 34 L 80 31 M 64 37 L 82 38" stroke="#d884ff" stroke-width="1.2" stroke-linecap="round"/>
+<div id="cyberCatContainer" onclick="toggleMichi()" title="🌸 ¡Haz clic para hablar con Flor-chan!">
+    <div class="cat-bubble" id="animeBubbleText">🌸 ¡Konnichiwa Flor! ¿Subimos otra tarea hoy? ✨</div>
+    <svg class="anime-mascot-sprite" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%"   stop-color="#d884ff"/>
-                <stop offset="60%"  stop-color="#ff007f"/>
-                <stop offset="100%" stop-color="#3b0754"/>
+            <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff99cc"/>
+                <stop offset="60%" stop-color="#ff3388"/>
+                <stop offset="100%" stop-color="#aa0055"/>
+            </linearGradient>
+            <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f3ff"/>
+                <stop offset="100%" stop-color="#0066ff"/>
+            </linearGradient>
+            <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fff5f0"/>
+                <stop offset="100%" stop-color="#ffe4dc"/>
+            </linearGradient>
+            <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ff007f"/>
+                <stop offset="50%" stop-color="#990066"/>
+                <stop offset="100%" stop-color="#110022"/>
             </linearGradient>
         </defs>
+
+        <!-- Sparkles decorativos de fondo -->
+        <circle cx="16" cy="18" r="2.5" fill="#00f3ff" style="animation: animeSparkleGlow 2s infinite ease-in-out;"/>
+        <polygon points="85,20 87,25 92,27 87,29 85,34 83,29 78,27 83,25" fill="#ffdd55" style="animation: animeSparkleGlow 2.5s infinite ease-in-out 0.5s;"/>
+        <polygon points="12,68 13.5,72 17,73.5 13.5,75 12,79 10.5,75 7,73.5 10.5,72" fill="#ff77aa" style="animation: animeSparkleGlow 1.8s infinite ease-in-out 0.8s;"/>
+
+        <!-- Coletas Anime (Twintails) con animación de vaivén -->
+        <g style="animation: animeHairSwayL 3s infinite ease-in-out; transform-origin: 28px 45px;">
+            <path d="M 28 45 C 10 45 4 65 14 85 C 22 95 30 82 26 65 C 25 55 27 50 28 45 Z" fill="url(#hairGrad)" stroke="#880044" stroke-width="1.2"/>
+            <ellipse cx="28" cy="45" rx="5" ry="4" fill="url(#ribbonGrad)"/>
+            <circle cx="28" cy="45" r="2" fill="#fff"/>
+        </g>
+        <g style="animation: animeHairSwayR 3s infinite ease-in-out 0.3s; transform-origin: 72px 45px;">
+            <path d="M 72 45 C 90 45 96 65 86 85 C 78 95 70 82 74 65 C 75 55 73 50 72 45 Z" fill="url(#hairGrad)" stroke="#880044" stroke-width="1.2"/>
+            <ellipse cx="72" cy="45" rx="5" ry="4" fill="url(#ribbonGrad)"/>
+            <circle cx="72" cy="45" r="2" fill="#fff"/>
+        </g>
+
+        <!-- Cabello posterior -->
+        <path d="M 24 45 C 24 20 76 20 76 45 C 76 60 70 70 50 70 C 30 70 24 60 24 45 Z" fill="url(#hairGrad)"/>
+
+        <!-- Cuello y uniforme escolar marinero / blusa -->
+        <path d="M 44 65 L 56 65 L 58 72 L 42 72 Z" fill="url(#skinGrad)"/>
+        <!-- Torso con uniforme -->
+        <path d="M 36 72 C 36 72 42 70 50 70 C 58 70 64 72 64 72 L 67 92 C 67 92 56 94 50 94 C 44 94 33 92 33 92 Z" fill="#1e1035" stroke="#ff007f" stroke-width="1.2"/>
+        <!-- Cuello marinero blanco y corbatín rosa -->
+        <polygon points="40,71 50,83 45,84 38,74" fill="#ffffff"/>
+        <polygon points="60,71 50,83 55,84 62,74" fill="#ffffff"/>
+        <ellipse cx="50" cy="80" rx="3.5" ry="3.5" fill="#ff007f"/>
+        <path d="M 48 83 L 44 92 L 49 90 L 50 83" fill="#ff007f"/>
+        <path d="M 52 83 L 56 92 L 51 90 L 50 83" fill="#ff007f"/>
+
+        <!-- Rostro anime (Chibi head) -->
+        <path d="M 30 46 C 30 30 70 30 70 46 C 70 60 63 68 50 68 C 37 68 30 60 30 46 Z" fill="url(#skinGrad)" stroke="#e8b0a0" stroke-width="1"/>
+
+        <!-- Sonrojo anime en mejillas (Blush) -->
+        <ellipse cx="37" cy="55" rx="4.5" ry="2.2" fill="#ff66b2" opacity="0.6"/>
+        <line x1="34" y1="55" x2="36" y2="54" stroke="#ff3388" stroke-width="1"/>
+        <line x1="37" y1="56" x2="39" y2="55" stroke="#ff3388" stroke-width="1"/>
+        <ellipse cx="63" cy="55" rx="4.5" ry="2.2" fill="#ff66b2" opacity="0.6"/>
+        <line x1="61" y1="55" x2="63" y2="54" stroke="#ff3388" stroke-width="1"/>
+        <line x1="64" y1="56" x2="66" y2="55" stroke="#ff3388" stroke-width="1"/>
+
+        <!-- Ojos Anime Grandes y Expresivos (con animación de parpadeo) -->
+        <g style="animation: animeEyeBlink 4.2s infinite ease-in-out; transform-origin: 50px 48px;">
+            <!-- Ojo izquierdo -->
+            <ellipse cx="40" cy="49" rx="5.5" ry="7.5" fill="url(#eyeGrad)"/>
+            <path d="M 34 43 Q 40 40 46 43" stroke="#220033" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="38" cy="46" r="2.2" fill="#ffffff"/>
+            <circle cx="42" cy="52" r="1.1" fill="#ffffff"/>
+            <polygon points="40,50 41,51.5 42,50 41,48.5" fill="#00f3ff"/>
+
+            <!-- Ojo derecho -->
+            <ellipse cx="60" cy="49" rx="5.5" ry="7.5" fill="url(#eyeGrad)"/>
+            <path d="M 54 43 Q 60 40 66 43" stroke="#220033" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="58" cy="46" r="2.2" fill="#ffffff"/>
+            <circle cx="62" cy="52" r="1.1" fill="#ffffff"/>
+            <polygon points="60,50 61,51.5 62,50 61,48.5" fill="#00f3ff"/>
+        </g>
+
+        <!-- Nariz y Boquita Anime Feliz -->
+        <path d="M 48.5 54 L 49.5 55" stroke="#d48877" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M 47 59 Q 50 62 53 59" stroke="#990033" stroke-width="1.8" stroke-linecap="round" fill="#ff5588"/>
+
+        <!-- Flequillo y Mechones Anime Frontales -->
+        <path d="M 28 42 C 32 30 68 30 72 42 C 70 42 66 38 60 44 C 56 41 52 41 50 45 C 48 40 42 40 38 45 C 34 39 30 42 28 42 Z" fill="url(#hairGrad)"/>
+        <!-- Reflejo de luz en el cabello anime -->
+        <path d="M 36 34 Q 50 30 64 34" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.65"/>
+
+        <!-- Manitas saludando (Cute paws/hands) -->
+        <ellipse cx="32" cy="78" rx="3.5" ry="3" fill="url(#skinGrad)" stroke="#e8b0a0" stroke-width="0.8"/>
+        <ellipse cx="68" cy="78" rx="3.5" ry="3" fill="url(#skinGrad)" stroke="#e8b0a0" stroke-width="0.8"/>
     </svg>
 </div>
 
 <div id="michiWindow">
     <div class="michi-head">
-        <div class="michi-title">&#128062; MICHI // ASISTENTE DEL PORTAFOLIO</div>
+        <div class="michi-title">🌸 FLOR-CHAN // ASISTENTE ANIME DEL PORTAFOLIO</div>
         <button onclick="toggleMichi()" style="background:transparent;border:none;color:#ff6688;font-size:16px;cursor:pointer;font-weight:900;">&#10005;</button>
     </div>
     <div class="michi-body" id="michiMessages">
-        <div class="michi-msg msg-bot">&#128062; ¡Hola <%= esAdmin ? nombreAlumna : "visitante" %>! Soy <b>Michi</b>, tu asistente.<br><br>
+        <div class="michi-msg msg-bot">🌸 ¡Konnichiwa <%= esAdmin ? nombreAlumna : "visitante" %>! Soy <b>Flor-chan</b>, tu asistente anime del portafolio.<br><br>
         Sé <b>TODO</b> sobre este portafolio: el docente Mg. Raúl Fernández, las 16 semanas, el sílabo y más. ¿Qué deseas consultar?</div>
     </div>
     <div class="michi-chips">
@@ -1323,11 +1448,17 @@
 
             <div id="delAuthBox" style="<%= esAdmin ? "display:none;" : "display:block;" %> background:rgba(255,255,255,0.03); border:1px solid rgba(216,132,255,0.25); border-radius:14px; padding:14px; margin-bottom:16px;">
                 <label style="font-size:11px; font-family:'Fira Code',monospace; color:#00f3ff; display:block; margin-bottom:6px; font-weight:700;">
-                    &#128273; CÓDIGO O CELULAR DE ALUMNA TITULAR:
+                    &#128273; CLAVE DE CONFIRMACIÓN DE ALUMNA TITULAR:
                 </label>
-                <input type="text" id="delTokenInput" class="cyber-input" value="ADMIN949163067" placeholder="Ej: 949163067 o ADMIN949163067" style="color:#00f3ff; font-weight:700; letter-spacing:1px;">
+                <div style="position:relative; display:flex; align-items:center;">
+                    <input type="password" id="delTokenInput" class="cyber-input" value="" placeholder="Escribe tu clave de confirmación..." autocomplete="off" style="color:#00f3ff; font-weight:700; letter-spacing:1px; width:100%; padding-right:85px;">
+                    <button type="button" onclick="togglePasswordVisibility('delTokenInput', 'delPassEyeIcon', 'delPassEyeLabel')" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1px solid rgba(0,243,255,0.3); color:#00f3ff; border-radius:8px; padding:5px 9px; font-size:10.5px; font-family:'Fira Code',monospace; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:4px;">
+                        <i class="fas fa-eye" id="delPassEyeIcon"></i>
+                        <span id="delPassEyeLabel">VER</span>
+                    </button>
+                </div>
                 <div style="font-size:10px; color:#d884ff; font-family:'Fira Code',monospace; margin-top:6px;">
-                    &#128161; Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
+                    🔒 Acción protegida &bull; Ingresa tu clave para autorizar el borrado.
                 </div>
             </div>
 
@@ -1436,11 +1567,11 @@
             </div>
 
             <div style="font-size:10.5px; color:var(--text-secondary); margin-bottom:20px; font-family:'Fira Code',monospace; padding:7px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border-left:3px solid var(--accent-cyan);">
-                💡 Válidos: <b>ADMIN949163067</b> &bull; Cel: <b>949163067</b> &bull; Código: <b>s01269h</b>
+                🔒 <b>Acceso Protegido</b> &bull; Escribe tu clave personal autorizada para ingresar.
             </div>
 
             <button type="submit" class="submit-btn" style="background:var(--accent-gradient); padding:15px; font-size:13px; font-weight:900; letter-spacing:1px; border-radius:14px; box-shadow:0 0 30px rgba(255,0,127,0.55); margin-top:4px; display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer;">
-                <i class="fas fa-unlock-alt"></i> DESBLOQUEAR MODO EDICIÓN
+                <i class="fas fa-unlock-alt"></i> 🔓 INGRESAR AL PORTAFOLIO
             </button>
         </form>
     </div>
@@ -1572,101 +1703,25 @@ function actualizarColoresCanvas(theme) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   MOTOR DE AUDIO AMBIENTAL & MELODÍAS ANIME PRO
+   MOTOR DE AUDIO ESTUDIO ANIME & LO-FI REAL
 ═══════════════════════════════════════════════════════ */
 const ANIME_TRACKS = [
     {
         id: 'sakura',
-        name: '🌸 01. Sakura Waltz',
-        title: 'Sakura Waltz (Studio Ghibli / Joe Hisaishi Style)',
-        chords: [
-            [174.61, 261.63, 329.63, 440.00], // Fmaj7
-            [196.00, 246.94, 293.66, 392.00], // G
-            [164.81, 246.94, 329.63, 392.00], // Em7
-            [220.00, 261.63, 329.63, 440.00], // Am7
-            [146.83, 220.00, 261.63, 349.23], // Dm7
-            [196.00, 246.94, 293.66, 349.23], // G7
-            [130.81, 196.00, 246.94, 329.63], // Cmaj7
-            [130.81, 196.00, 233.08, 329.63]  // C7
-        ],
-        arpeggios: [
-            [523.25, 659.25, 587.33, 523.25],
-            [493.88, 587.33, 659.25, 783.99],
-            [659.25, 587.33, 493.88, 392.00],
-            [523.25, 440.00, 493.88, 523.25],
-            [440.00, 392.00, 349.23, 440.00],
-            [493.88, 587.33, 523.25, 493.88],
-            [523.25, 659.25, 783.99, 1046.50],
-            [987.77, 880.00, 783.99, 659.25]
-        ],
-        stepTime: 3000
+        name: '🌸 01. Sakura Chill',
+        title: 'Sakura Anime Chill Beats (Piano & Koto)',
+        src: '<%= ctx %>/sakura_lofi.mp3'
     },
     {
         id: 'ghibli',
-        name: '🌌 02. Kimi no Yume',
-        title: 'Kimi no Yume (Radwimps / Your Name Piano & Bells)',
-        chords: [
-            [146.83, 220.00, 277.18, 369.99], // Dmaj9
-            [138.59, 207.65, 246.94, 329.63], // C#m7
-            [123.47, 185.00, 220.00, 293.66], // Bm7
-            [110.00, 164.81, 220.00, 277.18], // Aadd9
-            [98.00,  146.83, 196.00, 246.94], // Gmaj7
-            [87.31,  130.81, 174.61, 220.00]  // Fmaj7
-        ],
-        arpeggios: [
-            [739.99, 554.37, 440.00, 369.99],
-            [659.25, 493.88, 415.30, 329.63],
-            [587.33, 440.00, 369.99, 293.66],
-            [554.37, 440.00, 659.25, 880.00],
-            [493.88, 392.00, 587.33, 739.99],
-            [440.00, 349.23, 523.25, 659.25]
-        ],
-        stepTime: 3200
-    },
-    {
-        id: 'kimetsu',
-        name: '⚔️ 03. Kimetsu Melody',
-        title: 'Kamado Theme (Demon Slayer Melancólico & Épico)',
-        chords: [
-            [146.83, 220.00, 293.66, 349.23], // Dm
-            [116.54, 174.61, 233.08, 293.66], // Bb
-            [130.81, 196.00, 261.63, 329.63], // C
-            [110.00, 164.81, 220.00, 261.63]  // Am
-        ],
-        arpeggios: [
-            [587.33, 698.46, 880.00, 783.99],
-            [466.16, 587.33, 698.46, 587.33],
-            [523.25, 659.25, 783.99, 659.25],
-            [440.00, 523.25, 659.25, 523.25]
-        ],
-        stepTime: 2800
-    },
-    {
-        id: 'lofi',
-        name: '☕ 04. Ghibli Cafe',
-        title: 'Ghibli Cafe (Cozy Lo-Fi Anime Chillhop)',
-        chords: [
-            [130.81, 196.00, 246.94, 311.13],
-            [116.54, 174.61, 220.00, 277.18],
-            [103.83, 155.56, 196.00, 246.94],
-            [98.00,  146.83, 196.00, 233.08]
-        ],
-        arpeggios: [
-            [622.25, 493.88, 392.00, 493.88],
-            [554.37, 440.00, 349.23, 440.00],
-            [493.88, 392.00, 311.13, 392.00],
-            [466.16, 392.00, 293.66, 392.00]
-        ],
-        stepTime: 3300
+        name: '☕ 02. Ghibli Study',
+        title: 'Ghibli Study Lofi Beats (Relax & Focus)',
+        src: '<%= ctx %>/anime_lofi.mp3'
     }
 ];
 
 let currentTrackIdx = 0;
 let isMusicPlaying = false;
-let audioSynthCtx = null;
-let masterGain = null;
-let synthLoopTimer = null;
-let chordStep = 0;
 let bgAudio = null;
 
 function initMusicEngine() {
@@ -1676,16 +1731,20 @@ function initMusicEngine() {
         const idx = parseInt(savedTrack, 10);
         if (idx >= 0 && idx < ANIME_TRACKS.length) currentTrackIdx = idx;
     }
-    updateTrackLabel();
 
     const savedVol = localStorage.getItem('portfolio_music_vol');
-    const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.55;
+    const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.65;
     const slider = document.getElementById('musicVolumeSlider');
     if (slider) slider.value = vol;
 
     if (bgAudio) {
+        bgAudio.src = ANIME_TRACKS[currentTrackIdx].src;
         bgAudio.volume = vol;
+        bgAudio.onended = () => nextTrack();
+        bgAudio.onplay  = () => updateMusicUI(true);
+        bgAudio.onpause = () => updateMusicUI(false);
     }
+    updateTrackLabel();
 }
 
 function updateTrackLabel() {
@@ -1700,13 +1759,14 @@ function nextTrack(e) {
     localStorage.setItem('portfolio_music_track', currentTrackIdx);
     updateTrackLabel();
     const track = ANIME_TRACKS[currentTrackIdx];
-    if (typeof mostrarToast === 'function') {
-        mostrarToast('🎵 Melodía: ' + track.title, 'ok');
+    if (bgAudio) {
+        bgAudio.src = track.src;
+        if (isMusicPlaying) {
+            bgAudio.play().catch(() => {});
+        }
     }
-    if (isMusicPlaying) {
-        stopSynthEngine();
-        chordStep = 0;
-        playSynthAnimeTrack();
+    if (typeof mostrarToast === 'function') {
+        mostrarToast('🎵 Sonando: ' + track.title, 'ok');
     }
 }
 
@@ -1730,6 +1790,7 @@ function updateMusicUI(playing) {
 
 function toggleMusic(e) {
     if (e) e.stopPropagation();
+    if (!bgAudio) initMusicEngine();
     if (isMusicPlaying) {
         pauseMusic();
         localStorage.setItem('portfolio_music_enabled', 'false');
@@ -1740,175 +1801,44 @@ function toggleMusic(e) {
 }
 
 function playMusic() {
-    try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!audioSynthCtx) {
-            audioSynthCtx = new AudioCtx();
-        }
-        if (audioSynthCtx.state === 'suspended') {
-            audioSynthCtx.resume();
-        }
-    } catch(err) {}
-
-    // Establecer bandera activa ANTES de ejecutar el motor para que no retorne
-    isMusicPlaying = true;
-    updateMusicUI(true);
-    playSynthAnimeTrack();
-
-    const track = ANIME_TRACKS[currentTrackIdx];
-    if (typeof mostrarToast === 'function') {
-        mostrarToast('🎵 Sonando: ' + track.title, 'ok');
+    if (!bgAudio) initMusicEngine();
+    if (!bgAudio.src || bgAudio.src === '' || bgAudio.src.indexOf('.mp3') === -1) {
+        bgAudio.src = ANIME_TRACKS[currentTrackIdx].src;
+    }
+    const playPromise = bgAudio.play();
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            isMusicPlaying = true;
+            updateMusicUI(true);
+            const track = ANIME_TRACKS[currentTrackIdx];
+            if (typeof mostrarToast === 'function') {
+                mostrarToast('🎵 Sonando: ' + track.title, 'ok');
+            }
+        }).catch(err => {
+            console.log('Audio playback interaction needed:', err);
+            updateMusicUI(false);
+            if (typeof mostrarToast === 'function') {
+                mostrarToast('🎵 Haz clic en el botón MÚSICA para activar el sonido anime', 'info');
+            }
+        });
     }
 }
 
 function pauseMusic() {
-    isMusicPlaying = false;
-    stopSynthEngine();
     if (bgAudio) bgAudio.pause();
+    isMusicPlaying = false;
     updateMusicUI(false);
 }
 
 function setMusicVolume(val) {
     const v = Math.max(0, Math.min(1, parseFloat(val)));
     localStorage.setItem('portfolio_music_vol', v);
-    if (masterGain && audioSynthCtx) {
-        masterGain.gain.setValueAtTime(v * 0.85, audioSynthCtx.currentTime);
-    }
     if (bgAudio) bgAudio.volume = v;
 }
 
-function playAnimeChime(f1, f2) {
-    try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
-        if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
-        const now = audioSynthCtx.currentTime;
-        [f1, f2].forEach((freq, idx) => {
-            const osc = audioSynthCtx.createOscillator();
-            const gain = audioSynthCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.1);
-            gain.gain.setValueAtTime(0.001, now + idx * 0.1);
-            gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.1 + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.1 + 0.6);
-            osc.connect(gain);
-            gain.connect(audioSynthCtx.destination);
-            osc.start(now + idx * 0.1);
-            osc.stop(now + idx * 0.1 + 0.65);
-        });
-    } catch(e) {}
-}
-
-function playSynthAnimeTrack() {
-    try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
-        if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
-
-        if (!masterGain) {
-            masterGain = audioSynthCtx.createGain();
-            const savedVol = localStorage.getItem('portfolio_music_vol');
-            const v = (savedVol !== null) ? parseFloat(savedVol) : 0.55;
-            masterGain.gain.setValueAtTime(v * 0.85, audioSynthCtx.currentTime);
-            masterGain.connect(audioSynthCtx.destination);
-        }
-
-        playNextAnimeStep();
-    } catch(e) {
-        console.log('Audio init error:', e);
-    }
-}
-
-function playNextAnimeStep() {
-    if (!isMusicPlaying || !audioSynthCtx) return;
-    const now = audioSynthCtx.currentTime;
-    const track = ANIME_TRACKS[currentTrackIdx];
-    const chords = track.chords;
-    const arps = track.arpeggios;
-    const curChord = chords[chordStep % chords.length];
-    const curArp = arps[chordStep % arps.length];
-    chordStep++;
-
-    // Tocar notas del acorde con síntesis de piano anime acústico cálido
-    curChord.forEach((freq, idx) => {
-        try {
-            const osc = audioSynthCtx.createOscillator();
-            const oscHarmonic = audioSynthCtx.createOscillator();
-            const noteGain = audioSynthCtx.createGain();
-            const filter = audioSynthCtx.createBiquadFilter();
-
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(1600, now);
-            filter.Q.setValueAtTime(1.1, now);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now);
-
-            oscHarmonic.type = 'triangle';
-            oscHarmonic.frequency.setValueAtTime(freq * 2, now);
-
-            // Envolvente dulce tipo piano de anime
-            noteGain.gain.setValueAtTime(0.001, now);
-            noteGain.gain.linearRampToValueAtTime(0.18 / (idx + 1), now + 0.02 + idx * 0.035);
-            noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (track.stepTime / 1000) * 0.95);
-
-            osc.connect(filter);
-            oscHarmonic.connect(filter);
-            filter.connect(noteGain);
-            noteGain.connect(masterGain);
-
-            osc.start(now + idx * 0.035);
-            oscHarmonic.start(now + idx * 0.035);
-            osc.stop(now + (track.stepTime / 1000));
-            oscHarmonic.stop(now + (track.stepTime / 1000));
-        } catch(e) {}
-    });
-
-    // Tocar campanitas celestiales arpegiadas (Music Box / Glockenspiel Ghibli)
-    if (curArp && curArp.length) {
-        curArp.forEach((mFreq, mIdx) => {
-            const noteTime = now + 0.25 + mIdx * 0.45;
-            try {
-                const mOsc = audioSynthCtx.createOscillator();
-                const mHarm = audioSynthCtx.createOscillator();
-                const mGain = audioSynthCtx.createGain();
-                const mFilter = audioSynthCtx.createBiquadFilter();
-
-                mFilter.type = 'lowpass';
-                mFilter.frequency.setValueAtTime(2400, noteTime);
-
-                mOsc.type = 'sine';
-                mOsc.frequency.setValueAtTime(mFreq, noteTime);
-
-                mHarm.type = 'sine';
-                mHarm.frequency.setValueAtTime(mFreq * 2, noteTime);
-
-                mGain.gain.setValueAtTime(0.0001, noteTime);
-                mGain.gain.linearRampToValueAtTime(0.14, noteTime + 0.015);
-                mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.4);
-
-                mOsc.connect(mFilter);
-                mHarm.connect(mFilter);
-                mFilter.connect(mGain);
-                mGain.connect(masterGain);
-
-                mOsc.start(noteTime);
-                mHarm.start(noteTime);
-                mOsc.stop(noteTime + 1.45);
-                mHarm.stop(noteTime + 1.45);
-            } catch(e) {}
-        });
-    }
-
-    synthLoopTimer = setTimeout(playNextAnimeStep, track.stepTime);
-}
-
-function stopSynthEngine() {
-    if (synthLoopTimer) {
-        clearTimeout(synthLoopTimer);
-        synthLoopTimer = null;
-    }
-}
+function playAnimeChime(f1, f2) {}
+function playSynthAnimeTrack() {}
+function stopSynthEngine() {}
 
 // Iniciar música si el usuario la tenía activada previamente con clic
 window.addEventListener('click', () => {
@@ -1969,7 +1899,23 @@ function changeWeek(d) {
     selectWeek(next);
 }
 
-/* ── MICHI ────────────────────────────────────────────── */
+/* ── FLOR-CHAN ANIME ASISTENTE ── */
+const ANIME_MASCOT_PHRASES = [
+    '🌸 ¡Konnichiwa Flor! ¿Subimos otra tarea hoy? ✨',
+    '🌸 ¡Ganbatte! ¡Vamos por ese 20 en Arquitectura! 📚',
+    '🌸 ¡Tócame para consultarme sobre el curso o las 16 semanas! 💬',
+    '🌸 ¡Música anime lo-fi activada para estudiar! 🎧',
+    '🌸 ¿Quieres cambiar de tema anime arriba? 🎨'
+];
+let animePhraseIdx = 0;
+setInterval(() => {
+    const bubble = document.getElementById('animeBubbleText');
+    if (bubble) {
+        animePhraseIdx = (animePhraseIdx + 1) % ANIME_MASCOT_PHRASES.length;
+        bubble.innerText = ANIME_MASCOT_PHRASES[animePhraseIdx];
+    }
+}, 6500);
+
 function toggleMichi() {
     const w = document.getElementById('michiWindow');
     w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
@@ -1990,7 +1936,7 @@ function sendMichi() {
     input.value = '';
     box.scrollTop = box.scrollHeight;
     setTimeout(() => {
-        let resp = '¡Miau! 🐾 No tengo esa consulta exacta, pero puedes revisar las 16 semanas en el carrusel o consultar el correo de Flor.';
+        let resp = '🌸 (◕‿◕) ¡Konnichiwa! No tengo esa consulta exacta, pero puedes revisar las 16 semanas en el carrusel o consultar el correo de Flor.';
         const t = text.toLowerCase();
         if (t.includes('docente') || t.includes('profesor') || t.includes('raul') || t.includes('raúl')) {
             resp = '👨‍🏫 El docente titular es el <b>Mg. Raúl Enrique Fernández Bejarano</b>. Su correo oficial es <b>d.rfernandezb@ms.upla.edu.pe</b> y el semestre va del 06 de Abril al 26 de Julio de 2026.';

@@ -433,7 +433,7 @@
 </head>
 <body>
 <canvas id="canvas"></canvas>
-<audio id="bgMusicPlayer" src="<%= ctx %>/cyber_music.wav" loop preload="auto"></audio>
+<audio id="bgMusicPlayer" src="<%= ctx %>/sakura_lofi.mp3" loop preload="auto"></audio>
 
 <!-- CONTROLES FLOTANTES SUPERIORES (TEMAS Y MÚSICA) -->
 <div class="login-floating-bar">
@@ -512,33 +512,39 @@
     <div class="card">
 
         <div class="header-tag">
-            <span><span class="status-dot"></span>UPLA // SYS_SECURE</span>
-            <span>PORT: 8080</span>
+            <span><span class="status-dot"></span>🌸 UPLA // PORTAL DE ACCESO</span>
+            <span>EPISC 2026-I</span>
         </div>
 
-        <div class="logo-box">
-            <img src="<%= ctx %>/IMG/image.png" alt="Logo UPLA"
-                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo_Universidad_Peruana_Los_Andes.png/640px-Logo_Universidad_Peruana_Los_Andes.png'">
-        </div>
-
-        <div class="title-box">
-            <h1>ARQUITECTURA DE SOFTWARE</h1>
-            <p>Facultad de Ingeniería &bull; EPISC 2026-I</p>
+        <div style="display:flex; flex-direction:column; align-items:center; margin-bottom:18px;">
+            <div style="width:70px; height:70px; border-radius:50%; border:2px solid var(--border-accent); background:radial-gradient(circle, rgba(255,102,178,0.25) 0%, rgba(20,7,40,0.9) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(255,102,178,0.55); margin-bottom:10px; position:relative;">
+                <span style="font-size:32px;">👩‍🎓</span>
+                <span style="position:absolute; bottom:-3px; right:-3px; font-size:15px;">🌸</span>
+            </div>
+            <div style="font-family:'Fira Code',monospace; font-size:10px; color:var(--accent-pink); letter-spacing:1.5px; font-weight:800; text-transform:uppercase; margin-bottom:4px;">
+                🌸 ACCESO PRIVADO &bull; ALUMNA TITULAR
+            </div>
+            <h1 style="font-size:18px; font-weight:900; color:var(--text-primary); margin:0 0 4px; text-shadow:0 0 15px rgba(255,102,178,0.4); text-align:center;">
+                FLOR XIOMARA MEDINA SALAZAR
+            </h1>
+            <p style="font-size:11px; color:var(--text-secondary); margin:0; text-align:center; font-family:'Plus Jakarta Sans',sans-serif;">
+                Arquitectura de Software 2026-I &bull; EPISC UPLA
+            </p>
         </div>
 
         <% if (error != null) { %>
-        <div class="error-box">&#9888;&#65039; ACCESO DENEGADO // CLAVE NO REGISTRADA EN EL SISTEMA</div>
+        <div class="error-box">&#9888;&#65039; ACCESO DENEGADO // CLAVE INCORRECTA &bull; INTENTA NUEVAMENTE</div>
         <% } %>
         <% if ("1".equals(ok)) { %>
         <div style="background:rgba(0,255,136,.12);border:1px solid #00ff88;color:#00ff88;padding:12px;border-radius:10px;font-family:'Fira Code',monospace;font-size:11.5px;margin-bottom:18px;text-align:center;">
-            &#10003; REGISTRO EXITOSO &bull; AHORA INGRESA TU CÓDIGO PARA ACCEDER
+            &#10003; REGISTRO EXITOSO &bull; AHORA ESCRIBE TU CLAVE PARA ACCEDER
         </div>
         <% } %>
 
         <form action="<%= ctx %>/login" method="POST" id="loginForm">
             <label for="inputCodigo" style="font-size:11px; font-family:'Fira Code',monospace; color:var(--accent-cyan); display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
-                <span>🔐 CONTRASEÑA O CÓDIGO:</span>
-                <span style="color:var(--text-muted); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
+                <span>🔐 CONTRASEÑA O CLAVE DE ACCESO:</span>
+                <span style="color:var(--text-secondary); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
             </label>
 
             <!-- INPUT GROUP CON BOTÓN VER/NO VER AL COSTADO -->
@@ -548,7 +554,7 @@
                        name="codigo" 
                        id="inputCodigo"
                        value=""
-                       placeholder="Escribe tu código o contraseña aquí..."
+                       placeholder="Escribe tu clave secreta aquí..."
                        required 
                        autofocus 
                        autocomplete="current-password"
@@ -565,13 +571,13 @@
                 </button>
             </div>
 
-            <button type="submit" class="btn-login">&#9889; AUTENTICAR Y ACCEDER</button>
+            <button type="submit" class="btn-login"><i class="fas fa-unlock-alt"></i> 🔓 INGRESAR AL PORTAFOLIO</button>
         </form>
 
         <div class="lock-box">
             &#128274; <b>ACCESO CON PRIVILEGIOS DE MODIFICACIÓN</b><br>
             <span style="color:var(--accent-cyan);font-size:10.5px;">Permite publicar tareas, subir archivos a las 16 semanas y editar perfil.</span><br>
-            <span style="color:var(--accent-purple);font-size:10px;margin-top:4px;display:block;">Acepta: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b></span>
+            <span style="color:var(--text-secondary);font-size:10px;margin-top:4px;display:block;">🔒 Escribe tu clave personal autorizada para ingresar al sistema.</span>
         </div>
 
         <div style="text-align:center;margin-bottom:14px;">
@@ -689,35 +695,48 @@
         }
     }
 
-    /* ── MOTOR DE AUDIO ANIME MELÓDICO EN LOGIN ───────────── */
+    /* ── MOTOR DE AUDIO ESTUDIO ANIME & LO-FI REAL EN LOGIN ───────────── */
     const ANIME_TRACKS = [
         {
-            name: '🌸 01. Sakura Waltz',
-            chords: [
-                [174.61, 261.63, 329.63, 440.00],
-                [196.00, 246.94, 293.66, 392.00],
-                [164.81, 246.94, 329.63, 392.00],
-                [220.00, 261.63, 329.63, 440.00]
-            ],
-            arps: [
-                [523.25, 659.25, 587.33, 523.25],
-                [493.88, 587.33, 659.25, 783.99],
-                [659.25, 587.33, 493.88, 392.00],
-                [523.25, 440.00, 493.88, 523.25]
-            ],
-            stepTime: 3000
+            id: 'sakura',
+            name: '🌸 01. Sakura Chill',
+            title: 'Sakura Anime Chill Beats (Piano & Koto)',
+            src: '<%= ctx %>/sakura_lofi.mp3'
+        },
+        {
+            id: 'ghibli',
+            name: '☕ 02. Ghibli Study',
+            title: 'Ghibli Study Lofi Beats (Relax & Focus)',
+            src: '<%= ctx %>/anime_lofi.mp3'
         }
     ];
 
+    let currentTrackIdx = 0;
     let isMusicPlaying = false;
-    let audioSynthCtx = null;
-    let masterGain = null;
-    let synthLoopTimer = null;
-    let chordStep = 0;
+    let bgAudio = null;
 
     function initMusicEngine() {
+        bgAudio = document.getElementById('bgMusicPlayer');
         const savedTrack = localStorage.getItem('portfolio_music_track');
-        // Inicializar contexto
+        if (savedTrack !== null) {
+            const idx = parseInt(savedTrack, 10);
+            if (idx >= 0 && idx < ANIME_TRACKS.length) currentTrackIdx = idx;
+        }
+
+        const savedVol = localStorage.getItem('portfolio_music_vol');
+        const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.65;
+
+        if (bgAudio) {
+            bgAudio.src = ANIME_TRACKS[currentTrackIdx].src;
+            bgAudio.volume = vol;
+            bgAudio.onended = () => {
+                currentTrackIdx = (currentTrackIdx + 1) % ANIME_TRACKS.length;
+                bgAudio.src = ANIME_TRACKS[currentTrackIdx].src;
+                bgAudio.play().catch(() => {});
+            };
+            bgAudio.onplay  = () => updateMusicUI(true);
+            bgAudio.onpause = () => updateMusicUI(false);
+        }
     }
 
     function updateMusicUI(playing) {
@@ -740,6 +759,7 @@
 
     function toggleMusic(e) {
         if (e) e.stopPropagation();
+        if (!bgAudio) initMusicEngine();
         if (isMusicPlaying) {
             pauseMusic();
             localStorage.setItem('portfolio_music_enabled', 'false');
@@ -750,91 +770,26 @@
     }
 
     function playMusic() {
-        try {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
-            if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
-        } catch(e) {}
-
-        isMusicPlaying = true;
-        updateMusicUI(true);
-
-        if (!masterGain && audioSynthCtx) {
-            masterGain = audioSynthCtx.createGain();
-            masterGain.gain.setValueAtTime(0.5, audioSynthCtx.currentTime);
-            masterGain.connect(audioSynthCtx.destination);
+        if (!bgAudio) initMusicEngine();
+        if (!bgAudio.src || bgAudio.src === '' || bgAudio.src.indexOf('.mp3') === -1) {
+            bgAudio.src = ANIME_TRACKS[currentTrackIdx].src;
         }
-
-        playAnimeStep();
+        const playPromise = bgAudio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                isMusicPlaying = true;
+                updateMusicUI(true);
+            }).catch(err => {
+                console.log('Audio playback interaction needed:', err);
+                updateMusicUI(false);
+            });
+        }
     }
 
     function pauseMusic() {
+        if (bgAudio) bgAudio.pause();
         isMusicPlaying = false;
-        if (synthLoopTimer) { clearTimeout(synthLoopTimer); synthLoopTimer = null; }
         updateMusicUI(false);
-    }
-
-    function playAnimeStep() {
-        if (!isMusicPlaying || !audioSynthCtx) return;
-        const now = audioSynthCtx.currentTime;
-        const track = ANIME_TRACKS[0];
-        const curChord = track.chords[chordStep % track.chords.length];
-        const curArp = track.arps[chordStep % track.arps.length];
-        chordStep++;
-
-        curChord.forEach((freq, idx) => {
-            try {
-                const osc = audioSynthCtx.createOscillator();
-                const oscHarm = audioSynthCtx.createOscillator();
-                const noteGain = audioSynthCtx.createGain();
-                const filter = audioSynthCtx.createBiquadFilter();
-
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(1600, now);
-
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now);
-                oscHarm.type = 'triangle';
-                oscHarm.frequency.setValueAtTime(freq * 2, now);
-
-                noteGain.gain.setValueAtTime(0.001, now);
-                noteGain.gain.linearRampToValueAtTime(0.18 / (idx + 1), now + 0.02 + idx * 0.035);
-                noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (track.stepTime / 1000) * 0.95);
-
-                osc.connect(filter);
-                oscHarm.connect(filter);
-                filter.connect(noteGain);
-                noteGain.connect(masterGain);
-
-                osc.start(now + idx * 0.035);
-                oscHarm.start(now + idx * 0.035);
-                osc.stop(now + (track.stepTime / 1000));
-                oscHarm.stop(now + (track.stepTime / 1000));
-            } catch(e) {}
-        });
-
-        if (curArp) {
-            curArp.forEach((mFreq, mIdx) => {
-                const noteTime = now + 0.25 + mIdx * 0.45;
-                try {
-                    const mOsc = audioSynthCtx.createOscillator();
-                    const mGain = audioSynthCtx.createGain();
-                    mOsc.type = 'sine';
-                    mOsc.frequency.setValueAtTime(mFreq, noteTime);
-
-                    mGain.gain.setValueAtTime(0.0001, noteTime);
-                    mGain.gain.linearRampToValueAtTime(0.14, noteTime + 0.015);
-                    mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.4);
-
-                    mOsc.connect(mGain);
-                    mGain.connect(masterGain);
-                    mOsc.start(noteTime);
-                    mOsc.stop(noteTime + 1.45);
-                } catch(e) {}
-            });
-        }
-
-        synthLoopTimer = setTimeout(playAnimeStep, track.stepTime);
     }
 
     window.addEventListener('click', () => {
