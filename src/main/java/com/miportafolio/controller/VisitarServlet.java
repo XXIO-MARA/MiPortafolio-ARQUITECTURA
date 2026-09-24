@@ -43,15 +43,12 @@ public class VisitarServlet extends HttpServlet {
         // Buscar el usuario visitante en BD
         Usuario visitante = usuarioDAO.buscarPorCodigo(CODIGO_VISITANTE);
 
-        if (visitante != null) {
-            // Crear sesión en modo auditor
-            HttpSession nuevaSesion = req.getSession(true);
-            nuevaSesion.setAttribute("usuario", visitante);
-            nuevaSesion.setAttribute("justLoggedIn", Boolean.TRUE);
-            res.sendRedirect(req.getContextPath() + "/portafolio");
-        } else {
-            // El usuario visitante no existe → ir al login normal
-            res.sendRedirect(req.getContextPath() + "/login");
+        if (visitante == null) {
+            visitante = new Usuario(2, CODIGO_VISITANTE, "Visitante Académico / Auditor UPLA", "visitante@upla.edu.pe", 2);
         }
+        HttpSession nuevaSesion = req.getSession(true);
+        nuevaSesion.setAttribute("usuario", visitante);
+        nuevaSesion.setAttribute("justLoggedIn", Boolean.TRUE);
+        res.sendRedirect(req.getContextPath() + "/portafolio");
     }
 }

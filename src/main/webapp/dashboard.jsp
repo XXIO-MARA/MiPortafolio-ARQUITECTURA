@@ -51,12 +51,52 @@
     <script>
         /* Aplicación ultra rápida de tema antes del render para evitar parpadeo */
         (function() {
-            var savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+            var savedTheme = localStorage.getItem('portfolio_theme') || 'sakura';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
     </script>
     <style>
-        :root, [data-theme="cyber"] {
+        :root, [data-theme="sakura"] {
+            --bg-main: #0e0514;
+            --bg-surface: rgba(28, 8, 36, 0.88);
+            --bg-surface-solid: #1b0724;
+            --bg-card: rgba(28, 8, 36, 0.86);
+            --bg-card-subtle: rgba(44, 12, 54, 0.92);
+            --border-color: rgba(255, 119, 170, 0.42);
+            --border-accent: #ff66b2;
+            --text-primary: #fff0f7;
+            --text-secondary: #fbb6ce;
+            --text-muted: #c07a9f;
+            --accent-cyan: #ff77aa;
+            --accent-pink: #ff1493;
+            --accent-purple: #ff85c0;
+            --accent-gradient: linear-gradient(135deg, #ff77aa 0%, #ff1493 100%);
+            --hud-bg: rgba(20, 6, 26, 0.96);
+            --glow-shadow: 0 0 28px rgba(255, 102, 178, 0.45);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.75);
+        }
+
+        [data-theme="ghibli"], [data-theme="dark"] {
+            --bg-main: #030718;
+            --bg-surface: rgba(6, 16, 44, 0.9);
+            --bg-surface-solid: #06112e;
+            --bg-card: rgba(8, 22, 56, 0.88);
+            --bg-card-subtle: rgba(12, 32, 76, 0.94);
+            --border-color: rgba(56, 189, 248, 0.4);
+            --border-accent: #fbbf24;
+            --text-primary: #f0f9ff;
+            --text-secondary: #bae6fd;
+            --text-muted: #64748b;
+            --accent-cyan: #38bdf8;
+            --accent-pink: #fbbf24;
+            --accent-purple: #818cf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #fbbf24 100%);
+            --hud-bg: rgba(4, 12, 32, 0.97);
+            --glow-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.75);
+        }
+
+        [data-theme="cyber"], [data-theme="matrix"] {
             --bg-main: #05020c;
             --bg-surface: rgba(18, 6, 36, 0.88);
             --bg-surface-solid: #120624;
@@ -76,111 +116,72 @@
             --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
         }
 
-        [data-theme="dark"] {
-            --bg-main: #0b0f19;
-            --bg-surface: rgba(17, 24, 39, 0.92);
-            --bg-surface-solid: #111827;
-            --bg-card: rgba(30, 41, 59, 0.88);
-            --bg-card-subtle: rgba(15, 23, 42, 0.92);
-            --border-color: rgba(99, 102, 241, 0.35);
-            --border-accent: #38bdf8;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --accent-cyan: #38bdf8;
-            --accent-pink: #6366f1;
-            --accent-purple: #818cf8;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            --hud-bg: rgba(15, 23, 42, 0.96);
-            --glow-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
-            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+        [data-theme="lofi"], [data-theme="synthwave"] {
+            --bg-main: #18081c;
+            --bg-surface: rgba(36, 12, 44, 0.9);
+            --bg-surface-solid: #250c2c;
+            --bg-card: rgba(44, 14, 54, 0.88);
+            --bg-card-subtle: rgba(26, 8, 32, 0.92);
+            --border-color: rgba(255, 122, 0, 0.42);
+            --border-accent: #ffea00;
+            --text-primary: #fff7ed;
+            --text-secondary: #fed7aa;
+            --text-muted: #ea580c;
+            --accent-cyan: #ffea00;
+            --accent-pink: #ff007f;
+            --accent-purple: #ff7a00;
+            --accent-gradient: linear-gradient(135deg, #ff007f 0%, #ff7a00 100%);
+            --hud-bg: rgba(24, 8, 28, 0.96);
+            --glow-shadow: 0 0 25px rgba(255, 122, 0, 0.4);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
         }
 
-        [data-theme="light"] {
-            --bg-main: #f1f5f9;
+        [data-theme="zen"], [data-theme="light"] {
+            --bg-main: #f8fafc;
             --bg-surface: rgba(255, 255, 255, 0.96);
             --bg-surface-solid: #ffffff;
             --bg-card: #ffffff;
-            --bg-card-subtle: #f8fafc;
+            --bg-card-subtle: #f1f5f9;
             --border-color: rgba(203, 213, 225, 0.9);
             --border-accent: #2563eb;
             --text-primary: #0f172a;
             --text-secondary: #334155;
             --text-muted: #64748b;
             --accent-cyan: #0284c7;
-            --accent-pink: #d946ef;
-            --accent-purple: #7c3aed;
+            --accent-pink: #7c3aed;
+            --accent-purple: #2563eb;
             --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
             --hud-bg: rgba(255, 255, 255, 0.98);
             --glow-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
         }
 
-        [data-theme="matrix"] {
-            --bg-main: #040d08;
-            --bg-surface: rgba(6, 26, 14, 0.92);
-            --bg-surface-solid: #061a0e;
-            --bg-card: rgba(8, 32, 18, 0.88);
-            --bg-card-subtle: rgba(4, 20, 10, 0.92);
-            --border-color: rgba(16, 185, 129, 0.4);
-            --border-accent: #00ff88;
-            --text-primary: #ecfdf5;
-            --text-secondary: #6ee7b7;
-            --text-muted: #047857;
-            --accent-cyan: #00ff88;
-            --accent-pink: #10b981;
-            --accent-purple: #34d399;
-            --accent-gradient: linear-gradient(135deg, #10b981 0%, #00ff88 100%);
-            --hud-bg: rgba(4, 18, 10, 0.96);
-            --glow-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
-            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
-        }
-
-        [data-theme="synthwave"] {
-            --bg-main: #180928;
-            --bg-surface: rgba(38, 14, 60, 0.92);
-            --bg-surface-solid: #260e3c;
-            --bg-card: rgba(45, 16, 72, 0.88);
-            --bg-card-subtle: rgba(28, 8, 46, 0.92);
-            --border-color: rgba(255, 122, 0, 0.4);
-            --border-accent: #ffea00;
-            --text-primary: #fff7ed;
-            --text-secondary: #fed7aa;
-            --text-muted: #c2410c;
-            --accent-cyan: #ffea00;
-            --accent-pink: #ff007f;
-            --accent-purple: #ff7a00;
-            --accent-gradient: linear-gradient(135deg, #ff007f 0%, #ff7a00 100%);
-            --hud-bg: rgba(24, 9, 40, 0.96);
-            --glow-shadow: 0 0 25px rgba(255, 122, 0, 0.4);
-            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Reglas adaptativas de temas */
-        [data-theme="light"] body { background: #f1f5f9 !important; color: #0f172a !important; }
-        [data-theme="light"] .hud-brand { color: #0f172a !important; text-shadow: none !important; }
-        [data-theme="light"] .hud-facultad { color: #475569 !important; }
-        [data-theme="light"] .hud-stat { background: #ffffff !important; border-color: #cbd5e1 !important; color: #334155 !important; }
-        [data-theme="light"] .student-name { color: #0f172a !important; text-shadow: none !important; }
-        [data-theme="light"] .meta-val { color: #0f172a !important; }
-        [data-theme="light"] .unit-title { color: #0f172a !important; }
-        [data-theme="light"] .doc-title { color: #0f172a !important; }
-        [data-theme="light"] .doc-desc { color: #475569 !important; }
-        [data-theme="light"] .week-card-title { color: #0f172a !important; }
-        [data-theme="light"] .console-title { color: #0f172a !important; }
-        [data-theme="light"] .modal-dialog { background: #ffffff !important; border-color: #2563eb !important; box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important; color: #0f172a !important; }
+        /* Reglas adaptativas de tema Zen / Claro */
+        [data-theme="zen"] body, [data-theme="light"] body { background: #f8fafc !important; color: #0f172a !important; }
+        [data-theme="zen"] .hud-brand, [data-theme="light"] .hud-brand { color: #0f172a !important; text-shadow: none !important; }
+        [data-theme="zen"] .hud-facultad, [data-theme="light"] .hud-facultad { color: #475569 !important; }
+        [data-theme="zen"] .hud-stat, [data-theme="light"] .hud-stat { background: #ffffff !important; border-color: #cbd5e1 !important; color: #334155 !important; }
+        [data-theme="zen"] .student-name, [data-theme="light"] .student-name { color: #0f172a !important; text-shadow: none !important; }
+        [data-theme="zen"] .meta-val, [data-theme="light"] .meta-val { color: #0f172a !important; }
+        [data-theme="zen"] .unit-title, [data-theme="light"] .unit-title { color: #0f172a !important; }
+        [data-theme="zen"] .doc-title, [data-theme="light"] .doc-title { color: #0f172a !important; }
+        [data-theme="zen"] .doc-desc, [data-theme="light"] .doc-desc { color: #475569 !important; }
+        [data-theme="zen"] .week-card-title, [data-theme="light"] .week-card-title { color: #0f172a !important; }
+        [data-theme="zen"] .console-title, [data-theme="light"] .console-title { color: #0f172a !important; }
+        [data-theme="zen"] .modal-dialog, [data-theme="light"] .modal-dialog { background: #ffffff !important; border-color: #2563eb !important; box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important; color: #0f172a !important; }
+        [data-theme="zen"] .cyber-input, [data-theme="zen"] .cyber-textarea, [data-theme="zen"] .cyber-select,
         [data-theme="light"] .cyber-input, [data-theme="light"] .cyber-textarea, [data-theme="light"] .cyber-select { background: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] .radio-btn-label { background: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
-        [data-theme="light"] .cyber-dropzone { background: #f8fafc !important; border-color: #94a3b8 !important; }
-        [data-theme="light"] .dropzone-text { color: #0f172a !important; }
-        [data-theme="light"] .tab-inactive { background: #ffffff !important; color: #334155 !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] .empty-slot { border-color: #cbd5e1 !important; color: #64748b !important; }
-        [data-theme="light"] .michi-head { background: #f8fafc !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] #michiWindow { background: #ffffff !important; border-color: #2563eb !important; }
-        [data-theme="light"] .msg-bot { background: #f1f5f9 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] .michi-input-box { background: #f8fafc !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] .michi-input { background: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
-        [data-theme="light"] .upla-3d-inner { background: #ffffff !important; }
+        [data-theme="zen"] .radio-btn-label, [data-theme="light"] .radio-btn-label { background: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
+        [data-theme="zen"] .cyber-dropzone, [data-theme="light"] .cyber-dropzone { background: #f8fafc !important; border-color: #94a3b8 !important; }
+        [data-theme="zen"] .dropzone-text, [data-theme="light"] .dropzone-text { color: #0f172a !important; }
+        [data-theme="zen"] .tab-inactive, [data-theme="light"] .tab-inactive { background: #ffffff !important; color: #334155 !important; border-color: #cbd5e1 !important; }
+        [data-theme="zen"] .empty-slot, [data-theme="light"] .empty-slot { border-color: #cbd5e1 !important; color: #64748b !important; }
+        [data-theme="zen"] .michi-head, [data-theme="light"] .michi-head { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+        [data-theme="zen"] #michiWindow, [data-theme="light"] #michiWindow { background: #ffffff !important; border-color: #2563eb !important; }
+        [data-theme="zen"] .msg-bot, [data-theme="light"] .msg-bot { background: #f1f5f9 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+        [data-theme="zen"] .michi-input-box, [data-theme="light"] .michi-input-box { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+        [data-theme="zen"] .michi-input, [data-theme="light"] .michi-input { background: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+        [data-theme="zen"] .upla-3d-inner, [data-theme="light"] .upla-3d-inner { background: #ffffff !important; }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; transition: background .3s ease, color .3s ease; }
@@ -585,6 +586,68 @@
             accent-color: var(--accent-cyan);
             cursor: pointer;
         }
+
+        /* ── BOTÓN SIGUIENTE PISTA DE MÚSICA HUD ── */
+        .btn-track-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all .25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+        }
+        .btn-track-pill:hover {
+            border-color: var(--border-accent);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+
+        /* ── BOTÓN DESTACADO ACCESO // LOGIN HUD ── */
+        .btn-acceso-top {
+            background: linear-gradient(135deg, #ff007f 0%, #d884ff 50%, #00f3ff 100%);
+            background-size: 200% auto;
+            color: #fff !important;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11.5px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.65);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+            letter-spacing: 0.8px;
+            animation: glowPulse 3s infinite;
+        }
+        .btn-acceso-top:hover {
+            transform: scale(1.08) translateY(-1px);
+            box-shadow: 0 0 35px #00f3ff, 0 0 45px #ff007f;
+            filter: brightness(1.2);
+        }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 18px rgba(255, 0, 127, 0.55); }
+            50%      { box-shadow: 0 0 28px rgba(0, 243, 255, 0.7); }
+        }
+
+        /* ── EFECTO 3D TILT SUAVE PARA TARJETAS ── */
+        .cyber-card, .docente-card-pro, .student-id-card, .unit-card, .week-card {
+            transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease, border-color 0.25s ease;
+            will-change: transform;
+            transform-style: preserve-3d;
+        }
     </style>
 </head>
 <body>
@@ -624,9 +687,9 @@
         <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b id="hudTotalArchivos"><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
 
-        <!-- REPRODUCTOR DE MÚSICA HUD -->
+        <!-- REPRODUCTOR DE MÚSICA HUD (MELODÍAS ANIME & LO-FI) -->
         <div class="music-hud-container" style="display:inline-flex; align-items:center; gap:6px;">
-            <button type="button" class="btn-music-pill" id="musicPillBtn" onclick="toggleMusic(event)" title="Reproducir o pausar música de fondo">
+            <button type="button" class="btn-music-pill" id="musicPillBtn" onclick="toggleMusic(event)" title="Reproducir o pausar música melódica anime">
                 <div class="music-bars-eq" id="musicEqBars">
                     <span class="eq-bar bar-1"></span>
                     <span class="eq-bar bar-2"></span>
@@ -636,13 +699,18 @@
                 <i class="fas fa-play" id="musicPlayIcon"></i>
                 <span id="musicBtnLabel">MÚSICA</span>
             </button>
+            <button type="button" class="btn-track-pill" id="trackNextBtn" onclick="nextTrack(event)" title="Cambiar a la siguiente melodía anime">
+                <i class="fas fa-compact-disc" style="color:var(--accent-cyan);"></i>
+                <span id="trackNameLabel">🌸 01. Sakura Piano</span>
+                <i class="fas fa-step-forward" style="font-size:9px;"></i>
+            </button>
             <div class="volume-slider-wrapper" title="Control de volumen">
-                <i class="fas fa-volume-down" style="font-size:10px; color:var(--text-secondary);"></i>
-                <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.05" value="0.5" oninput="setMusicVolume(this.value)">
+                <i class="fas fa-volume-up" style="font-size:10px; color:var(--text-secondary);"></i>
+                <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.05" value="0.45" oninput="setMusicVolume(this.value)">
             </div>
         </div>
 
-        <!-- SELECTOR DE TEMAS HUD -->
+        <!-- SELECTOR DE TEMAS INNOVADORES HUD -->
         <div class="theme-switcher-container">
             <button type="button" class="btn-theme-trigger" id="themeBtn" onclick="toggleThemeMenu(event)" title="Cambiar tema visual del portafolio">
                 <i class="fas fa-palette" style="color:var(--accent-cyan);"></i>
@@ -650,44 +718,44 @@
                 <i class="fas fa-chevron-down" style="font-size:9px;"></i>
             </button>
             <div class="theme-dropdown-menu" id="themeDropdownMenu">
-                <div class="theme-dropdown-header">// SELECCIONAR TEMA</div>
+                <div class="theme-dropdown-header">// TEMAS INNOVADORES &bull; ESTILO ANIME</div>
+                <button type="button" class="theme-opt-btn" data-theme-val="sakura" onclick="setTheme('sakura')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #ff77aa, #ff1493);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">🌸 Anime Sakura</span>
+                        <span class="theme-desc">Pétalos de cerezo flotantes y noche rosa</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="ghibli" onclick="setTheme('ghibli')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #38bdf8, #fbbf24);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">🌌 Ghibli Midnight</span>
+                        <span class="theme-desc">Cielo estrellado, luciérnagas y cometas</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
                 <button type="button" class="theme-opt-btn" data-theme-val="cyber" onclick="setTheme('cyber')">
                     <span class="theme-dot" style="background: linear-gradient(135deg, #00f3ff, #ff007f);"></span>
                     <div class="theme-info">
-                        <span class="theme-name">🌌 Cyber Neón</span>
-                        <span class="theme-desc">Futurista y cósmico (Original)</span>
+                        <span class="theme-name">⚔️ Neo Tokyo Cyber</span>
+                        <span class="theme-desc">Edgerunners neón cian & magenta</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
-                <button type="button" class="theme-opt-btn" data-theme-val="dark" onclick="setTheme('dark')">
-                    <span class="theme-dot" style="background: linear-gradient(135deg, #3b82f6, #6366f1);"></span>
+                <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #ff7a00, #ff007f);"></span>
                     <div class="theme-info">
-                        <span class="theme-name">🌑 Eclipse Dark</span>
-                        <span class="theme-desc">Azul zafiro & obsidiana pro</span>
+                        <span class="theme-name">☕ Lofi Sunset</span>
+                        <span class="theme-desc">Atardecer cálido, brasas y chillhop</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
-                <button type="button" class="theme-opt-btn" data-theme-val="light" onclick="setTheme('light')">
+                <button type="button" class="theme-opt-btn" data-theme-val="zen" onclick="setTheme('zen')">
                     <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #2563eb); border:1px solid #cbd5e1;"></span>
                     <div class="theme-info">
-                        <span class="theme-name">☀️ Modo Claro</span>
-                        <span class="theme-desc">Blanco académico minimalista</span>
-                    </div>
-                    <i class="fas fa-check theme-check"></i>
-                </button>
-                <button type="button" class="theme-opt-btn" data-theme-val="matrix" onclick="setTheme('matrix')">
-                    <span class="theme-dot" style="background: linear-gradient(135deg, #00ff88, #10b981);"></span>
-                    <div class="theme-info">
-                        <span class="theme-name">📟 Emerald Matrix</span>
-                        <span class="theme-desc">Terminal hacker verde neón</span>
-                    </div>
-                    <i class="fas fa-check theme-check"></i>
-                </button>
-                <button type="button" class="theme-opt-btn" data-theme-val="synthwave" onclick="setTheme('synthwave')">
-                    <span class="theme-dot" style="background: linear-gradient(135deg, #ff007f, #ff7a00);"></span>
-                    <div class="theme-info">
-                        <span class="theme-name">🌅 Sunset Synthwave</span>
-                        <span class="theme-desc">Atardecer 80s cálido y violeta</span>
+                        <span class="theme-name">✨ Minimal Zen</span>
+                        <span class="theme-desc">Blanco cristalino de lujo y zafiro</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
@@ -696,10 +764,15 @@
 
         <% if (esAdmin) { %>
             <span class="user-badge-admin">&#127800; ALUMNA TITULAR: <%= nombreAlumna %></span>
-            <a href="<%= ctx %>/logout" class="btn-exit">[ CERRAR SESIÓN ]</a>
+            <span class="hud-stat" style="border-color:#ff007f; color:#ff80df;" title="Privilegios de subida y edición activos">
+                &#10024; MODO EDICIÓN ACTIVO
+            </span>
+            <a href="<%= ctx %>/logout" class="btn-exit" title="Cerrar sesión">[ CERRAR SESIÓN ]</a>
         <% } else { %>
-            <span class="user-badge-est">&#128065;&#65039; MODO AUDITOR</span>
-            <a href="<%= ctx %>/login" class="btn-alumna-login" onclick="openAlumnaModal(event)">&#9889; ACCESO ALUMNA (MODIFICAR)</a>
+            <span class="user-badge-est" title="Navegación libre para docentes, auditores y visitantes">&#128065;&#65039; MODO AUDITOR</span>
+            <button type="button" class="btn-acceso-top" onclick="openAlumnaModal(event)" title="Acceso exclusivo para Flor Xiomara Medina Salazar (Modificar, Subir Tareas y Administrar)">
+                <i class="fas fa-lock-open"></i> ACCESO // LOGIN
+            </button>
         <% } %>
     </div>
 </header>
@@ -1265,28 +1338,51 @@
 </div>
 <% } %>
 
-<%-- ═══ MODAL ACCESO ALUMNA (MODIFICAR) ═════════════════ --%>
+<%-- ═══ MODAL ACCESO PRIVADO DE ALUMNA (MODIFICAR & SUBIR) ═════════════════ --%>
 <% if (!esAdmin) { %>
 <div id="alumnaModal" class="cyber-modal" style="display:none;">
-    <div class="modal-dialog" style="max-width:440px;">
-        <div class="modal-header">
-            <div class="modal-title">&#9889; ACCESO DE ALUMNA TITULAR</div>
+    <div class="modal-dialog alumna-dialog" style="max-width:480px; border:1.8px solid var(--border-accent); box-shadow:0 0 60px rgba(255,0,127,0.45); animation:fadeInWeek .3s ease;">
+        <div class="modal-header" style="border-color:rgba(216,132,255,0.3);">
+            <div class="modal-title" style="color:var(--text-primary); font-size:15px; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:20px;">🌸</span> ACCESO PRIVADO &bull; FLOR XIOMARA
+            </div>
             <button class="modal-close" onclick="closeAlumnaModal()">&times;</button>
         </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:18px; padding:16px; margin-bottom:18px; display:flex; align-items:center; gap:14px;">
+            <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#ff007f,#d884ff); display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 0 20px rgba(255,0,127,0.5); flex-shrink:0;">
+                🌸
+            </div>
+            <div>
+                <div style="font-size:14px; font-weight:900; color:#fff;">Flor Xiomara Medina Salazar</div>
+                <div style="font-size:11px; color:var(--accent-cyan); font-family:'Fira Code',monospace;">Alumna Titular &bull; EPISC UPLA &bull; Cel: 949163067</div>
+            </div>
+        </div>
+
+        <p style="font-size:12px; color:var(--text-secondary); line-height:1.55; margin-bottom:16px;">
+            Inicia sesión como alumna titular para activar tus permisos de <b>subir tareas ("alsar archivos")</b> en las 16 semanas, eliminar documentos y gestionar tu portafolio.
+        </p>
+
+        <!-- ACCESO RÁPIDO 1-CLIC -->
+        <a href="<%= ctx %>/login?alumna=1" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:14px; background:linear-gradient(135deg, #00f3ff 0%, #d884ff 100%); color:#05020c !important; font-family:'Fira Code',monospace; font-size:12px; font-weight:900; border-radius:14px; text-decoration:none; box-shadow:0 0 25px rgba(0,243,255,0.5); transition:0.3s; margin-bottom:16px;" onmouseover="this.style.transform='scale(1.02)'; this.style.filter='brightness(1.15)'" onmouseout="this.style.transform='none'; this.style.filter='none'">
+            <i class="fas fa-bolt"></i> ENTRAR DIRECTO COMO FLOR (1 CLIC)
+        </a>
+
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <span style="flex:1; height:1px; background:var(--border-color); opacity:0.6;"></span>
+            <span style="font-family:'Fira Code',monospace; font-size:10px; color:var(--text-muted); text-transform:uppercase;">O Ingresar con Clave / Celular</span>
+            <span style="flex:1; height:1px; background:var(--border-color); opacity:0.6;"></span>
+        </div>
+
         <form action="<%= ctx %>/login" method="POST">
-            <label style="font-size:11.5px;font-family:'Fira Code',monospace;color:#00f3ff;display:block;margin-bottom:6px;font-weight:700;">CÓDIGO O CELULAR (FLOR XIOMARA):</label>
-            <input type="text" name="codigo" id="modalCodigoInput" class="cyber-input" value="ADMIN949163067" required autofocus style="color:#00f3ff;letter-spacing:1px;font-weight:700;">
-            <div style="font-size:10.5px;color:#d884ff;margin:8px 0 16px;font-family:'Fira Code',monospace;">
-                &#128161; Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
+            <label style="font-size:11px;font-family:'Fira Code',monospace;color:var(--accent-cyan);display:block;margin-bottom:6px;font-weight:700;">CÓDIGO O CELULAR:</label>
+            <input type="text" name="codigo" id="modalCodigoInput" class="cyber-input" value="ADMIN949163067" required autofocus style="color:var(--accent-cyan);letter-spacing:1px;font-weight:700; margin-bottom:6px;">
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:16px;font-family:'Fira Code',monospace;">
+                💡 Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
             </div>
-            <button type="submit" class="submit-btn" style="background:linear-gradient(135deg, #d884ff 0%, #ff007f 100%);">
-                &#9889; INGRESAR Y HABILITAR MODIFICACIONES
+            <button type="submit" class="submit-btn" style="background:var(--accent-gradient); margin:0;">
+                <i class="fas fa-key"></i> INICIAR SESIÓN Y HABILITAR MODIFICACIÓN
             </button>
-            <div style="margin-top:14px;text-align:center;">
-                <a href="<%= ctx %>/login?alumna=1" style="font-family:'Fira Code',monospace;font-size:11px;color:#00f3ff;text-decoration:none;">
-                    &rarr; O entrar en 1 Clic Directo sin escribir &larr;
-                </a>
-            </div>
         </form>
     </div>
 </div>
@@ -1297,42 +1393,55 @@
 ═══════════════════════════════════════════════════════ --%>
 <script>
 /* ═══════════════════════════════════════════════════════
-   SISTEMA DE TEMAS VISUALES DINÁMICOS
+   SISTEMA DE TEMAS VISUALES DINÁMICOS & ANIME INNOVADOR
 ═══════════════════════════════════════════════════════ */
-let themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
-let themeStarColor = 'rgba(216,132,255,';
+let currentThemeMode = 'sakura';
+let themeParticlePalette = ['#ff77aa', '#ff1493', '#ff85c0', '#ffd6eb'];
+let themeStarColor = 'rgba(255,119,170,';
+
+function normalizeTheme(t) {
+    if (!t) return 'sakura';
+    t = t.toLowerCase();
+    if (t === 'dark') return 'ghibli';
+    if (t === 'light') return 'zen';
+    if (t === 'matrix') return 'cyber';
+    if (t === 'synthwave') return 'lofi';
+    return t;
+}
 
 function setTheme(theme, showNotification) {
-    if (!theme) theme = 'cyber';
+    theme = normalizeTheme(theme);
+    currentThemeMode = theme;
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio_theme', theme);
 
-    // Actualizar botones de opción en el menú dropdown
+    // Actualizar botones en el dropdown
     document.querySelectorAll('.theme-opt-btn').forEach(btn => {
-        if (btn.getAttribute('data-theme-val') === theme) {
+        const val = normalizeTheme(btn.getAttribute('data-theme-val'));
+        if (val === theme) {
             btn.classList.add('active');
         } else {
             btn.classList.remove('active');
         }
     });
 
-    // Actualizar paleta del fondo canvas
+    // Actualizar paleta del fondo canvas y regenerar partículas del tema
     actualizarColoresCanvas(theme);
 
     // Cerrar menú dropdown si estaba abierto
     const menu = document.getElementById('themeDropdownMenu');
     if (menu) menu.classList.remove('show');
 
-    // Notificación toast opcional
+    // Notificación toast
     if (showNotification !== false && typeof mostrarToast === 'function') {
         const nombres = {
-            'cyber': '🌌 Cyber Neón',
-            'dark': '🌑 Eclipse Dark',
-            'light': '☀️ Modo Claro',
-            'matrix': '📟 Emerald Matrix',
-            'synthwave': '🌅 Sunset Synthwave'
+            'sakura': '🌸 Anime Sakura (Pétalos de Cerezo)',
+            'ghibli': '🌌 Ghibli Midnight (Cielo Estrellado & Luciérnagas)',
+            'cyber': '⚔️ Neo Tokyo Cyber (Cyberpunk Neón)',
+            'lofi': '☕ Lofi Sunset (Atardecer Cálido & Chillhop)',
+            'zen': '✨ Minimal Zen (Blanco Cristalino de Lujo)'
         };
-        mostrarToast('🎨 Tema cambiado a ' + (nombres[theme] || theme), 'ok');
+        mostrarToast('🎨 Tema activado: ' + (nombres[theme] || theme), 'ok');
     }
 }
 
@@ -1342,7 +1451,6 @@ function toggleThemeMenu(e) {
     if (menu) menu.classList.toggle('show');
 }
 
-// Cerrar menú de temas al hacer clic en cualquier otra parte
 document.addEventListener('click', (e) => {
     const menu = document.getElementById('themeDropdownMenu');
     const btn = document.getElementById('themeBtn');
@@ -1354,52 +1462,164 @@ document.addEventListener('click', (e) => {
 });
 
 function actualizarColoresCanvas(theme) {
-    if (theme === 'dark') {
-        themeParticlePalette = ['#38bdf8', '#6366f1', '#818cf8'];
-        themeStarColor = 'rgba(99,102,241,';
-    } else if (theme === 'light') {
-        themeParticlePalette = ['#2563eb', '#7c3aed', '#0284c7'];
-        themeStarColor = 'rgba(37,99,235,';
-    } else if (theme === 'matrix') {
-        themeParticlePalette = ['#00ff88', '#10b981', '#34d399'];
-        themeStarColor = 'rgba(0,255,136,';
-    } else if (theme === 'synthwave') {
-        themeParticlePalette = ['#ff007f', '#ff7a00', '#ffea00'];
+    currentThemeMode = theme;
+    if (theme === 'sakura') {
+        themeParticlePalette = ['#ff77aa', '#ff1493', '#ff85c0', '#ffd6eb'];
+        themeStarColor = 'rgba(255,119,170,';
+    } else if (theme === 'ghibli') {
+        themeParticlePalette = ['#38bdf8', '#fbbf24', '#818cf8', '#67e8f9'];
+        themeStarColor = 'rgba(56,189,248,';
+    } else if (theme === 'cyber') {
+        themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff', '#00ff88'];
+        themeStarColor = 'rgba(0,243,255,';
+    } else if (theme === 'lofi') {
+        themeParticlePalette = ['#ff7a00', '#ff007f', '#fed7aa', '#ffea00'];
         themeStarColor = 'rgba(255,122,0,';
-    } else { // cyber
-        themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
-        themeStarColor = 'rgba(216,132,255,';
+    } else if (theme === 'zen') {
+        themeParticlePalette = ['#2563eb', '#0284c7', '#7c3aed', '#60a5fa'];
+        themeStarColor = 'rgba(37,99,235,';
     }
 }
 
 /* ═══════════════════════════════════════════════════════
-   MOTOR DE AUDIO AMBIENTAL Y MÚSICA HUD
+   MOTOR DE AUDIO AMBIENTAL & MELODÍAS ANIME PRO
 ═══════════════════════════════════════════════════════ */
-let bgAudio = null;
+const ANIME_TRACKS = [
+    {
+        id: 'sakura',
+        name: '🌸 01. Sakura Piano',
+        title: 'Sakura Lullaby (Melodía de Anime en Piano)',
+        chords: [
+            [174.61, 261.63, 329.63, 440.00], // Fmaj7
+            [196.00, 246.94, 293.66, 392.00], // G
+            [164.81, 246.94, 329.63, 392.00], // Em7
+            [220.00, 261.63, 329.63, 440.00], // Am7
+            [146.83, 220.00, 261.63, 349.23], // Dm7
+            [196.00, 246.94, 293.66, 349.23], // G7
+            [130.81, 196.00, 246.94, 329.63], // Cmaj7
+            [130.81, 196.00, 233.08, 329.63]  // C7
+        ],
+        arpeggios: [
+            [523.25, 659.25, 587.33, 523.25],
+            [493.88, 587.33, 659.25, 783.99],
+            [659.25, 587.33, 493.88, 392.00],
+            [523.25, 440.00, 493.88, 523.25],
+            [440.00, 392.00, 349.23, 440.00],
+            [493.88, 587.33, 523.25, 493.88],
+            [523.25, 659.25, 783.99, 1046.50],
+            [987.77, 880.00, 783.99, 659.25]
+        ],
+        stepTime: 3200
+    },
+    {
+        id: 'ghibli',
+        name: '🌌 02. Kimi no Yume',
+        title: 'Kimi no Yume (Lo-Fi Chimes & Campanas)',
+        chords: [
+            [146.83, 220.00, 277.18, 369.99], // Dmaj9
+            [138.59, 207.65, 246.94, 329.63], // C#m7
+            [123.47, 185.00, 220.00, 293.66], // Bm7
+            [110.00, 164.81, 220.00, 277.18], // Aadd9
+            [98.00,  146.83, 196.00, 246.94], // Gmaj7
+            [87.31,  130.81, 174.61, 220.00]  // Fmaj7
+        ],
+        arpeggios: [
+            [739.99, 554.37, 440.00, 369.99],
+            [659.25, 493.88, 415.30, 329.63],
+            [587.33, 440.00, 369.99, 293.66],
+            [554.37, 440.00, 659.25, 880.00],
+            [493.88, 392.00, 587.33, 739.99],
+            [440.00, 349.23, 523.25, 659.25]
+        ],
+        stepTime: 3400
+    },
+    {
+        id: 'cyber',
+        name: '⚔️ 03. Neo Tokyo',
+        title: 'Neo Tokyo (Cyber Synthwave Edgerunners)',
+        chords: [
+            [220.00, 261.63, 329.63, 440.00],
+            [174.61, 220.00, 261.63, 349.23],
+            [196.00, 246.94, 293.66, 392.00],
+            [164.81, 196.00, 246.94, 329.63]
+        ],
+        arpeggios: [
+            [440.00, 659.25, 523.25, 659.25],
+            [349.23, 523.25, 440.00, 523.25],
+            [392.00, 587.33, 493.88, 587.33],
+            [329.63, 493.88, 392.00, 493.88]
+        ],
+        stepTime: 2800
+    },
+    {
+        id: 'lofi',
+        name: '☕ 04. Lofi Sunset',
+        title: 'Lofi Sunset (Cozy Chillhop Cafe)',
+        chords: [
+            [130.81, 196.00, 246.94, 311.13],
+            [116.54, 174.61, 220.00, 277.18],
+            [103.83, 155.56, 196.00, 246.94],
+            [98.00,  146.83, 196.00, 233.08]
+        ],
+        arpeggios: [
+            [622.25, 493.88, 392.00, 493.88],
+            [554.37, 440.00, 349.23, 440.00],
+            [493.88, 392.00, 311.13, 392.00],
+            [466.16, 392.00, 293.66, 392.00]
+        ],
+        stepTime: 3300
+    }
+];
+
+let currentTrackIdx = 0;
 let isMusicPlaying = false;
 let audioSynthCtx = null;
+let masterGain = null;
 let synthLoopTimer = null;
-let usingSynthFallback = false;
+let chordStep = 0;
+let bgAudio = null;
 
 function initMusicEngine() {
     bgAudio = document.getElementById('bgMusicPlayer');
-    if (bgAudio) {
-        const savedVol = localStorage.getItem('portfolio_music_vol');
-        if (savedVol !== null) {
-            bgAudio.volume = parseFloat(savedVol);
-            const slider = document.getElementById('musicVolumeSlider');
-            if (slider) slider.value = savedVol;
-        } else {
-            bgAudio.volume = 0.5;
-        }
+    const savedTrack = localStorage.getItem('portfolio_music_track');
+    if (savedTrack !== null) {
+        const idx = parseInt(savedTrack, 10);
+        if (idx >= 0 && idx < ANIME_TRACKS.length) currentTrackIdx = idx;
+    }
+    updateTrackLabel();
 
-        bgAudio.addEventListener('play', () => updateMusicUI(true));
-        bgAudio.addEventListener('pause', () => {
-            if (!usingSynthFallback) updateMusicUI(false);
-        });
+    const savedVol = localStorage.getItem('portfolio_music_vol');
+    const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.45;
+    const slider = document.getElementById('musicVolumeSlider');
+    if (slider) slider.value = vol;
+
+    if (bgAudio) {
+        bgAudio.volume = vol;
         bgAudio.addEventListener('ended', () => {
             if (isMusicPlaying) bgAudio.play().catch(() => {});
         });
+    }
+}
+
+function updateTrackLabel() {
+    const track = ANIME_TRACKS[currentTrackIdx];
+    const lbl = document.getElementById('trackNameLabel');
+    if (lbl && track) lbl.innerText = track.name;
+}
+
+function nextTrack(e) {
+    if (e) e.stopPropagation();
+    currentTrackIdx = (currentTrackIdx + 1) % ANIME_TRACKS.length;
+    localStorage.setItem('portfolio_music_track', currentTrackIdx);
+    updateTrackLabel();
+    const track = ANIME_TRACKS[currentTrackIdx];
+    if (typeof mostrarToast === 'function') {
+        mostrarToast('🎵 Melodía: ' + track.title, 'ok');
+    }
+    if (isMusicPlaying) {
+        stopSynthEngine();
+        chordStep = 0;
+        playSynthAnimeTrack();
     }
 }
 
@@ -1423,8 +1643,6 @@ function updateMusicUI(playing) {
 
 function toggleMusic(e) {
     if (e) e.stopPropagation();
-    if (!bgAudio) initMusicEngine();
-
     if (isMusicPlaying) {
         pauseMusic();
         localStorage.setItem('portfolio_music_enabled', 'false');
@@ -1435,96 +1653,144 @@ function toggleMusic(e) {
 }
 
 function playMusic() {
-    if (!bgAudio) initMusicEngine();
-    usingSynthFallback = false;
-
-    if (bgAudio) {
-        const promise = bgAudio.play();
-        if (promise !== undefined) {
-            promise.then(() => {
-                updateMusicUI(true);
-                if (typeof mostrarToast === 'function') {
-                    mostrarToast('🎵 Música ambiental iniciada', 'ok');
-                }
-            }).catch(err => {
-                console.log('Audio file play blocked/unavailable, activating synth fallback:', err);
-                usingSynthFallback = true;
-                startSynthFallback();
-                updateMusicUI(true);
-                if (typeof mostrarToast === 'function') {
-                    mostrarToast('🎵 Sintetizador cósmico ambiental activado', 'ok');
-                }
-            });
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!audioSynthCtx) {
+            audioSynthCtx = new AudioCtx();
         }
-    } else {
-        usingSynthFallback = true;
-        startSynthFallback();
-        updateMusicUI(true);
+        if (audioSynthCtx.state === 'suspended') {
+            audioSynthCtx.resume();
+        }
+    } catch(err) {}
+
+    playSynthAnimeTrack();
+    updateMusicUI(true);
+    const track = ANIME_TRACKS[currentTrackIdx];
+    if (typeof mostrarToast === 'function') {
+        mostrarToast('🎵 Sonando: ' + track.title, 'ok');
     }
 }
 
 function pauseMusic() {
-    if (bgAudio) {
-        bgAudio.pause();
-    }
-    stopSynthFallback();
-    usingSynthFallback = false;
+    stopSynthEngine();
+    if (bgAudio) bgAudio.pause();
     updateMusicUI(false);
 }
 
 function setMusicVolume(val) {
-    if (!bgAudio) initMusicEngine();
-    const v = parseFloat(val);
-    if (bgAudio) bgAudio.volume = v;
+    const v = Math.max(0, Math.min(1, parseFloat(val)));
     localStorage.setItem('portfolio_music_vol', v);
+    if (masterGain && audioSynthCtx) {
+        masterGain.gain.setValueAtTime(v * 0.28, audioSynthCtx.currentTime);
+    }
+    if (bgAudio) bgAudio.volume = v;
 }
 
-/* Fallback procedural Synthwave mediante Web Audio API */
-const synthChords = [
-    [220, 261.6, 329.6, 440],
-    [174.6, 220, 261.6, 349.2],
-    [196, 246.9, 293.6, 392],
-    [164.8, 196, 246.9, 329.6]
-];
-let synthChordIdx = 0;
-
-function startSynthFallback() {
+function playSynthAnimeTrack() {
     try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
         if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
-        playNextSynthChord();
-    } catch(e) {}
+
+        if (!masterGain) {
+            masterGain = audioSynthCtx.createGain();
+            const savedVol = localStorage.getItem('portfolio_music_vol');
+            const v = (savedVol !== null) ? parseFloat(savedVol) : 0.45;
+            masterGain.gain.setValueAtTime(v * 0.28, audioSynthCtx.currentTime);
+            masterGain.connect(audioSynthCtx.destination);
+        }
+
+        playNextAnimeStep();
+    } catch(e) {
+        console.log('Audio init error:', e);
+    }
 }
 
-function playNextSynthChord() {
+function playNextAnimeStep() {
     if (!isMusicPlaying || !audioSynthCtx) return;
     const now = audioSynthCtx.currentTime;
-    const notes = synthChords[synthChordIdx % synthChords.length];
-    synthChordIdx++;
-    notes.forEach(f => {
+    const track = ANIME_TRACKS[currentTrackIdx];
+    const chords = track.chords;
+    const arps = track.arpeggios;
+    const curChord = chords[chordStep % chords.length];
+    const curArp = arps[chordStep % arps.length];
+    chordStep++;
+
+    // Tocar notas del acorde con síntesis de piano/rhodes suave
+    curChord.forEach((freq, idx) => {
         try {
             const osc = audioSynthCtx.createOscillator();
-            const g = audioSynthCtx.createGain();
+            const oscHarmonic = audioSynthCtx.createOscillator();
+            const noteGain = audioSynthCtx.createGain();
+            const filter = audioSynthCtx.createBiquadFilter();
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(1400, now);
+            filter.Q.setValueAtTime(1.2, now);
+
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(f, now);
-            g.gain.setValueAtTime(0.001, now);
-            g.gain.linearRampToValueAtTime(0.025, now + 0.4);
-            g.gain.exponentialRampToValueAtTime(0.0001, now + 3.2);
-            osc.connect(g);
-            g.connect(audioSynthCtx.destination);
-            osc.start(now);
-            osc.stop(now + 3.3);
+            osc.frequency.setValueAtTime(freq, now);
+
+            oscHarmonic.type = 'triangle';
+            oscHarmonic.frequency.setValueAtTime(freq * 2, now);
+
+            // Envolvente dulce tipo anime piano
+            noteGain.gain.setValueAtTime(0.001, now);
+            noteGain.gain.linearRampToValueAtTime(0.045 / (idx + 1), now + 0.02 + idx * 0.04);
+            noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (track.stepTime / 1000) * 0.95);
+
+            osc.connect(filter);
+            oscHarmonic.connect(filter);
+            filter.connect(noteGain);
+            noteGain.connect(masterGain);
+
+            osc.start(now + idx * 0.04);
+            oscHarmonic.start(now + idx * 0.04);
+            osc.stop(now + (track.stepTime / 1000));
+            oscHarmonic.stop(now + (track.stepTime / 1000));
         } catch(e) {}
     });
-    synthLoopTimer = setTimeout(playNextSynthChord, 3000);
+
+    // Tocar melodía arpegiada en registro agudo dulce
+    if (curArp && curArp.length) {
+        curArp.forEach((mFreq, mIdx) => {
+            const noteTime = now + 0.35 + mIdx * 0.55;
+            try {
+                const mOsc = audioSynthCtx.createOscillator();
+                const mGain = audioSynthCtx.createGain();
+                const mFilter = audioSynthCtx.createBiquadFilter();
+
+                mFilter.type = 'lowpass';
+                mFilter.frequency.setValueAtTime(2200, noteTime);
+
+                mOsc.type = 'sine';
+                mOsc.frequency.setValueAtTime(mFreq, noteTime);
+
+                mGain.gain.setValueAtTime(0.0001, noteTime);
+                mGain.gain.linearRampToValueAtTime(0.04, noteTime + 0.015);
+                mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.6);
+
+                mOsc.connect(mFilter);
+                mFilter.connect(mGain);
+                mGain.connect(masterGain);
+
+                mOsc.start(noteTime);
+                mOsc.stop(noteTime + 1.65);
+            } catch(e) {}
+        });
+    }
+
+    synthLoopTimer = setTimeout(playNextAnimeStep, track.stepTime);
 }
 
-function stopSynthFallback() {
-    if (synthLoopTimer) clearTimeout(synthLoopTimer);
+function stopSynthEngine() {
+    if (synthLoopTimer) {
+        clearTimeout(synthLoopTimer);
+        synthLoopTimer = null;
+    }
 }
 
-// Iniciar música automáticamente si el usuario la tenía activada previamente con clic
+// Iniciar música si el usuario la tenía activada previamente con clic
 window.addEventListener('click', () => {
     const shouldPlay = localStorage.getItem('portfolio_music_enabled');
     if (shouldPlay === 'true' && !isMusicPlaying) {
@@ -1789,43 +2055,95 @@ window.addEventListener('keydown', e => {
     }
 });
 
-/* ── FONDO CÓSMICO ────────────────────────────────────── */
+/* ── MOTOR DE ANIMACIÓN CANVAS DINÁMICO & ANIME INNOVADOR ─ */
 const c  = document.getElementById('bgCanvas'),
       cx = c.getContext('2d');
 let W = c.width = window.innerWidth,
     H = c.height = window.innerHeight;
 window.onresize = () => { W = c.width = window.innerWidth; H = c.height = window.innerHeight; };
 
+// 1. Estrellas cósmicas
 const stars = [];
 for (let i = 0; i < 110; i++) {
     stars.push({
         x: Math.random()*W, y: Math.random()*H,
-        r: Math.random()*2+.8,
-        vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+        r: Math.random()*1.8 + 0.6,
+        vx: (Math.random()-.5)*0.25, vy: (Math.random()-.5)*0.25,
         alpha: Math.random(),
-        dAlpha: (Math.random()*.02+.005) * (Math.random()>.5?1:-1)
+        dAlpha: (Math.random()*0.02 + 0.005) * (Math.random() > .5 ? 1 : -1)
     });
 }
 
+// 2. Pétalos de Sakura para el tema Anime Sakura (桜)
+const sakuraPetals = [];
+for (let i = 0; i < 48; i++) {
+    sakuraPetals.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        size: Math.random() * 9 + 8,
+        angle: Math.random() * Math.PI * 2,
+        vAngle: (Math.random() - 0.5) * 0.04,
+        flip: Math.random() * Math.PI,
+        vFlip: Math.random() * 0.03 + 0.015,
+        speedY: Math.random() * 1.4 + 0.8,
+        speedX: Math.random() * 1.2 - 0.2,
+        wobble: Math.random() * Math.PI * 2,
+        wobbleSpeed: Math.random() * 0.03 + 0.02,
+        color: ['rgba(255, 182, 217, 0.85)', 'rgba(255, 128, 191, 0.82)', 'rgba(255, 105, 180, 0.78)'][Math.floor(Math.random() * 3)]
+    });
+}
+
+// 3. Luciérnagas doradas para el tema Ghibli Midnight (ジブリ)
+const fireflies = [];
+for (let i = 0; i < 20; i++) {
+    fireflies.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.5 + 1.5,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        alpha: Math.random() * 0.7 + 0.2,
+        vAlpha: (Math.random() * 0.03 + 0.01) * (Math.random() > 0.5 ? 1 : -1),
+        pulse: Math.random() * Math.PI * 2
+    });
+}
+
+// 4. Brasas cálidas para el tema Lofi Sunset (夕暮れ)
+const lofiEmbers = [];
+for (let i = 0; i < 35; i++) {
+    lofiEmbers.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.8 + 1,
+        speedY: -(Math.random() * 1.1 + 0.4),
+        speedX: (Math.random() - 0.5) * 0.8,
+        alpha: Math.random() * 0.7 + 0.3,
+        vAlpha: Math.random() * 0.015 + 0.005,
+        color: ['#ff7a00', '#ff007f', '#fed7aa', '#ffea00'][Math.floor(Math.random() * 4)]
+    });
+}
+
+// 5. Meteoros celestiales
 const meteors = [];
 function spawnMeteor() {
     meteors.push({
         x: Math.random()*W*1.2, y: Math.random()*(H*.4),
-        len: Math.random()*130+90, speed: Math.random()*9+12,
+        len: Math.random()*130+90, speed: Math.random()*8+10,
         angle: Math.PI/4+(Math.random()-.5)*.2,
         life: 1, decay: Math.random()*.025+.015,
         width: Math.random()*2.8+1.5
     });
 }
-setInterval(() => { if (Math.random() < .7) spawnMeteor(); }, 1500);
+setInterval(() => { if (Math.random() < .6) spawnMeteor(); }, 1600);
 
+// 6. Rastro dinámico de partículas con el cursor
 const trail = [];
 let mouse = { x: -1000, y: -1000 };
 window.addEventListener('mousemove', e => {
     const dx = e.clientX - mouse.x, dy = e.clientY - mouse.y,
           speed = Math.hypot(dx, dy);
     mouse.x = e.clientX; mouse.y = e.clientY;
-    for (let i = 0; i < Math.min(Math.floor(speed/3)+2, 8); i++) {
+    for (let i = 0; i < Math.min(Math.floor(speed/3)+2, 7); i++) {
         trail.push({
             x: mouse.x+(Math.random()-.5)*6, y: mouse.y+(Math.random()-.5)*6,
             vx: -dx*.12+(Math.random()-.5)*2, vy: -dy*.12+(Math.random()-.5)*2,
@@ -1836,33 +2154,140 @@ window.addEventListener('mousemove', e => {
     }
 });
 
+// Función de dibujo de un pétalo de sakura con curvas de Bezier
+function drawSakuraPetal(p) {
+    cx.save();
+    cx.translate(p.x, p.y);
+    cx.rotate(p.angle);
+    cx.scale(Math.cos(p.flip), 1); // Simulación 3D de rotación en el viento
+
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.bezierCurveTo(-p.size * 0.5, -p.size * 0.4, -p.size * 0.5, -p.size, 0, -p.size * 1.15);
+    cx.bezierCurveTo(p.size * 0.5, -p.size, p.size * 0.5, -p.size * 0.4, 0, 0);
+    cx.fillStyle = p.color;
+    cx.shadowBlur = 8;
+    cx.shadowColor = '#ff66b2';
+    cx.fill();
+    cx.restore();
+}
+
 function bgLoop() {
     cx.clearRect(0, 0, W, H);
 
-    for (let i = 0; i < stars.length; i++) {
-        const s = stars[i];
-        s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
-        if (s.alpha <= .1 || s.alpha >= 1) s.dAlpha *= -1;
-        if (s.x < 0 || s.x > W) s.vx *= -1;
-        if (s.y < 0 || s.y > H) s.vy *= -1;
-        cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        cx.fillStyle = themeStarColor + (s.alpha*.85) + ')'; cx.fill();
-        for (let j = i+1; j < stars.length; j++) {
-            const s2 = stars[j], d = Math.hypot(s.x-s2.x, s.y-s2.y);
-            if (d < 105) {
-                cx.beginPath(); cx.moveTo(s.x,s.y); cx.lineTo(s2.x,s2.y);
-                cx.strokeStyle = themeStarColor + (.25*(1-d/105)) + ')'; cx.lineWidth=.7; cx.stroke();
+    // MODO ANIME SAKURA: Pétalos de cerezo flotando con brisa
+    if (currentThemeMode === 'sakura') {
+        // Estrellas sutiles rosas
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            s.x += s.vx * 0.5; s.y += s.vy * 0.5; s.alpha += s.dAlpha;
+            if (s.alpha <= .1 || s.alpha >= .9) s.dAlpha *= -1;
+            if (s.x < 0 || s.x > W) s.vx *= -1;
+            if (s.y < 0 || s.y > H) s.vy *= -1;
+            cx.beginPath(); cx.arc(s.x, s.y, s.r * 0.85, 0, Math.PI * 2);
+            cx.fillStyle = 'rgba(255, 182, 217, ' + (s.alpha * 0.6) + ')';
+            cx.fill();
+        }
+
+        // Renderizado de pétalos de sakura
+        for (let i = 0; i < sakuraPetals.length; i++) {
+            const p = sakuraPetals[i];
+            p.wobble += p.wobbleSpeed;
+            p.x += p.speedX + Math.sin(p.wobble) * 1.1;
+            p.y += p.speedY;
+            p.angle += p.vAngle;
+            p.flip += p.vFlip;
+
+            if (p.y > H + 25) {
+                p.y = -20;
+                p.x = Math.random() * W;
+            }
+            if (p.x > W + 20) p.x = -20;
+            if (p.x < -20) p.x = W + 20;
+
+            drawSakuraPetal(p);
+        }
+
+    // MODO GHIBLI MIDNIGHT: Cielo estrellado + Luciérnagas doradas
+    } else if (currentThemeMode === 'ghibli') {
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
+            if (s.alpha <= .1 || s.alpha >= 1) s.dAlpha *= -1;
+            if (s.x < 0 || s.x > W) s.vx *= -1;
+            if (s.y < 0 || s.y > H) s.vy *= -1;
+            cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+            cx.fillStyle = themeStarColor + (s.alpha*.85) + ')'; cx.fill();
+        }
+
+        // Luciérnagas mágicas Ghibli
+        for (let i = 0; i < fireflies.length; i++) {
+            const f = fireflies[i];
+            f.x += f.vx; f.y += f.vy;
+            f.alpha += f.vAlpha;
+            if (f.alpha <= 0.1 || f.alpha >= 0.95) f.vAlpha *= -1;
+            if (f.x < 0 || f.x > W) f.vx *= -1;
+            if (f.y < 0 || f.y > H) f.vy *= -1;
+
+            cx.save();
+            cx.beginPath();
+            cx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            cx.fillStyle = 'rgba(251, 191, 36, ' + f.alpha + ')';
+            cx.shadowBlur = 18;
+            cx.shadowColor = '#fbbf24';
+            cx.fill();
+            cx.restore();
+        }
+
+    // MODO LOFI SUNSET: Brasas cálidas ascendentes
+    } else if (currentThemeMode === 'lofi') {
+        for (let i = 0; i < lofiEmbers.length; i++) {
+            const e = lofiEmbers[i];
+            e.y += e.speedY;
+            e.x += e.speedX;
+            if (e.y < -15) {
+                e.y = H + 10;
+                e.x = Math.random() * W;
+            }
+            cx.save();
+            cx.beginPath();
+            cx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+            cx.fillStyle = e.color;
+            cx.globalAlpha = e.alpha;
+            cx.shadowBlur = 12;
+            cx.shadowColor = e.color;
+            cx.fill();
+            cx.restore();
+        }
+
+    // MODO CYBER & MINIMAL ZEN: Constelación con líneas y meteoros
+    } else {
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            s.x += s.vx; s.y += s.vy; s.alpha += s.dAlpha;
+            if (s.alpha <= .1 || s.alpha >= 1) s.dAlpha *= -1;
+            if (s.x < 0 || s.x > W) s.vx *= -1;
+            if (s.y < 0 || s.y > H) s.vy *= -1;
+            cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+            cx.fillStyle = themeStarColor + (s.alpha*.85) + ')'; cx.fill();
+            for (let j = i+1; j < stars.length; j++) {
+                const s2 = stars[j], d = Math.hypot(s.x-s2.x, s.y-s2.y);
+                if (d < 105) {
+                    cx.beginPath(); cx.moveTo(s.x,s.y); cx.lineTo(s2.x,s2.y);
+                    cx.strokeStyle = themeStarColor + (.25*(1-d/105)) + ')'; cx.lineWidth=.7; cx.stroke();
+                }
             }
         }
     }
 
+    // Cometas / Meteoros celestiales
     for (let i = meteors.length-1; i >= 0; i--) {
         const m = meteors[i];
         const tx = m.x - Math.cos(m.angle)*m.len,
               ty = m.y - Math.sin(m.angle)*m.len;
         const g = cx.createLinearGradient(m.x,m.y,tx,ty);
-        const col1 = themeParticlePalette[0] || '#00f3ff';
-        const col2 = themeParticlePalette[1] || '#d884ff';
+        const col1 = themeParticlePalette[0] || '#ff77aa';
+        const col2 = themeParticlePalette[1] || '#ff1493';
         g.addColorStop(0,   col1);
         g.addColorStop(.35, col2);
         g.addColorStop(1,   'transparent');
@@ -1873,6 +2298,7 @@ function bgLoop() {
         if (m.life <= 0) meteors.splice(i,1);
     }
 
+    // Rastro reactivo del cursor del usuario
     for (let i = trail.length-1; i >= 0; i--) {
         const p = trail[i];
         p.x += p.vx; p.y += p.vy; p.alpha -= p.decay; p.r *= .96;
@@ -1884,6 +2310,26 @@ function bgLoop() {
     requestAnimationFrame(bgLoop);
 }
 bgLoop();
+
+/* ── INTERACCIÓN 3D TILT EN TARJETAS ─────────────────── */
+function initCard3DTilt() {
+    const cards = document.querySelectorAll('.cyber-card, .docente-card-pro, .student-id-card, .unit-card, .doc-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -4.5;
+            const rotateY = ((x - centerX) / centerX) * 4.5;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
 
 /* ── LOADER 0→100% (RÁPIDO, FLUIDO Y SIN TRABARSE) ─────── */
 <% if (justLoggedIn) { %>
@@ -1905,7 +2351,6 @@ bgLoop();
         }, 250);
     }
 
-    // Failsafe absoluto de 1.2 segundos: se retira sí o sí
     const failsafe = setTimeout(dismissLoader, 1200);
 
     const timer = setInterval(() => {
@@ -1926,13 +2371,17 @@ bgLoop();
     }, 16);
 })();
 <% } %>
+
 window.addEventListener('DOMContentLoaded', () => {
-    // Inicializar tema guardado
-    const savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+    // Inicializar tema guardado (default: sakura anime)
+    const savedTheme = localStorage.getItem('portfolio_theme') || 'sakura';
     setTheme(savedTheme, false);
 
-    // Inicializar motor de música
+    // Inicializar motor de música melódica anime
     initMusicEngine();
+
+    // Inicializar efecto 3D Tilt en tarjetas
+    initCard3DTilt();
 
     if (typeof selectWeek === 'function') {
         selectWeek(curWeek);

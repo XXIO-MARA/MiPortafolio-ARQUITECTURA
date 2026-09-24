@@ -59,7 +59,7 @@ public class ArchivoServlet extends HttpServlet {
                 : null;
 
         if (usuario == null) {
-            res.sendRedirect(req.getContextPath() + "/login");
+            res.sendRedirect(req.getContextPath() + "/visitar");
             return;
         }
 

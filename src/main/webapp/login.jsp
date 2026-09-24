@@ -20,12 +20,40 @@
     <script>
         /* Aplicación ultra rápida de tema antes del render para evitar parpadeo */
         (function() {
-            var savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+            var savedTheme = localStorage.getItem('portfolio_theme') || 'sakura';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
     </script>
     <style>
-        :root, [data-theme="cyber"] {
+        :root, [data-theme="sakura"] {
+            --bg-main: #0e0514;
+            --bg-card: rgba(28, 8, 36, 0.88);
+            --bg-card-subtle: rgba(44, 12, 54, 0.95);
+            --border-color: rgba(255, 119, 170, 0.45);
+            --border-accent: #ff66b2;
+            --text-primary: #fff0f7;
+            --text-secondary: #fbb6ce;
+            --accent-cyan: #ff77aa;
+            --accent-pink: #ff1493;
+            --accent-purple: #ff85c0;
+            --card-shadow: 0 0 55px rgba(255, 102, 178, 0.4), 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="ghibli"], [data-theme="dark"] {
+            --bg-main: #030718;
+            --bg-card: rgba(8, 22, 56, 0.88);
+            --bg-card-subtle: rgba(12, 32, 76, 0.95);
+            --border-color: rgba(56, 189, 248, 0.45);
+            --border-accent: #fbbf24;
+            --text-primary: #f0f9ff;
+            --text-secondary: #bae6fd;
+            --accent-cyan: #38bdf8;
+            --accent-pink: #fbbf24;
+            --accent-purple: #818cf8;
+            --card-shadow: 0 0 55px rgba(56, 189, 248, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="cyber"], [data-theme="matrix"] {
             --bg-main: #05020c;
             --bg-card: rgba(18, 6, 36, 0.88);
             --bg-card-subtle: rgba(28, 10, 56, 0.95);
@@ -39,52 +67,10 @@
             --card-shadow: 0 0 55px rgba(216, 132, 255, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
         }
 
-        [data-theme="dark"] {
-            --bg-main: #0b0f19;
-            --bg-card: rgba(17, 24, 39, 0.92);
-            --bg-card-subtle: rgba(30, 41, 59, 0.95);
-            --border-color: rgba(99, 102, 241, 0.4);
-            --border-accent: #38bdf8;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-cyan: #38bdf8;
-            --accent-pink: #6366f1;
-            --accent-purple: #818cf8;
-            --card-shadow: 0 0 55px rgba(59, 130, 246, 0.3), 0 20px 60px rgba(0, 0, 0, 0.85);
-        }
-
-        [data-theme="light"] {
-            --bg-main: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.97);
-            --bg-card-subtle: #f8fafc;
-            --border-color: #cbd5e1;
-            --border-accent: #2563eb;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --accent-cyan: #0284c7;
-            --accent-pink: #d946ef;
-            --accent-purple: #7c3aed;
-            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        [data-theme="matrix"] {
-            --bg-main: #040d08;
-            --bg-card: rgba(6, 26, 14, 0.92);
-            --bg-card-subtle: rgba(8, 38, 20, 0.95);
-            --border-color: rgba(16, 185, 129, 0.45);
-            --border-accent: #00ff88;
-            --text-primary: #ecfdf5;
-            --text-secondary: #6ee7b7;
-            --accent-cyan: #00ff88;
-            --accent-pink: #10b981;
-            --accent-purple: #34d399;
-            --card-shadow: 0 0 55px rgba(0, 255, 136, 0.3), 0 20px 60px rgba(0, 0, 0, 0.85);
-        }
-
-        [data-theme="synthwave"] {
-            --bg-main: #180928;
-            --bg-card: rgba(38, 14, 60, 0.92);
-            --bg-card-subtle: rgba(48, 16, 76, 0.95);
+        [data-theme="lofi"], [data-theme="synthwave"] {
+            --bg-main: #18081c;
+            --bg-card: rgba(44, 14, 54, 0.88);
+            --bg-card-subtle: rgba(26, 8, 32, 0.95);
             --border-color: rgba(255, 122, 0, 0.45);
             --border-accent: #ffea00;
             --text-primary: #fff7ed;
@@ -93,6 +79,20 @@
             --accent-pink: #ff007f;
             --accent-purple: #ff7a00;
             --card-shadow: 0 0 55px rgba(255, 122, 0, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="zen"], [data-theme="light"] {
+            --bg-main: #f8fafc;
+            --bg-card: rgba(255, 255, 255, 0.97);
+            --bg-card-subtle: #f1f5f9;
+            --border-color: #cbd5e1;
+            --border-accent: #2563eb;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-cyan: #0284c7;
+            --accent-pink: #7c3aed;
+            --accent-purple: #2563eb;
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -441,44 +441,44 @@
             <i class="fas fa-chevron-down" style="font-size:9px;"></i>
         </button>
         <div class="theme-dropdown-menu" id="themeDropdownMenu">
-            <div class="theme-dropdown-header">// SELECCIONAR TEMA</div>
+            <div class="theme-dropdown-header">// TEMAS INNOVADORES &bull; ESTILO ANIME</div>
+            <button type="button" class="theme-opt-btn" data-theme-val="sakura" onclick="setTheme('sakura')">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ff77aa, #ff1493);"></span>
+                <div class="theme-info">
+                    <span class="theme-name">🌸 Anime Sakura</span>
+                    <span class="theme-desc">Pétalos de cerezo flotantes y noche rosa</span>
+                </div>
+                <i class="fas fa-check theme-check"></i>
+            </button>
+            <button type="button" class="theme-opt-btn" data-theme-val="ghibli" onclick="setTheme('ghibli')">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #38bdf8, #fbbf24);"></span>
+                <div class="theme-info">
+                    <span class="theme-name">🌌 Ghibli Midnight</span>
+                    <span class="theme-desc">Cielo estrellado, luciérnagas y cometas</span>
+                </div>
+                <i class="fas fa-check theme-check"></i>
+            </button>
             <button type="button" class="theme-opt-btn" data-theme-val="cyber" onclick="setTheme('cyber')">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #00f3ff, #ff007f);"></span>
                 <div class="theme-info">
-                    <span class="theme-name">🌌 Cyber Neón</span>
-                    <span class="theme-desc">Futurista y cósmico (Original)</span>
+                    <span class="theme-name">⚔️ Neo Tokyo Cyber</span>
+                    <span class="theme-desc">Edgerunners neón cian & magenta</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
-            <button type="button" class="theme-opt-btn" data-theme-val="dark" onclick="setTheme('dark')">
-                <span class="theme-dot" style="background: linear-gradient(135deg, #3b82f6, #6366f1);"></span>
+            <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ff7a00, #ff007f);"></span>
                 <div class="theme-info">
-                    <span class="theme-name">🌑 Eclipse Dark</span>
-                    <span class="theme-desc">Azul zafiro & obsidiana pro</span>
+                    <span class="theme-name">☕ Lofi Sunset</span>
+                    <span class="theme-desc">Atardecer cálido, brasas y chillhop</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
-            <button type="button" class="theme-opt-btn" data-theme-val="light" onclick="setTheme('light')">
+            <button type="button" class="theme-opt-btn" data-theme-val="zen" onclick="setTheme('zen')">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #2563eb); border:1px solid #cbd5e1;"></span>
                 <div class="theme-info">
-                    <span class="theme-name">☀️ Modo Claro</span>
-                    <span class="theme-desc">Blanco académico minimalista</span>
-                </div>
-                <i class="fas fa-check theme-check"></i>
-            </button>
-            <button type="button" class="theme-opt-btn" data-theme-val="matrix" onclick="setTheme('matrix')">
-                <span class="theme-dot" style="background: linear-gradient(135deg, #00ff88, #10b981);"></span>
-                <div class="theme-info">
-                    <span class="theme-name">📟 Emerald Matrix</span>
-                    <span class="theme-desc">Terminal hacker verde neón</span>
-                </div>
-                <i class="fas fa-check theme-check"></i>
-            </button>
-            <button type="button" class="theme-opt-btn" data-theme-val="synthwave" onclick="setTheme('synthwave')">
-                <span class="theme-dot" style="background: linear-gradient(135deg, #ff007f, #ff7a00);"></span>
-                <div class="theme-info">
-                    <span class="theme-name">🌅 Sunset Synthwave</span>
-                    <span class="theme-desc">Atardecer 80s cálido y violeta</span>
+                    <span class="theme-name">✨ Minimal Zen</span>
+                    <span class="theme-desc">Blanco cristalino de lujo y zafiro</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
@@ -562,16 +562,29 @@
 
 <script>
     /* ── MOTOR DE TEMAS EN LOGIN ────────────────────────── */
-    let themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
-    let themeStarColor = 'rgba(216,132,255,';
+    let currentThemeMode = 'sakura';
+    let themeParticlePalette = ['#ff77aa', '#ff1493', '#ff85c0'];
+    let themeStarColor = 'rgba(255,119,170,';
+
+    function normalizeTheme(t) {
+        if (!t) return 'sakura';
+        t = t.toLowerCase();
+        if (t === 'dark') return 'ghibli';
+        if (t === 'light') return 'zen';
+        if (t === 'matrix') return 'cyber';
+        if (t === 'synthwave') return 'lofi';
+        return t;
+    }
 
     function setTheme(theme) {
-        if (!theme) theme = 'cyber';
+        theme = normalizeTheme(theme);
+        currentThemeMode = theme;
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('portfolio_theme', theme);
 
         document.querySelectorAll('.theme-opt-btn').forEach(btn => {
-            if (btn.getAttribute('data-theme-val') === theme) {
+            const val = normalizeTheme(btn.getAttribute('data-theme-val'));
+            if (val === theme) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -600,21 +613,22 @@
     });
 
     function actualizarColoresCanvas(theme) {
-        if (theme === 'dark') {
-            themeParticlePalette = ['#38bdf8', '#6366f1', '#818cf8'];
-            themeStarColor = 'rgba(99,102,241,';
-        } else if (theme === 'light') {
-            themeParticlePalette = ['#2563eb', '#7c3aed', '#0284c7'];
-            themeStarColor = 'rgba(37,99,235,';
-        } else if (theme === 'matrix') {
-            themeParticlePalette = ['#00ff88', '#10b981', '#34d399'];
-            themeStarColor = 'rgba(0,255,136,';
-        } else if (theme === 'synthwave') {
-            themeParticlePalette = ['#ff007f', '#ff7a00', '#ffea00'];
+        currentThemeMode = theme;
+        if (theme === 'sakura') {
+            themeParticlePalette = ['#ff77aa', '#ff1493', '#ff85c0', '#ffd6eb'];
+            themeStarColor = 'rgba(255,119,170,';
+        } else if (theme === 'ghibli') {
+            themeParticlePalette = ['#38bdf8', '#fbbf24', '#818cf8', '#67e8f9'];
+            themeStarColor = 'rgba(56,189,248,';
+        } else if (theme === 'cyber') {
+            themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff', '#00ff88'];
+            themeStarColor = 'rgba(0,243,255,';
+        } else if (theme === 'lofi') {
+            themeParticlePalette = ['#ff7a00', '#ff007f', '#fed7aa', '#ffea00'];
             themeStarColor = 'rgba(255,122,0,';
-        } else {
-            themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
-            themeStarColor = 'rgba(216,132,255,';
+        } else if (theme === 'zen') {
+            themeParticlePalette = ['#2563eb', '#0284c7', '#7c3aed', '#60a5fa'];
+            themeStarColor = 'rgba(37,99,235,';
         }
     }
 
@@ -771,7 +785,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+        const savedTheme = localStorage.getItem('portfolio_theme') || 'sakura';
         setTheme(savedTheme);
         initMusicEngine();
     });
