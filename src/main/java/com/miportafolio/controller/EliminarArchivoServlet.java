@@ -102,6 +102,9 @@ public class EliminarArchivoServlet extends HttpServlet {
             // 2. Borrar registro de BD
             borradoOk = archivoDAO.eliminar(id);
             System.out.println("[Eliminar] Archivo id=" + id + " eliminado con éxito: " + borradoOk);
+        } else {
+            // Ya no existe en BD, el borrado se considera realizado
+            borradoOk = true;
         }
 
         if (isAjax) {

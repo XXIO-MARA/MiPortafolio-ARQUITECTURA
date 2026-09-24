@@ -48,9 +48,142 @@
     <title>Portafolio &bull; Arquitectura de Software | <%= nombreAlumna %></title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script>
+        /* Aplicación ultra rápida de tema antes del render para evitar parpadeo */
+        (function() {
+            var savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
     <style>
+        :root, [data-theme="cyber"] {
+            --bg-main: #05020c;
+            --bg-surface: rgba(18, 6, 36, 0.88);
+            --bg-surface-solid: #120624;
+            --bg-card: rgba(18, 6, 36, 0.86);
+            --bg-card-subtle: rgba(28, 10, 56, 0.9);
+            --border-color: rgba(216, 132, 255, 0.38);
+            --border-accent: #00f3ff;
+            --text-primary: #f5edff;
+            --text-secondary: #cba6f7;
+            --text-muted: #957eb5;
+            --accent-cyan: #00f3ff;
+            --accent-pink: #ff007f;
+            --accent-purple: #d884ff;
+            --accent-gradient: linear-gradient(135deg, #d884ff 0%, #ff007f 100%);
+            --hud-bg: rgba(12, 4, 26, 0.95);
+            --glow-shadow: 0 0 25px rgba(216, 132, 255, 0.4);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0b0f19;
+            --bg-surface: rgba(17, 24, 39, 0.92);
+            --bg-surface-solid: #111827;
+            --bg-card: rgba(30, 41, 59, 0.88);
+            --bg-card-subtle: rgba(15, 23, 42, 0.92);
+            --border-color: rgba(99, 102, 241, 0.35);
+            --border-accent: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #38bdf8;
+            --accent-pink: #6366f1;
+            --accent-purple: #818cf8;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            --hud-bg: rgba(15, 23, 42, 0.96);
+            --glow-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f1f5f9;
+            --bg-surface: rgba(255, 255, 255, 0.96);
+            --bg-surface-solid: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-subtle: #f8fafc;
+            --border-color: rgba(203, 213, 225, 0.9);
+            --border-accent: #2563eb;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent-cyan: #0284c7;
+            --accent-pink: #d946ef;
+            --accent-purple: #7c3aed;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --hud-bg: rgba(255, 255, 255, 0.98);
+            --glow-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        [data-theme="matrix"] {
+            --bg-main: #040d08;
+            --bg-surface: rgba(6, 26, 14, 0.92);
+            --bg-surface-solid: #061a0e;
+            --bg-card: rgba(8, 32, 18, 0.88);
+            --bg-card-subtle: rgba(4, 20, 10, 0.92);
+            --border-color: rgba(16, 185, 129, 0.4);
+            --border-accent: #00ff88;
+            --text-primary: #ecfdf5;
+            --text-secondary: #6ee7b7;
+            --text-muted: #047857;
+            --accent-cyan: #00ff88;
+            --accent-pink: #10b981;
+            --accent-purple: #34d399;
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #00ff88 100%);
+            --hud-bg: rgba(4, 18, 10, 0.96);
+            --glow-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
+        }
+
+        [data-theme="synthwave"] {
+            --bg-main: #180928;
+            --bg-surface: rgba(38, 14, 60, 0.92);
+            --bg-surface-solid: #260e3c;
+            --bg-card: rgba(45, 16, 72, 0.88);
+            --bg-card-subtle: rgba(28, 8, 46, 0.92);
+            --border-color: rgba(255, 122, 0, 0.4);
+            --border-accent: #ffea00;
+            --text-primary: #fff7ed;
+            --text-secondary: #fed7aa;
+            --text-muted: #c2410c;
+            --accent-cyan: #ffea00;
+            --accent-pink: #ff007f;
+            --accent-purple: #ff7a00;
+            --accent-gradient: linear-gradient(135deg, #ff007f 0%, #ff7a00 100%);
+            --hud-bg: rgba(24, 9, 40, 0.96);
+            --glow-shadow: 0 0 25px rgba(255, 122, 0, 0.4);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Reglas adaptativas de temas */
+        [data-theme="light"] body { background: #f1f5f9 !important; color: #0f172a !important; }
+        [data-theme="light"] .hud-brand { color: #0f172a !important; text-shadow: none !important; }
+        [data-theme="light"] .hud-facultad { color: #475569 !important; }
+        [data-theme="light"] .hud-stat { background: #ffffff !important; border-color: #cbd5e1 !important; color: #334155 !important; }
+        [data-theme="light"] .student-name { color: #0f172a !important; text-shadow: none !important; }
+        [data-theme="light"] .meta-val { color: #0f172a !important; }
+        [data-theme="light"] .unit-title { color: #0f172a !important; }
+        [data-theme="light"] .doc-title { color: #0f172a !important; }
+        [data-theme="light"] .doc-desc { color: #475569 !important; }
+        [data-theme="light"] .week-card-title { color: #0f172a !important; }
+        [data-theme="light"] .console-title { color: #0f172a !important; }
+        [data-theme="light"] .modal-dialog { background: #ffffff !important; border-color: #2563eb !important; box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important; color: #0f172a !important; }
+        [data-theme="light"] .cyber-input, [data-theme="light"] .cyber-textarea, [data-theme="light"] .cyber-select { background: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] .radio-btn-label { background: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
+        [data-theme="light"] .cyber-dropzone { background: #f8fafc !important; border-color: #94a3b8 !important; }
+        [data-theme="light"] .dropzone-text { color: #0f172a !important; }
+        [data-theme="light"] .tab-inactive { background: #ffffff !important; color: #334155 !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] .empty-slot { border-color: #cbd5e1 !important; color: #64748b !important; }
+        [data-theme="light"] .michi-head { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] #michiWindow { background: #ffffff !important; border-color: #2563eb !important; }
+        [data-theme="light"] .msg-bot { background: #f1f5f9 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] .michi-input-box { background: #f8fafc !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] .michi-input { background: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+        [data-theme="light"] .upla-3d-inner { background: #ffffff !important; }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #05020c; color: #f5edff; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+        body { background: var(--bg-main); color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; transition: background .3s ease, color .3s ease; }
         canvas#bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
         /* ── UTILIDADES ── */
@@ -277,10 +410,186 @@
             box-shadow: 0 0 35px #ff007f;
             filter: brightness(1.15);
         }
+
+        /* ── SELECTOR DE TEMAS HUD ── */
+        .theme-switcher-container { position: relative; display: inline-block; }
+        .btn-theme-trigger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all .25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+        }
+        .btn-theme-trigger:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+        .theme-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            padding: 10px;
+            min-width: 240px;
+            box-shadow: var(--card-shadow);
+            z-index: 10001;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            animation: fadeInWeek .2s ease;
+            backdrop-filter: blur(25px);
+        }
+        .theme-dropdown-menu.show { display: flex; }
+        .theme-dropdown-header {
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border-color);
+            letter-spacing: 1px;
+        }
+        .theme-opt-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            transition: all .2s ease;
+            color: var(--text-primary);
+            width: 100%;
+        }
+        .theme-opt-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-color);
+            transform: translateX(3px);
+        }
+        .theme-opt-btn.active {
+            background: rgba(0, 243, 255, 0.12);
+            border-color: var(--accent-cyan);
+        }
+        .theme-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(0,0,0,0.4);
+        }
+        .theme-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .theme-name {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .theme-desc {
+            font-size: 9.5px;
+            font-family: 'Fira Code', monospace;
+            color: var(--text-secondary);
+        }
+        .theme-check {
+            font-size: 11px;
+            color: var(--accent-cyan);
+            display: none;
+        }
+        .theme-opt-btn.active .theme-check {
+            display: inline-block;
+        }
+
+        /* ── REPRODUCTOR DE MÚSICA HUD ── */
+        .btn-music-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all .25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-music-pill:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 16px var(--accent-cyan);
+        }
+        .btn-music-pill.playing {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.15);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        }
+        .music-bars-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 2.5px;
+            height: 14px;
+            width: 14px;
+        }
+        .eq-bar {
+            width: 2.5px;
+            background: var(--text-muted);
+            border-radius: 2px;
+            height: 4px;
+            transition: height .2s ease;
+        }
+        .btn-music-pill.playing .eq-bar {
+            background: var(--accent-cyan);
+            animation: bounceBar 0.8s ease-in-out infinite alternate;
+        }
+        .btn-music-pill.playing .bar-1 { animation-delay: 0.0s; height: 10px; }
+        .btn-music-pill.playing .bar-2 { animation-delay: 0.2s; height: 14px; }
+        .btn-music-pill.playing .bar-3 { animation-delay: 0.4s; height: 8px; }
+        .btn-music-pill.playing .bar-4 { animation-delay: 0.1s; height: 12px; }
+        @keyframes bounceBar {
+            0%   { height: 3px; }
+            100% { height: 14px; }
+        }
+        .volume-slider-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-color);
+            padding: 5px 8px;
+            border-radius: 10px;
+        }
+        .volume-slider-wrapper input[type=range] {
+            width: 50px;
+            height: 4px;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <canvas id="bgCanvas"></canvas>
+<audio id="bgMusicPlayer" src="<%= ctx %>/cyber_music.wav" loop preload="auto"></audio>
 
 <%-- ── CYBER LOADER (solo en primer login) ─────────────── --%>
 <% if (justLoggedIn) { %>
@@ -314,7 +623,77 @@
     <div class="telemetry-hud">
         <div class="hud-stat"><span class="pulse-green"></span>ARCHIVOS EN BD: <b id="hudTotalArchivos"><%= totalArchivos %></b></div>
         <div class="hud-stat">DOCUMENTOS: <b><%= totalArchivos %></b></div>
-        <div class="hud-stat">PORT: <b>8080</b></div>
+
+        <!-- REPRODUCTOR DE MÚSICA HUD -->
+        <div class="music-hud-container" style="display:inline-flex; align-items:center; gap:6px;">
+            <button type="button" class="btn-music-pill" id="musicPillBtn" onclick="toggleMusic(event)" title="Reproducir o pausar música de fondo">
+                <div class="music-bars-eq" id="musicEqBars">
+                    <span class="eq-bar bar-1"></span>
+                    <span class="eq-bar bar-2"></span>
+                    <span class="eq-bar bar-3"></span>
+                    <span class="eq-bar bar-4"></span>
+                </div>
+                <i class="fas fa-play" id="musicPlayIcon"></i>
+                <span id="musicBtnLabel">MÚSICA</span>
+            </button>
+            <div class="volume-slider-wrapper" title="Control de volumen">
+                <i class="fas fa-volume-down" style="font-size:10px; color:var(--text-secondary);"></i>
+                <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.05" value="0.5" oninput="setMusicVolume(this.value)">
+            </div>
+        </div>
+
+        <!-- SELECTOR DE TEMAS HUD -->
+        <div class="theme-switcher-container">
+            <button type="button" class="btn-theme-trigger" id="themeBtn" onclick="toggleThemeMenu(event)" title="Cambiar tema visual del portafolio">
+                <i class="fas fa-palette" style="color:var(--accent-cyan);"></i>
+                <span id="themeBtnLabel">TEMAS</span>
+                <i class="fas fa-chevron-down" style="font-size:9px;"></i>
+            </button>
+            <div class="theme-dropdown-menu" id="themeDropdownMenu">
+                <div class="theme-dropdown-header">// SELECCIONAR TEMA</div>
+                <button type="button" class="theme-opt-btn" data-theme-val="cyber" onclick="setTheme('cyber')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #00f3ff, #ff007f);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">🌌 Cyber Neón</span>
+                        <span class="theme-desc">Futurista y cósmico (Original)</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="dark" onclick="setTheme('dark')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #3b82f6, #6366f1);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">🌑 Eclipse Dark</span>
+                        <span class="theme-desc">Azul zafiro & obsidiana pro</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="light" onclick="setTheme('light')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #2563eb); border:1px solid #cbd5e1;"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">☀️ Modo Claro</span>
+                        <span class="theme-desc">Blanco académico minimalista</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="matrix" onclick="setTheme('matrix')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #00ff88, #10b981);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">📟 Emerald Matrix</span>
+                        <span class="theme-desc">Terminal hacker verde neón</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="synthwave" onclick="setTheme('synthwave')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #ff007f, #ff7a00);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">🌅 Sunset Synthwave</span>
+                        <span class="theme-desc">Atardecer 80s cálido y violeta</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+            </div>
+        </div>
+
         <% if (esAdmin) { %>
             <span class="user-badge-admin">&#127800; ALUMNA TITULAR: <%= nombreAlumna %></span>
             <a href="<%= ctx %>/logout" class="btn-exit">[ CERRAR SESIÓN ]</a>
@@ -917,6 +1296,242 @@
      JAVASCRIPT
 ═══════════════════════════════════════════════════════ --%>
 <script>
+/* ═══════════════════════════════════════════════════════
+   SISTEMA DE TEMAS VISUALES DINÁMICOS
+═══════════════════════════════════════════════════════ */
+let themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
+let themeStarColor = 'rgba(216,132,255,';
+
+function setTheme(theme, showNotification) {
+    if (!theme) theme = 'cyber';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio_theme', theme);
+
+    // Actualizar botones de opción en el menú dropdown
+    document.querySelectorAll('.theme-opt-btn').forEach(btn => {
+        if (btn.getAttribute('data-theme-val') === theme) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Actualizar paleta del fondo canvas
+    actualizarColoresCanvas(theme);
+
+    // Cerrar menú dropdown si estaba abierto
+    const menu = document.getElementById('themeDropdownMenu');
+    if (menu) menu.classList.remove('show');
+
+    // Notificación toast opcional
+    if (showNotification !== false && typeof mostrarToast === 'function') {
+        const nombres = {
+            'cyber': '🌌 Cyber Neón',
+            'dark': '🌑 Eclipse Dark',
+            'light': '☀️ Modo Claro',
+            'matrix': '📟 Emerald Matrix',
+            'synthwave': '🌅 Sunset Synthwave'
+        };
+        mostrarToast('🎨 Tema cambiado a ' + (nombres[theme] || theme), 'ok');
+    }
+}
+
+function toggleThemeMenu(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('themeDropdownMenu');
+    if (menu) menu.classList.toggle('show');
+}
+
+// Cerrar menú de temas al hacer clic en cualquier otra parte
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('themeDropdownMenu');
+    const btn = document.getElementById('themeBtn');
+    if (menu && menu.classList.contains('show')) {
+        if (!menu.contains(e.target) && (!btn || !btn.contains(e.target))) {
+            menu.classList.remove('show');
+        }
+    }
+});
+
+function actualizarColoresCanvas(theme) {
+    if (theme === 'dark') {
+        themeParticlePalette = ['#38bdf8', '#6366f1', '#818cf8'];
+        themeStarColor = 'rgba(99,102,241,';
+    } else if (theme === 'light') {
+        themeParticlePalette = ['#2563eb', '#7c3aed', '#0284c7'];
+        themeStarColor = 'rgba(37,99,235,';
+    } else if (theme === 'matrix') {
+        themeParticlePalette = ['#00ff88', '#10b981', '#34d399'];
+        themeStarColor = 'rgba(0,255,136,';
+    } else if (theme === 'synthwave') {
+        themeParticlePalette = ['#ff007f', '#ff7a00', '#ffea00'];
+        themeStarColor = 'rgba(255,122,0,';
+    } else { // cyber
+        themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff'];
+        themeStarColor = 'rgba(216,132,255,';
+    }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOTOR DE AUDIO AMBIENTAL Y MÚSICA HUD
+═══════════════════════════════════════════════════════ */
+let bgAudio = null;
+let isMusicPlaying = false;
+let audioSynthCtx = null;
+let synthLoopTimer = null;
+let usingSynthFallback = false;
+
+function initMusicEngine() {
+    bgAudio = document.getElementById('bgMusicPlayer');
+    if (bgAudio) {
+        const savedVol = localStorage.getItem('portfolio_music_vol');
+        if (savedVol !== null) {
+            bgAudio.volume = parseFloat(savedVol);
+            const slider = document.getElementById('musicVolumeSlider');
+            if (slider) slider.value = savedVol;
+        } else {
+            bgAudio.volume = 0.5;
+        }
+
+        bgAudio.addEventListener('play', () => updateMusicUI(true));
+        bgAudio.addEventListener('pause', () => {
+            if (!usingSynthFallback) updateMusicUI(false);
+        });
+        bgAudio.addEventListener('ended', () => {
+            if (isMusicPlaying) bgAudio.play().catch(() => {});
+        });
+    }
+}
+
+function updateMusicUI(playing) {
+    isMusicPlaying = playing;
+    const pill = document.getElementById('musicPillBtn');
+    const icon = document.getElementById('musicPlayIcon');
+    const label = document.getElementById('musicBtnLabel');
+    if (pill) {
+        if (playing) {
+            pill.classList.add('playing');
+            if (icon) icon.className = 'fas fa-pause';
+            if (label) label.innerText = 'PAUSA';
+        } else {
+            pill.classList.remove('playing');
+            if (icon) icon.className = 'fas fa-play';
+            if (label) label.innerText = 'MÚSICA';
+        }
+    }
+}
+
+function toggleMusic(e) {
+    if (e) e.stopPropagation();
+    if (!bgAudio) initMusicEngine();
+
+    if (isMusicPlaying) {
+        pauseMusic();
+        localStorage.setItem('portfolio_music_enabled', 'false');
+    } else {
+        playMusic();
+        localStorage.setItem('portfolio_music_enabled', 'true');
+    }
+}
+
+function playMusic() {
+    if (!bgAudio) initMusicEngine();
+    usingSynthFallback = false;
+
+    if (bgAudio) {
+        const promise = bgAudio.play();
+        if (promise !== undefined) {
+            promise.then(() => {
+                updateMusicUI(true);
+                if (typeof mostrarToast === 'function') {
+                    mostrarToast('🎵 Música ambiental iniciada', 'ok');
+                }
+            }).catch(err => {
+                console.log('Audio file play blocked/unavailable, activating synth fallback:', err);
+                usingSynthFallback = true;
+                startSynthFallback();
+                updateMusicUI(true);
+                if (typeof mostrarToast === 'function') {
+                    mostrarToast('🎵 Sintetizador cósmico ambiental activado', 'ok');
+                }
+            });
+        }
+    } else {
+        usingSynthFallback = true;
+        startSynthFallback();
+        updateMusicUI(true);
+    }
+}
+
+function pauseMusic() {
+    if (bgAudio) {
+        bgAudio.pause();
+    }
+    stopSynthFallback();
+    usingSynthFallback = false;
+    updateMusicUI(false);
+}
+
+function setMusicVolume(val) {
+    if (!bgAudio) initMusicEngine();
+    const v = parseFloat(val);
+    if (bgAudio) bgAudio.volume = v;
+    localStorage.setItem('portfolio_music_vol', v);
+}
+
+/* Fallback procedural Synthwave mediante Web Audio API */
+const synthChords = [
+    [220, 261.6, 329.6, 440],
+    [174.6, 220, 261.6, 349.2],
+    [196, 246.9, 293.6, 392],
+    [164.8, 196, 246.9, 329.6]
+];
+let synthChordIdx = 0;
+
+function startSynthFallback() {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
+        if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
+        playNextSynthChord();
+    } catch(e) {}
+}
+
+function playNextSynthChord() {
+    if (!isMusicPlaying || !audioSynthCtx) return;
+    const now = audioSynthCtx.currentTime;
+    const notes = synthChords[synthChordIdx % synthChords.length];
+    synthChordIdx++;
+    notes.forEach(f => {
+        try {
+            const osc = audioSynthCtx.createOscillator();
+            const g = audioSynthCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, now);
+            g.gain.setValueAtTime(0.001, now);
+            g.gain.linearRampToValueAtTime(0.025, now + 0.4);
+            g.gain.exponentialRampToValueAtTime(0.0001, now + 3.2);
+            osc.connect(g);
+            g.connect(audioSynthCtx.destination);
+            osc.start(now);
+            osc.stop(now + 3.3);
+        } catch(e) {}
+    });
+    synthLoopTimer = setTimeout(playNextSynthChord, 3000);
+}
+
+function stopSynthFallback() {
+    if (synthLoopTimer) clearTimeout(synthLoopTimer);
+}
+
+// Iniciar música automáticamente si el usuario la tenía activada previamente con clic
+window.addEventListener('click', () => {
+    const shouldPlay = localStorage.getItem('portfolio_music_enabled');
+    if (shouldPlay === 'true' && !isMusicPlaying) {
+        playMusic();
+    }
+}, { once: true });
+
 function openAlumnaModal(e) {
     if (e) e.preventDefault();
     const m = document.getElementById('alumnaModal');
@@ -1216,7 +1831,7 @@ window.addEventListener('mousemove', e => {
             vx: -dx*.12+(Math.random()-.5)*2, vy: -dy*.12+(Math.random()-.5)*2,
             r: Math.random()*3.5+1.2, alpha: 1,
             decay: Math.random()*.035+.02,
-            color: Math.random()>.5?'#00f3ff':(Math.random()>.5?'#ff007f':'#d884ff')
+            color: themeParticlePalette[Math.floor(Math.random() * themeParticlePalette.length)]
         });
     }
 });
@@ -1231,12 +1846,12 @@ function bgLoop() {
         if (s.x < 0 || s.x > W) s.vx *= -1;
         if (s.y < 0 || s.y > H) s.vy *= -1;
         cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        cx.fillStyle = `rgba(216,132,255,${s.alpha*.85})`; cx.fill();
+        cx.fillStyle = themeStarColor + (s.alpha*.85) + ')'; cx.fill();
         for (let j = i+1; j < stars.length; j++) {
             const s2 = stars[j], d = Math.hypot(s.x-s2.x, s.y-s2.y);
             if (d < 105) {
                 cx.beginPath(); cx.moveTo(s.x,s.y); cx.lineTo(s2.x,s2.y);
-                cx.strokeStyle = `rgba(216,132,255,${.25*(1-d/105)})`; cx.lineWidth=.7; cx.stroke();
+                cx.strokeStyle = themeStarColor + (.25*(1-d/105)) + ')'; cx.lineWidth=.7; cx.stroke();
             }
         }
     }
@@ -1246,8 +1861,10 @@ function bgLoop() {
         const tx = m.x - Math.cos(m.angle)*m.len,
               ty = m.y - Math.sin(m.angle)*m.len;
         const g = cx.createLinearGradient(m.x,m.y,tx,ty);
-        g.addColorStop(0,   `rgba(0,243,255,${m.life})`);
-        g.addColorStop(.35, `rgba(216,132,255,${m.life*.85})`);
+        const col1 = themeParticlePalette[0] || '#00f3ff';
+        const col2 = themeParticlePalette[1] || '#d884ff';
+        g.addColorStop(0,   col1);
+        g.addColorStop(.35, col2);
         g.addColorStop(1,   'transparent');
         cx.beginPath(); cx.moveTo(m.x,m.y); cx.lineTo(tx,ty);
         cx.strokeStyle=g; cx.lineWidth=m.width*m.life; cx.lineCap='round'; cx.stroke();
@@ -1310,6 +1927,13 @@ bgLoop();
 })();
 <% } %>
 window.addEventListener('DOMContentLoaded', () => {
+    // Inicializar tema guardado
+    const savedTheme = localStorage.getItem('portfolio_theme') || 'cyber';
+    setTheme(savedTheme, false);
+
+    // Inicializar motor de música
+    initMusicEngine();
+
     if (typeof selectWeek === 'function') {
         selectWeek(curWeek);
     }

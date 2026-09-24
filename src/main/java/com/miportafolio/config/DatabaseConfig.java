@@ -224,6 +224,14 @@ public class DatabaseConfig {
 
     private static void sincronizarArchivosIniciales() {
         try (Connection con = dataSource.getConnection()) {
+            // Si ya existen archivos en la tabla, respetamos el estado actual (archivos eliminados o agregados)
+            try (Statement st = con.createStatement();
+                 ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM archivos")) {
+                if (rs.next() && rs.getInt(1) > 0) {
+                    return;
+                }
+            }
+
             int adminId = 1;
             try (PreparedStatement ps = con.prepareStatement("SELECT id FROM usuarios WHERE codigo = 'ADMIN949163067'")) {
                 try (var rs = ps.executeQuery()) {
@@ -246,15 +254,6 @@ public class DatabaseConfig {
                 "1788660294532_Sesion01_ArquitecturaSw_2026.exe",
                 "4b01af0b-7c17-494b-9207-3d26a26bc38a_1788660294532_Sesion01_ArquitecturaSw_2026.exe",
                 "MATERIAL",
-                1,
-                adminId);
-
-            asegurarArchivo(con,
-                "Elaboración de infografías sobre los temas desarrollados en la Semana 1.",
-                "Síntesis visual de los principales conceptos y temas estudiados durante la Semana 1, organizados mediante infografías para facilitar su comprensión.",
-                "TRABAJO ACADÉMICO_ ARQUITECTURA DE SOFTWARE.docx",
-                "4376e6d5-dce3-4ffa-bb02-5f62d1bf75b5_TRABAJO ACADÉMICO_ ARQUITECTURA DE SOFTWARE.docx",
-                "TAREA",
                 1,
                 adminId);
 
