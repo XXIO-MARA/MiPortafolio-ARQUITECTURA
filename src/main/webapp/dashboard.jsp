@@ -57,12 +57,12 @@
     </script>
     <style>
         :root, [data-theme="sakura"] {
-            --bg-main: #0e0514;
+            --bg-main: #0c0414;
             --bg-surface: rgba(28, 8, 36, 0.88);
             --bg-surface-solid: #1b0724;
             --bg-card: rgba(28, 8, 36, 0.86);
             --bg-card-subtle: rgba(44, 12, 54, 0.92);
-            --border-color: rgba(255, 119, 170, 0.42);
+            --border-color: rgba(255, 119, 170, 0.45);
             --border-accent: #ff66b2;
             --text-primary: #fff0f7;
             --text-secondary: #fbb6ce;
@@ -77,23 +77,63 @@
         }
 
         [data-theme="ghibli"], [data-theme="dark"] {
-            --bg-main: #030718;
-            --bg-surface: rgba(6, 16, 44, 0.9);
-            --bg-surface-solid: #06112e;
-            --bg-card: rgba(8, 22, 56, 0.88);
-            --bg-card-subtle: rgba(12, 32, 76, 0.94);
-            --border-color: rgba(56, 189, 248, 0.4);
+            --bg-main: #060b24;
+            --bg-surface: rgba(8, 18, 52, 0.9);
+            --bg-surface-solid: #081438;
+            --bg-card: rgba(10, 24, 64, 0.88);
+            --bg-card-subtle: rgba(16, 38, 92, 0.94);
+            --border-color: rgba(56, 189, 248, 0.45);
             --border-accent: #fbbf24;
             --text-primary: #f0f9ff;
             --text-secondary: #bae6fd;
-            --text-muted: #64748b;
+            --text-muted: #7dd3fc;
             --accent-cyan: #38bdf8;
             --accent-pink: #fbbf24;
             --accent-purple: #818cf8;
             --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #fbbf24 100%);
-            --hud-bg: rgba(4, 12, 32, 0.97);
-            --glow-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            --hud-bg: rgba(4, 12, 36, 0.97);
+            --glow-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
             --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.75);
+        }
+
+        [data-theme="kimetsu"] {
+            --bg-main: #06110c;
+            --bg-surface: rgba(8, 28, 20, 0.9);
+            --bg-surface-solid: #081d14;
+            --bg-card: rgba(10, 32, 24, 0.88);
+            --bg-card-subtle: rgba(14, 42, 32, 0.94);
+            --border-color: rgba(0, 240, 168, 0.45);
+            --border-accent: #ff3366;
+            --text-primary: #f0fdf4;
+            --text-secondary: #86efac;
+            --text-muted: #4ade80;
+            --accent-cyan: #00f0a8;
+            --accent-pink: #ff3366;
+            --accent-purple: #10b981;
+            --accent-gradient: linear-gradient(135deg, #00f0a8 0%, #ff3366 100%);
+            --hud-bg: rgba(6, 20, 14, 0.97);
+            --glow-shadow: 0 0 30px rgba(0, 240, 168, 0.45);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.75);
+        }
+
+        [data-theme="lofi"], [data-theme="synthwave"] {
+            --bg-main: #180c06;
+            --bg-surface: rgba(38, 18, 10, 0.9);
+            --bg-surface-solid: #26130b;
+            --bg-card: rgba(42, 20, 12, 0.88);
+            --bg-card-subtle: rgba(56, 28, 16, 0.92);
+            --border-color: rgba(255, 153, 51, 0.45);
+            --border-accent: #ffaa44;
+            --text-primary: #fff8f0;
+            --text-secondary: #fed7aa;
+            --text-muted: #ea580c;
+            --accent-cyan: #ffaa44;
+            --accent-pink: #ff5533;
+            --accent-purple: #ff8800;
+            --accent-gradient: linear-gradient(135deg, #ff8800 0%, #ff5533 100%);
+            --hud-bg: rgba(24, 12, 6, 0.96);
+            --glow-shadow: 0 0 25px rgba(255, 153, 51, 0.4);
+            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
         }
 
         [data-theme="cyber"], [data-theme="matrix"] {
@@ -102,38 +142,18 @@
             --bg-surface-solid: #120624;
             --bg-card: rgba(18, 6, 36, 0.86);
             --bg-card-subtle: rgba(28, 10, 56, 0.9);
-            --border-color: rgba(216, 132, 255, 0.38);
+            --border-color: rgba(216, 132, 255, 0.42);
             --border-accent: #00f3ff;
             --text-primary: #f5edff;
             --text-secondary: #cba6f7;
             --text-muted: #957eb5;
             --accent-cyan: #00f3ff;
-            --accent-pink: #ff007f;
-            --accent-purple: #d884ff;
-            --accent-gradient: linear-gradient(135deg, #d884ff 0%, #ff007f 100%);
+            --accent-pink: #ffe600;
+            --accent-purple: #ff007f;
+            --accent-gradient: linear-gradient(135deg, #00f3ff 0%, #ffe600 50%, #ff007f 100%);
             --hud-bg: rgba(12, 4, 26, 0.95);
-            --glow-shadow: 0 0 25px rgba(216, 132, 255, 0.4);
+            --glow-shadow: 0 0 28px rgba(0, 243, 255, 0.45);
             --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
-        }
-
-        [data-theme="lofi"], [data-theme="synthwave"] {
-            --bg-main: #18081c;
-            --bg-surface: rgba(36, 12, 44, 0.9);
-            --bg-surface-solid: #250c2c;
-            --bg-card: rgba(44, 14, 54, 0.88);
-            --bg-card-subtle: rgba(26, 8, 32, 0.92);
-            --border-color: rgba(255, 122, 0, 0.42);
-            --border-accent: #ffea00;
-            --text-primary: #fff7ed;
-            --text-secondary: #fed7aa;
-            --text-muted: #ea580c;
-            --accent-cyan: #ffea00;
-            --accent-pink: #ff007f;
-            --accent-purple: #ff7a00;
-            --accent-gradient: linear-gradient(135deg, #ff007f 0%, #ff7a00 100%);
-            --hud-bg: rgba(24, 8, 28, 0.96);
-            --glow-shadow: 0 0 25px rgba(255, 122, 0, 0.4);
-            --card-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
         }
 
         [data-theme="zen"], [data-theme="light"] {
@@ -723,31 +743,39 @@
                     <span class="theme-dot" style="background: linear-gradient(135deg, #ff77aa, #ff1493);"></span>
                     <div class="theme-info">
                         <span class="theme-name">🌸 Anime Sakura</span>
-                        <span class="theme-desc">Pétalos de cerezo flotantes y noche rosa</span>
+                        <span class="theme-desc">Cardcaptor &bull; Pétalos de cerezo 3D en el viento</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
                 <button type="button" class="theme-opt-btn" data-theme-val="ghibli" onclick="setTheme('ghibli')">
                     <span class="theme-dot" style="background: linear-gradient(135deg, #38bdf8, #fbbf24);"></span>
                     <div class="theme-info">
-                        <span class="theme-name">🌌 Ghibli Midnight</span>
-                        <span class="theme-desc">Cielo estrellado, luciérnagas y cometas</span>
+                        <span class="theme-name">🌌 Kimi no Na wa</span>
+                        <span class="theme-desc">Your Name &bull; Crepúsculo, luciérnagas y cometa</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="kimetsu" onclick="setTheme('kimetsu')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #00f0a8, #ff3366);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">⚔️ Kimetsu no Yaiba</span>
+                        <span class="theme-desc">Demon Slayer &bull; Katana esmeralda y brasas de fuego</span>
+                    </div>
+                    <i class="fas fa-check theme-check"></i>
+                </button>
+                <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
+                    <span class="theme-dot" style="background: linear-gradient(135deg, #ffaa44, #ff5533);"></span>
+                    <div class="theme-info">
+                        <span class="theme-name">☕ Ghibli Cafe</span>
+                        <span class="theme-desc">Studio Ghibli &bull; Atardecer cálido, polvo mágico y lofi</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
                 <button type="button" class="theme-opt-btn" data-theme-val="cyber" onclick="setTheme('cyber')">
                     <span class="theme-dot" style="background: linear-gradient(135deg, #00f3ff, #ff007f);"></span>
                     <div class="theme-info">
-                        <span class="theme-name">⚔️ Neo Tokyo Cyber</span>
-                        <span class="theme-desc">Edgerunners neón cian & magenta</span>
-                    </div>
-                    <i class="fas fa-check theme-check"></i>
-                </button>
-                <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
-                    <span class="theme-dot" style="background: linear-gradient(135deg, #ff7a00, #ff007f);"></span>
-                    <div class="theme-info">
-                        <span class="theme-name">☕ Lofi Sunset</span>
-                        <span class="theme-desc">Atardecer cálido, brasas y chillhop</span>
+                        <span class="theme-name">⚡ Cyberpunk 2077</span>
+                        <span class="theme-desc">Neo Tokyo &bull; Edgerunners, láseres y meteoros</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
@@ -755,7 +783,7 @@
                     <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #2563eb); border:1px solid #cbd5e1;"></span>
                     <div class="theme-info">
                         <span class="theme-name">✨ Minimal Zen</span>
-                        <span class="theme-desc">Blanco cristalino de lujo y zafiro</span>
+                        <span class="theme-desc">Blanco cristalino de lujo y constelaciones</span>
                     </div>
                     <i class="fas fa-check theme-check"></i>
                 </button>
@@ -1340,48 +1368,79 @@
 
 <%-- ═══ MODAL ACCESO PRIVADO DE ALUMNA (MODIFICAR & SUBIR) ═════════════════ --%>
 <% if (!esAdmin) { %>
-<div id="alumnaModal" class="cyber-modal" style="display:none;">
-    <div class="modal-dialog alumna-dialog" style="max-width:480px; border:1.8px solid var(--border-accent); box-shadow:0 0 60px rgba(255,0,127,0.45); animation:fadeInWeek .3s ease;">
-        <div class="modal-header" style="border-color:rgba(216,132,255,0.3);">
-            <div class="modal-title" style="color:var(--text-primary); font-size:15px; display:flex; align-items:center; gap:8px;">
-                <span style="font-size:20px;">🌸</span> ACCESO PRIVADO &bull; FLOR XIOMARA
+<div id="alumnaModal" class="cyber-modal" style="display:none;" onclick="if(event.target === this) closeAlumnaModal();">
+    <div class="modal-dialog alumna-dialog" style="max-width:490px; border:2px solid var(--border-accent); border-radius:28px; padding:32px 28px; box-shadow:0 0 65px rgba(255,0,127,0.5), 0 20px 60px rgba(0,0,0,0.85); background:var(--bg-surface-solid); animation:fadeInWeek .3s ease; position:relative; overflow:hidden;">
+        <!-- Resplandor decorativo anime -->
+        <div style="position:absolute; top:-50px; right:-50px; width:150px; height:150px; background:radial-gradient(circle, var(--accent-pink), transparent 70%); filter:blur(30px); pointer-events:none; opacity:0.4;"></div>
+        <div style="position:absolute; bottom:-50px; left:-50px; width:150px; height:150px; background:radial-gradient(circle, var(--accent-cyan), transparent 70%); filter:blur(30px); pointer-events:none; opacity:0.35;"></div>
+
+        <div class="modal-header" style="border-bottom:1.5px solid var(--border-color); padding-bottom:14px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+            <div class="modal-title" style="color:var(--text-primary); font-size:15px; font-weight:900; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:22px; filter:drop-shadow(0 0 10px var(--accent-pink));">🌸</span>
+                <span>PORTAL PRIVADO &bull; FLOR XIOMARA</span>
             </div>
-            <button class="modal-close" onclick="closeAlumnaModal()">&times;</button>
+            <button type="button" class="modal-close" onclick="closeAlumnaModal()" style="background:rgba(255,0,80,0.18); border:1.5px solid #ff0055; color:#ff6688; border-radius:10px; width:34px; height:34px; font-size:16px; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s;" title="Cerrar">&times;</button>
         </div>
 
-        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:18px; padding:16px; margin-bottom:18px; display:flex; align-items:center; gap:14px;">
-            <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#ff007f,#d884ff); display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 0 20px rgba(255,0,127,0.5); flex-shrink:0;">
-                🌸
+        <!-- Tarjeta de Flor Xiomara con Avatar e Información -->
+        <div style="background:linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,0,127,0.08) 100%); border:1.5px solid var(--border-color); border-radius:18px; padding:16px; margin-bottom:18px; display:flex; align-items:center; gap:15px; box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+            <div style="width:56px; height:56px; border-radius:18px; border:2px solid var(--accent-pink); background:radial-gradient(circle, #ff007f 0%, #3b0764 100%); display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 0 20px rgba(255,0,127,0.6); flex-shrink:0;">
+                👩‍🎓
             </div>
-            <div>
-                <div style="font-size:14px; font-weight:900; color:#fff;">Flor Xiomara Medina Salazar</div>
-                <div style="font-size:11px; color:var(--accent-cyan); font-family:'Fira Code',monospace;">Alumna Titular &bull; EPISC UPLA &bull; Cel: 949163067</div>
+            <div style="flex:1;">
+                <div style="font-size:14.5px; font-weight:900; color:#fff; text-shadow:0 0 10px rgba(255,255,255,0.3);">Flor Xiomara Medina Salazar</div>
+                <div style="font-size:11px; color:var(--accent-cyan); font-family:'Fira Code',monospace; font-weight:700; margin-top:2px;">
+                    ✨ Alumna Titular &bull; EPISC UPLA &bull; Cel: 949163067
+                </div>
+                <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">
+                    Arquitectura de Software 2026-I
+                </div>
             </div>
         </div>
 
-        <p style="font-size:12px; color:var(--text-secondary); line-height:1.55; margin-bottom:16px;">
-            Inicia sesión como alumna titular para activar tus permisos de <b>subir tareas ("alsar archivos")</b> en las 16 semanas, eliminar documentos y gestionar tu portafolio.
+        <p style="font-size:12px; color:var(--text-secondary); line-height:1.55; margin-bottom:18px; font-family:'Plus Jakarta Sans',sans-serif;">
+            Escribe tu contraseña o código de acceso para desbloquear el <b>Modo Edición</b>, subir ("alsar") tareas en las 16 semanas y gestionar tus documentos.
         </p>
 
-        <!-- ACCESO RÁPIDO 1-CLIC -->
-        <a href="<%= ctx %>/login?alumna=1" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:14px; background:linear-gradient(135deg, #00f3ff 0%, #d884ff 100%); color:#05020c !important; font-family:'Fira Code',monospace; font-size:12px; font-weight:900; border-radius:14px; text-decoration:none; box-shadow:0 0 25px rgba(0,243,255,0.5); transition:0.3s; margin-bottom:16px;" onmouseover="this.style.transform='scale(1.02)'; this.style.filter='brightness(1.15)'" onmouseout="this.style.transform='none'; this.style.filter='none'">
-            <i class="fas fa-bolt"></i> ENTRAR DIRECTO COMO FLOR (1 CLIC)
-        </a>
+        <!-- FORMULARIO DE ACCESO: CAMPO VACÍO PARA ESCRIBIR Y BOTÓN VER/OCULTAR CONTRASEÑA -->
+        <form action="<%= ctx %>/login" method="POST" id="modalLoginForm">
+            <label for="modalCodigoInput" style="font-size:11px; font-family:'Fira Code',monospace; color:var(--accent-cyan); display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
+                <span>🔐 CONTRASEÑA O CÓDIGO:</span>
+                <span style="color:var(--text-muted); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
+            </label>
 
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
-            <span style="flex:1; height:1px; background:var(--border-color); opacity:0.6;"></span>
-            <span style="font-family:'Fira Code',monospace; font-size:10px; color:var(--text-muted); text-transform:uppercase;">O Ingresar con Clave / Celular</span>
-            <span style="flex:1; height:1px; background:var(--border-color); opacity:0.6;"></span>
-        </div>
+            <!-- INPUT GROUP CON BOTÓN VER/NO VER AL COSTADO -->
+            <div style="position:relative; display:flex; align-items:center; margin-bottom:10px;">
+                <span style="position:absolute; left:16px; color:var(--accent-cyan); font-family:'Fira Code',monospace; font-size:14px; pointer-events:none; font-weight:900;">&gt;_</span>
+                
+                <input type="password" 
+                       name="codigo" 
+                       id="modalCodigoInput" 
+                       class="cyber-input" 
+                       value="" 
+                       placeholder="Escribe tu contraseña o código aquí..." 
+                       required 
+                       autofocus 
+                       autocomplete="current-password"
+                       style="width:100%; padding:14px 105px 14px 44px; font-family:'Fira Code',monospace; font-size:13.5px; font-weight:700; color:#fff; background:rgba(18,6,36,0.9); border:1.8px solid var(--border-color); border-radius:14px; outline:none; transition:all 0.3s ease;">
 
-        <form action="<%= ctx %>/login" method="POST">
-            <label style="font-size:11px;font-family:'Fira Code',monospace;color:var(--accent-cyan);display:block;margin-bottom:6px;font-weight:700;">CÓDIGO O CELULAR:</label>
-            <input type="text" name="codigo" id="modalCodigoInput" class="cyber-input" value="ADMIN949163067" required autofocus style="color:var(--accent-cyan);letter-spacing:1px;font-weight:700; margin-bottom:6px;">
-            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:16px;font-family:'Fira Code',monospace;">
-                💡 Válidos: <b>ADMIN949163067</b> &bull; Celular: <b>949163067</b> &bull; Código: <b>s01269h</b>
+                <!-- BOTÓN VER / NO VER CONTRASEÑA AL COSTADO -->
+                <button type="button" 
+                        id="modalTogglePassBtn"
+                        onclick="togglePasswordVisibility('modalCodigoInput', 'modalPassEyeIcon', 'modalPassEyeLabel')"
+                        style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1px solid var(--border-color); color:var(--accent-cyan); border-radius:10px; padding:6px 10px; font-size:11px; font-family:'Fira Code',monospace; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:5px; transition:all 0.2s ease;"
+                        title="Ver u ocultar contraseña">
+                    <i class="fas fa-eye" id="modalPassEyeIcon"></i>
+                    <span id="modalPassEyeLabel">VER</span>
+                </button>
             </div>
-            <button type="submit" class="submit-btn" style="background:var(--accent-gradient); margin:0;">
-                <i class="fas fa-key"></i> INICIAR SESIÓN Y HABILITAR MODIFICACIÓN
+
+            <div style="font-size:10.5px; color:var(--text-secondary); margin-bottom:20px; font-family:'Fira Code',monospace; padding:7px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border-left:3px solid var(--accent-cyan);">
+                💡 Válidos: <b>ADMIN949163067</b> &bull; Cel: <b>949163067</b> &bull; Código: <b>s01269h</b>
+            </div>
+
+            <button type="submit" class="submit-btn" style="background:var(--accent-gradient); padding:15px; font-size:13px; font-weight:900; letter-spacing:1px; border-radius:14px; box-shadow:0 0 30px rgba(255,0,127,0.55); margin-top:4px; display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer;">
+                <i class="fas fa-unlock-alt"></i> DESBLOQUEAR MODO EDICIÓN
             </button>
         </form>
     </div>
@@ -1392,6 +1451,28 @@
      JAVASCRIPT
 ═══════════════════════════════════════════════════════ --%>
 <script>
+/* ═══════════════════════════════════════════════════════
+   SISTEMA DE TEMAS VISUALES DINÁMICOS & ANIME INNOVADOR
+═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   UTILIDADES & VER / OCULTAR CONTRASEÑA
+═══════════════════════════════════════════════════════ */
+function togglePasswordVisibility(inputId, iconId, labelId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    const label = document.getElementById(labelId);
+    if (!input) return;
+    if (input.type === 'password') {
+        input.type = 'text';
+        if (icon) icon.className = 'fas fa-eye-slash';
+        if (label) label.innerText = 'OCULTAR';
+    } else {
+        input.type = 'password';
+        if (icon) icon.className = 'fas fa-eye';
+        if (label) label.innerText = 'VER';
+    }
+}
+
 /* ═══════════════════════════════════════════════════════
    SISTEMA DE TEMAS VISUALES DINÁMICOS & ANIME INNOVADOR
 ═══════════════════════════════════════════════════════ */
@@ -1428,6 +1509,11 @@ function setTheme(theme, showNotification) {
     // Actualizar paleta del fondo canvas y regenerar partículas del tema
     actualizarColoresCanvas(theme);
 
+    // Sonido dulce de campana anime al cambiar tema
+    if (showNotification !== false) {
+        playAnimeChime(659.25, 880.00); // E5 -> A5
+    }
+
     // Cerrar menú dropdown si estaba abierto
     const menu = document.getElementById('themeDropdownMenu');
     if (menu) menu.classList.remove('show');
@@ -1435,10 +1521,11 @@ function setTheme(theme, showNotification) {
     // Notificación toast
     if (showNotification !== false && typeof mostrarToast === 'function') {
         const nombres = {
-            'sakura': '🌸 Anime Sakura (Pétalos de Cerezo)',
-            'ghibli': '🌌 Ghibli Midnight (Cielo Estrellado & Luciérnagas)',
-            'cyber': '⚔️ Neo Tokyo Cyber (Cyberpunk Neón)',
-            'lofi': '☕ Lofi Sunset (Atardecer Cálido & Chillhop)',
+            'sakura': '🌸 Anime Sakura (Cardcaptor & Pétalos 3D)',
+            'ghibli': '🌌 Kimi no Na wa (Your Name Crepúsculo & Cometa)',
+            'kimetsu': '⚔️ Kimetsu no Yaiba (Demon Slayer Fuego & Katana)',
+            'lofi': '☕ Ghibli Cafe (Studio Ghibli & Atardecer Chillhop)',
+            'cyber': '⚡ Cyberpunk 2077 (Neo Tokyo Edgerunners)',
             'zen': '✨ Minimal Zen (Blanco Cristalino de Lujo)'
         };
         mostrarToast('🎨 Tema activado: ' + (nombres[theme] || theme), 'ok');
@@ -1469,12 +1556,15 @@ function actualizarColoresCanvas(theme) {
     } else if (theme === 'ghibli') {
         themeParticlePalette = ['#38bdf8', '#fbbf24', '#818cf8', '#67e8f9'];
         themeStarColor = 'rgba(56,189,248,';
+    } else if (theme === 'kimetsu') {
+        themeParticlePalette = ['#00f0a8', '#ff3366', '#10b981', '#ffaa00'];
+        themeStarColor = 'rgba(0,240,168,';
     } else if (theme === 'cyber') {
-        themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff', '#00ff88'];
+        themeParticlePalette = ['#00f3ff', '#ffe600', '#ff007f', '#00ff88'];
         themeStarColor = 'rgba(0,243,255,';
     } else if (theme === 'lofi') {
-        themeParticlePalette = ['#ff7a00', '#ff007f', '#fed7aa', '#ffea00'];
-        themeStarColor = 'rgba(255,122,0,';
+        themeParticlePalette = ['#ffaa44', '#ff5533', '#fed7aa', '#ffea00'];
+        themeStarColor = 'rgba(255,170,68,';
     } else if (theme === 'zen') {
         themeParticlePalette = ['#2563eb', '#0284c7', '#7c3aed', '#60a5fa'];
         themeStarColor = 'rgba(37,99,235,';
@@ -1487,8 +1577,8 @@ function actualizarColoresCanvas(theme) {
 const ANIME_TRACKS = [
     {
         id: 'sakura',
-        name: '🌸 01. Sakura Piano',
-        title: 'Sakura Lullaby (Melodía de Anime en Piano)',
+        name: '🌸 01. Sakura Waltz',
+        title: 'Sakura Waltz (Studio Ghibli / Joe Hisaishi Style)',
         chords: [
             [174.61, 261.63, 329.63, 440.00], // Fmaj7
             [196.00, 246.94, 293.66, 392.00], // G
@@ -1509,12 +1599,12 @@ const ANIME_TRACKS = [
             [523.25, 659.25, 783.99, 1046.50],
             [987.77, 880.00, 783.99, 659.25]
         ],
-        stepTime: 3200
+        stepTime: 3000
     },
     {
         id: 'ghibli',
         name: '🌌 02. Kimi no Yume',
-        title: 'Kimi no Yume (Lo-Fi Chimes & Campanas)',
+        title: 'Kimi no Yume (Radwimps / Your Name Piano & Bells)',
         chords: [
             [146.83, 220.00, 277.18, 369.99], // Dmaj9
             [138.59, 207.65, 246.94, 329.63], // C#m7
@@ -1531,30 +1621,30 @@ const ANIME_TRACKS = [
             [493.88, 392.00, 587.33, 739.99],
             [440.00, 349.23, 523.25, 659.25]
         ],
-        stepTime: 3400
+        stepTime: 3200
     },
     {
-        id: 'cyber',
-        name: '⚔️ 03. Neo Tokyo',
-        title: 'Neo Tokyo (Cyber Synthwave Edgerunners)',
+        id: 'kimetsu',
+        name: '⚔️ 03. Kimetsu Melody',
+        title: 'Kamado Theme (Demon Slayer Melancólico & Épico)',
         chords: [
-            [220.00, 261.63, 329.63, 440.00],
-            [174.61, 220.00, 261.63, 349.23],
-            [196.00, 246.94, 293.66, 392.00],
-            [164.81, 196.00, 246.94, 329.63]
+            [146.83, 220.00, 293.66, 349.23], // Dm
+            [116.54, 174.61, 233.08, 293.66], // Bb
+            [130.81, 196.00, 261.63, 329.63], // C
+            [110.00, 164.81, 220.00, 261.63]  // Am
         ],
         arpeggios: [
-            [440.00, 659.25, 523.25, 659.25],
-            [349.23, 523.25, 440.00, 523.25],
-            [392.00, 587.33, 493.88, 587.33],
-            [329.63, 493.88, 392.00, 493.88]
+            [587.33, 698.46, 880.00, 783.99],
+            [466.16, 587.33, 698.46, 587.33],
+            [523.25, 659.25, 783.99, 659.25],
+            [440.00, 523.25, 659.25, 523.25]
         ],
         stepTime: 2800
     },
     {
         id: 'lofi',
-        name: '☕ 04. Lofi Sunset',
-        title: 'Lofi Sunset (Cozy Chillhop Cafe)',
+        name: '☕ 04. Ghibli Cafe',
+        title: 'Ghibli Cafe (Cozy Lo-Fi Anime Chillhop)',
         chords: [
             [130.81, 196.00, 246.94, 311.13],
             [116.54, 174.61, 220.00, 277.18],
@@ -1589,15 +1679,12 @@ function initMusicEngine() {
     updateTrackLabel();
 
     const savedVol = localStorage.getItem('portfolio_music_vol');
-    const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.45;
+    const vol = (savedVol !== null) ? parseFloat(savedVol) : 0.55;
     const slider = document.getElementById('musicVolumeSlider');
     if (slider) slider.value = vol;
 
     if (bgAudio) {
         bgAudio.volume = vol;
-        bgAudio.addEventListener('ended', () => {
-            if (isMusicPlaying) bgAudio.play().catch(() => {});
-        });
     }
 }
 
@@ -1663,8 +1750,11 @@ function playMusic() {
         }
     } catch(err) {}
 
-    playSynthAnimeTrack();
+    // Establecer bandera activa ANTES de ejecutar el motor para que no retorne
+    isMusicPlaying = true;
     updateMusicUI(true);
+    playSynthAnimeTrack();
+
     const track = ANIME_TRACKS[currentTrackIdx];
     if (typeof mostrarToast === 'function') {
         mostrarToast('🎵 Sonando: ' + track.title, 'ok');
@@ -1672,6 +1762,7 @@ function playMusic() {
 }
 
 function pauseMusic() {
+    isMusicPlaying = false;
     stopSynthEngine();
     if (bgAudio) bgAudio.pause();
     updateMusicUI(false);
@@ -1681,9 +1772,31 @@ function setMusicVolume(val) {
     const v = Math.max(0, Math.min(1, parseFloat(val)));
     localStorage.setItem('portfolio_music_vol', v);
     if (masterGain && audioSynthCtx) {
-        masterGain.gain.setValueAtTime(v * 0.28, audioSynthCtx.currentTime);
+        masterGain.gain.setValueAtTime(v * 0.85, audioSynthCtx.currentTime);
     }
     if (bgAudio) bgAudio.volume = v;
+}
+
+function playAnimeChime(f1, f2) {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
+        if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
+        const now = audioSynthCtx.currentTime;
+        [f1, f2].forEach((freq, idx) => {
+            const osc = audioSynthCtx.createOscillator();
+            const gain = audioSynthCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+            gain.gain.setValueAtTime(0.001, now + idx * 0.1);
+            gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.1 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.1 + 0.6);
+            osc.connect(gain);
+            gain.connect(audioSynthCtx.destination);
+            osc.start(now + idx * 0.1);
+            osc.stop(now + idx * 0.1 + 0.65);
+        });
+    } catch(e) {}
 }
 
 function playSynthAnimeTrack() {
@@ -1695,8 +1808,8 @@ function playSynthAnimeTrack() {
         if (!masterGain) {
             masterGain = audioSynthCtx.createGain();
             const savedVol = localStorage.getItem('portfolio_music_vol');
-            const v = (savedVol !== null) ? parseFloat(savedVol) : 0.45;
-            masterGain.gain.setValueAtTime(v * 0.28, audioSynthCtx.currentTime);
+            const v = (savedVol !== null) ? parseFloat(savedVol) : 0.55;
+            masterGain.gain.setValueAtTime(v * 0.85, audioSynthCtx.currentTime);
             masterGain.connect(audioSynthCtx.destination);
         }
 
@@ -1716,7 +1829,7 @@ function playNextAnimeStep() {
     const curArp = arps[chordStep % arps.length];
     chordStep++;
 
-    // Tocar notas del acorde con síntesis de piano/rhodes suave
+    // Tocar notas del acorde con síntesis de piano anime acústico cálido
     curChord.forEach((freq, idx) => {
         try {
             const osc = audioSynthCtx.createOscillator();
@@ -1725,8 +1838,8 @@ function playNextAnimeStep() {
             const filter = audioSynthCtx.createBiquadFilter();
 
             filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(1400, now);
-            filter.Q.setValueAtTime(1.2, now);
+            filter.frequency.setValueAtTime(1600, now);
+            filter.Q.setValueAtTime(1.1, now);
 
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now);
@@ -1734,9 +1847,9 @@ function playNextAnimeStep() {
             oscHarmonic.type = 'triangle';
             oscHarmonic.frequency.setValueAtTime(freq * 2, now);
 
-            // Envolvente dulce tipo anime piano
+            // Envolvente dulce tipo piano de anime
             noteGain.gain.setValueAtTime(0.001, now);
-            noteGain.gain.linearRampToValueAtTime(0.045 / (idx + 1), now + 0.02 + idx * 0.04);
+            noteGain.gain.linearRampToValueAtTime(0.18 / (idx + 1), now + 0.02 + idx * 0.035);
             noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (track.stepTime / 1000) * 0.95);
 
             osc.connect(filter);
@@ -1744,38 +1857,45 @@ function playNextAnimeStep() {
             filter.connect(noteGain);
             noteGain.connect(masterGain);
 
-            osc.start(now + idx * 0.04);
-            oscHarmonic.start(now + idx * 0.04);
+            osc.start(now + idx * 0.035);
+            oscHarmonic.start(now + idx * 0.035);
             osc.stop(now + (track.stepTime / 1000));
             oscHarmonic.stop(now + (track.stepTime / 1000));
         } catch(e) {}
     });
 
-    // Tocar melodía arpegiada en registro agudo dulce
+    // Tocar campanitas celestiales arpegiadas (Music Box / Glockenspiel Ghibli)
     if (curArp && curArp.length) {
         curArp.forEach((mFreq, mIdx) => {
-            const noteTime = now + 0.35 + mIdx * 0.55;
+            const noteTime = now + 0.25 + mIdx * 0.45;
             try {
                 const mOsc = audioSynthCtx.createOscillator();
+                const mHarm = audioSynthCtx.createOscillator();
                 const mGain = audioSynthCtx.createGain();
                 const mFilter = audioSynthCtx.createBiquadFilter();
 
                 mFilter.type = 'lowpass';
-                mFilter.frequency.setValueAtTime(2200, noteTime);
+                mFilter.frequency.setValueAtTime(2400, noteTime);
 
                 mOsc.type = 'sine';
                 mOsc.frequency.setValueAtTime(mFreq, noteTime);
 
+                mHarm.type = 'sine';
+                mHarm.frequency.setValueAtTime(mFreq * 2, noteTime);
+
                 mGain.gain.setValueAtTime(0.0001, noteTime);
-                mGain.gain.linearRampToValueAtTime(0.04, noteTime + 0.015);
-                mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.6);
+                mGain.gain.linearRampToValueAtTime(0.14, noteTime + 0.015);
+                mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.4);
 
                 mOsc.connect(mFilter);
+                mHarm.connect(mFilter);
                 mFilter.connect(mGain);
                 mGain.connect(masterGain);
 
                 mOsc.start(noteTime);
-                mOsc.stop(noteTime + 1.65);
+                mHarm.start(noteTime);
+                mOsc.stop(noteTime + 1.45);
+                mHarm.stop(noteTime + 1.45);
             } catch(e) {}
         });
     }
@@ -2123,6 +2243,21 @@ for (let i = 0; i < 35; i++) {
     });
 }
 
+// 4b. Brasas y chispas ardientes para el tema Kimetsu no Yaiba (鬼滅の刃)
+const kimetsuEmbers = [];
+for (let i = 0; i < 40; i++) {
+    kimetsuEmbers.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 3 + 1,
+        speedY: -(Math.random() * 1.8 + 0.8),
+        speedX: (Math.random() - 0.5) * 1.2,
+        alpha: Math.random() * 0.8 + 0.2,
+        vAlpha: Math.random() * 0.02 + 0.01,
+        color: ['#ff3366', '#ff7700', '#00f0a8', '#ffea00'][Math.floor(Math.random() * 4)]
+    });
+}
+
 // 5. Meteoros celestiales
 const meteors = [];
 function spawnMeteor() {
@@ -2255,6 +2390,36 @@ function bgLoop() {
             cx.fillStyle = e.color;
             cx.globalAlpha = e.alpha;
             cx.shadowBlur = 12;
+            cx.shadowColor = e.color;
+            cx.fill();
+        }
+
+    // MODO KIMETSU NO YAIBA: Brasas ardientes y chispas de fuego místico
+    } else if (currentThemeMode === 'kimetsu') {
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            s.x += s.vx * 0.4; s.y += s.vy * 0.4; s.alpha += s.dAlpha;
+            if (s.alpha <= .1 || s.alpha >= .9) s.dAlpha *= -1;
+            if (s.x < 0 || s.x > W) s.vx *= -1;
+            if (s.y < 0 || s.y > H) s.vy *= -1;
+            cx.beginPath(); cx.arc(s.x, s.y, s.r * 0.8, 0, Math.PI * 2);
+            cx.fillStyle = 'rgba(0, 240, 168, ' + (s.alpha * 0.4) + ')';
+            cx.fill();
+        }
+        for (let i = 0; i < kimetsuEmbers.length; i++) {
+            const e = kimetsuEmbers[i];
+            e.y += e.speedY;
+            e.x += e.speedX + Math.sin(e.y * 0.05) * 0.8;
+            if (e.y < -15) {
+                e.y = H + 10;
+                e.x = Math.random() * W;
+            }
+            cx.save();
+            cx.beginPath();
+            cx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+            cx.fillStyle = e.color;
+            cx.globalAlpha = e.alpha;
+            cx.shadowBlur = 14;
             cx.shadowColor = e.color;
             cx.fill();
             cx.restore();

@@ -26,7 +26,7 @@
     </script>
     <style>
         :root, [data-theme="sakura"] {
-            --bg-main: #0e0514;
+            --bg-main: #0c0414;
             --bg-card: rgba(28, 8, 36, 0.88);
             --bg-card-subtle: rgba(44, 12, 54, 0.95);
             --border-color: rgba(255, 119, 170, 0.45);
@@ -36,13 +36,13 @@
             --accent-cyan: #ff77aa;
             --accent-pink: #ff1493;
             --accent-purple: #ff85c0;
-            --card-shadow: 0 0 55px rgba(255, 102, 178, 0.4), 0 20px 60px rgba(0, 0, 0, 0.85);
+            --card-shadow: 0 0 55px rgba(255, 102, 178, 0.45), 0 20px 60px rgba(0, 0, 0, 0.85);
         }
 
         [data-theme="ghibli"], [data-theme="dark"] {
-            --bg-main: #030718;
-            --bg-card: rgba(8, 22, 56, 0.88);
-            --bg-card-subtle: rgba(12, 32, 76, 0.95);
+            --bg-main: #060b24;
+            --bg-card: rgba(10, 24, 64, 0.88);
+            --bg-card-subtle: rgba(16, 38, 92, 0.95);
             --border-color: rgba(56, 189, 248, 0.45);
             --border-accent: #fbbf24;
             --text-primary: #f0f9ff;
@@ -50,35 +50,49 @@
             --accent-cyan: #38bdf8;
             --accent-pink: #fbbf24;
             --accent-purple: #818cf8;
-            --card-shadow: 0 0 55px rgba(56, 189, 248, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
+            --card-shadow: 0 0 55px rgba(56, 189, 248, 0.45), 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="kimetsu"] {
+            --bg-main: #06110c;
+            --bg-card: rgba(10, 32, 24, 0.88);
+            --bg-card-subtle: rgba(14, 42, 32, 0.95);
+            --border-color: rgba(0, 240, 168, 0.45);
+            --border-accent: #ff3366;
+            --text-primary: #f0fdf4;
+            --text-secondary: #86efac;
+            --accent-cyan: #00f0a8;
+            --accent-pink: #ff3366;
+            --accent-purple: #10b981;
+            --card-shadow: 0 0 55px rgba(0, 240, 168, 0.45), 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        [data-theme="lofi"], [data-theme="synthwave"] {
+            --bg-main: #180c06;
+            --bg-card: rgba(42, 20, 12, 0.88);
+            --bg-card-subtle: rgba(56, 28, 16, 0.95);
+            --border-color: rgba(255, 153, 51, 0.45);
+            --border-accent: #ffaa44;
+            --text-primary: #fff8f0;
+            --text-secondary: #fed7aa;
+            --accent-cyan: #ffaa44;
+            --accent-pink: #ff5533;
+            --accent-purple: #ff8800;
+            --card-shadow: 0 0 55px rgba(255, 153, 51, 0.4), 0 20px 60px rgba(0, 0, 0, 0.85);
         }
 
         [data-theme="cyber"], [data-theme="matrix"] {
             --bg-main: #05020c;
             --bg-card: rgba(18, 6, 36, 0.88);
             --bg-card-subtle: rgba(28, 10, 56, 0.95);
-            --border-color: rgba(216, 132, 255, 0.45);
+            --border-color: rgba(216, 132, 255, 0.42);
             --border-accent: #00f3ff;
             --text-primary: #f5edff;
             --text-secondary: #d0b8ee;
             --accent-cyan: #00f3ff;
-            --accent-pink: #ff007f;
-            --accent-purple: #d884ff;
-            --card-shadow: 0 0 55px rgba(216, 132, 255, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
-        }
-
-        [data-theme="lofi"], [data-theme="synthwave"] {
-            --bg-main: #18081c;
-            --bg-card: rgba(44, 14, 54, 0.88);
-            --bg-card-subtle: rgba(26, 8, 32, 0.95);
-            --border-color: rgba(255, 122, 0, 0.45);
-            --border-accent: #ffea00;
-            --text-primary: #fff7ed;
-            --text-secondary: #fed7aa;
-            --accent-cyan: #ffea00;
-            --accent-pink: #ff007f;
-            --accent-purple: #ff7a00;
-            --card-shadow: 0 0 55px rgba(255, 122, 0, 0.35), 0 20px 60px rgba(0, 0, 0, 0.85);
+            --accent-pink: #ffe600;
+            --accent-purple: #ff007f;
+            --card-shadow: 0 0 55px rgba(0, 243, 255, 0.45), 0 20px 60px rgba(0, 0, 0, 0.85);
         }
 
         [data-theme="zen"], [data-theme="light"] {
@@ -453,24 +467,32 @@
             <button type="button" class="theme-opt-btn" data-theme-val="ghibli" onclick="setTheme('ghibli')">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #38bdf8, #fbbf24);"></span>
                 <div class="theme-info">
-                    <span class="theme-name">🌌 Ghibli Midnight</span>
-                    <span class="theme-desc">Cielo estrellado, luciérnagas y cometas</span>
+                    <span class="theme-name">🌌 Kimi no Na wa</span>
+                    <span class="theme-desc">Your Name &bull; Crepúsculo, luciérnagas y cometa</span>
+                </div>
+                <i class="fas fa-check theme-check"></i>
+            </button>
+            <button type="button" class="theme-opt-btn" data-theme-val="kimetsu" onclick="setTheme('kimetsu')">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #00f0a8, #ff3366);"></span>
+                <div class="theme-info">
+                    <span class="theme-name">⚔️ Kimetsu no Yaiba</span>
+                    <span class="theme-desc">Demon Slayer &bull; Katana esmeralda y brasas</span>
+                </div>
+                <i class="fas fa-check theme-check"></i>
+            </button>
+            <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ffaa44, #ff5533);"></span>
+                <div class="theme-info">
+                    <span class="theme-name">☕ Ghibli Cafe</span>
+                    <span class="theme-desc">Studio Ghibli &bull; Atardecer cálido y lofi</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
             <button type="button" class="theme-opt-btn" data-theme-val="cyber" onclick="setTheme('cyber')">
                 <span class="theme-dot" style="background: linear-gradient(135deg, #00f3ff, #ff007f);"></span>
                 <div class="theme-info">
-                    <span class="theme-name">⚔️ Neo Tokyo Cyber</span>
-                    <span class="theme-desc">Edgerunners neón cian & magenta</span>
-                </div>
-                <i class="fas fa-check theme-check"></i>
-            </button>
-            <button type="button" class="theme-opt-btn" data-theme-val="lofi" onclick="setTheme('lofi')">
-                <span class="theme-dot" style="background: linear-gradient(135deg, #ff7a00, #ff007f);"></span>
-                <div class="theme-info">
-                    <span class="theme-name">☕ Lofi Sunset</span>
-                    <span class="theme-desc">Atardecer cálido, brasas y chillhop</span>
+                    <span class="theme-name">⚡ Cyberpunk 2077</span>
+                    <span class="theme-desc">Neo Tokyo &bull; Edgerunners y láseres neón</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
@@ -478,7 +500,7 @@
                 <span class="theme-dot" style="background: linear-gradient(135deg, #ffffff, #2563eb); border:1px solid #cbd5e1;"></span>
                 <div class="theme-info">
                     <span class="theme-name">✨ Minimal Zen</span>
-                    <span class="theme-desc">Blanco cristalino de lujo y zafiro</span>
+                    <span class="theme-desc">Blanco cristalino de lujo y constelaciones</span>
                 </div>
                 <i class="fas fa-check theme-check"></i>
             </button>
@@ -514,22 +536,37 @@
         <% } %>
 
         <form action="<%= ctx %>/login" method="POST" id="loginForm">
-            <div class="input-group">
+            <label for="inputCodigo" style="font-size:11px; font-family:'Fira Code',monospace; color:var(--accent-cyan); display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
+                <span>🔐 CONTRASEÑA O CÓDIGO:</span>
+                <span style="color:var(--text-muted); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
+            </label>
+
+            <!-- INPUT GROUP CON BOTÓN VER/NO VER AL COSTADO -->
+            <div class="input-group" style="position:relative; display:flex; align-items:center; margin-bottom:18px;">
                 <span class="input-prefix">&gt;_</span>
-                <input type="text" name="codigo" id="inputCodigo"
-                       placeholder="Código o Celular (ej: ADMIN949163067)"
-                       required autofocus autocomplete="off">
+                <input type="password" 
+                       name="codigo" 
+                       id="inputCodigo"
+                       value=""
+                       placeholder="Escribe tu código o contraseña aquí..."
+                       required 
+                       autofocus 
+                       autocomplete="current-password"
+                       style="width:100%; padding:15px 105px 15px 48px;">
+
+                <!-- BOTÓN VER / NO VER CONTRASEÑA AL COSTADO DENTRO DEL INPUT -->
+                <button type="button" 
+                        id="loginTogglePassBtn"
+                        onclick="togglePasswordVisibility('inputCodigo', 'loginPassEyeIcon', 'loginPassEyeLabel')"
+                        style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1px solid var(--border-color); color:var(--accent-cyan); border-radius:10px; padding:7px 11px; font-size:11px; font-family:'Fira Code',monospace; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:5px; transition:all 0.2s ease;"
+                        title="Ver u ocultar contraseña">
+                    <i class="fas fa-eye" id="loginPassEyeIcon"></i>
+                    <span id="loginPassEyeLabel">VER</span>
+                </button>
             </div>
+
             <button type="submit" class="btn-login">&#9889; AUTENTICAR Y ACCEDER</button>
         </form>
-
-        <!-- ACCESO RÁPIDO PARA ALUMNA TITULAR (FLOR XIOMARA) -->
-        <button type="button" onclick="loginDirectoAlumna()"
-                style="width:100%;padding:14px;margin-bottom:18px;background:rgba(0,243,255,0.12);border:1.8px solid var(--accent-cyan);border-radius:14px;font-family:'Fira Code',monospace;font-size:12px;font-weight:800;color:var(--accent-cyan);cursor:pointer;box-shadow:0 0 20px rgba(0,243,255,0.3);transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px;"
-                onmouseover="this.style.background='rgba(0,243,255,0.25)';this.style.transform='translateY(-2px)'"
-                onmouseout="this.style.background='rgba(0,243,255,0.12)';this.style.transform='none'">
-            &#9889; ENTRAR COMO ALUMNA FLOR XIOMARA (1 CLIC)
-        </button>
 
         <div class="lock-box">
             &#128274; <b>ACCESO CON PRIVILEGIOS DE MODIFICACIÓN</b><br>
@@ -561,6 +598,23 @@
 </div>
 
 <script>
+    /* ── UTILIDADES & VER / OCULTAR CONTRASEÑA ──────────── */
+    function togglePasswordVisibility(inputId, iconId, labelId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        const label = document.getElementById(labelId);
+        if (!input) return;
+        if (input.type === 'password') {
+            input.type = 'text';
+            if (icon) icon.className = 'fas fa-eye-slash';
+            if (label) label.innerText = 'OCULTAR';
+        } else {
+            input.type = 'password';
+            if (icon) icon.className = 'fas fa-eye';
+            if (label) label.innerText = 'VER';
+        }
+    }
+
     /* ── MOTOR DE TEMAS EN LOGIN ────────────────────────── */
     let currentThemeMode = 'sakura';
     let themeParticlePalette = ['#ff77aa', '#ff1493', '#ff85c0'];
@@ -620,32 +674,50 @@
         } else if (theme === 'ghibli') {
             themeParticlePalette = ['#38bdf8', '#fbbf24', '#818cf8', '#67e8f9'];
             themeStarColor = 'rgba(56,189,248,';
+        } else if (theme === 'kimetsu') {
+            themeParticlePalette = ['#00f0a8', '#ff3366', '#10b981', '#ffaa00'];
+            themeStarColor = 'rgba(0,240,168,';
         } else if (theme === 'cyber') {
-            themeParticlePalette = ['#00f3ff', '#ff007f', '#d884ff', '#00ff88'];
+            themeParticlePalette = ['#00f3ff', '#ffe600', '#ff007f', '#00ff88'];
             themeStarColor = 'rgba(0,243,255,';
         } else if (theme === 'lofi') {
-            themeParticlePalette = ['#ff7a00', '#ff007f', '#fed7aa', '#ffea00'];
-            themeStarColor = 'rgba(255,122,0,';
+            themeParticlePalette = ['#ffaa44', '#ff5533', '#fed7aa', '#ffea00'];
+            themeStarColor = 'rgba(255,170,68,';
         } else if (theme === 'zen') {
             themeParticlePalette = ['#2563eb', '#0284c7', '#7c3aed', '#60a5fa'];
             themeStarColor = 'rgba(37,99,235,';
         }
     }
 
-    /* ── MOTOR DE MÚSICA EN LOGIN ───────────────────────── */
-    let bgAudio = null;
+    /* ── MOTOR DE AUDIO ANIME MELÓDICO EN LOGIN ───────────── */
+    const ANIME_TRACKS = [
+        {
+            name: '🌸 01. Sakura Waltz',
+            chords: [
+                [174.61, 261.63, 329.63, 440.00],
+                [196.00, 246.94, 293.66, 392.00],
+                [164.81, 246.94, 329.63, 392.00],
+                [220.00, 261.63, 329.63, 440.00]
+            ],
+            arps: [
+                [523.25, 659.25, 587.33, 523.25],
+                [493.88, 587.33, 659.25, 783.99],
+                [659.25, 587.33, 493.88, 392.00],
+                [523.25, 440.00, 493.88, 523.25]
+            ],
+            stepTime: 3000
+        }
+    ];
+
     let isMusicPlaying = false;
+    let audioSynthCtx = null;
+    let masterGain = null;
+    let synthLoopTimer = null;
+    let chordStep = 0;
 
     function initMusicEngine() {
-        bgAudio = document.getElementById('bgMusicPlayer');
-        if (bgAudio) {
-            bgAudio.volume = 0.5;
-            bgAudio.addEventListener('play', () => updateMusicUI(true));
-            bgAudio.addEventListener('pause', () => updateMusicUI(false));
-            bgAudio.addEventListener('ended', () => {
-                if (isMusicPlaying) bgAudio.play().catch(() => {});
-            });
-        }
+        const savedTrack = localStorage.getItem('portfolio_music_track');
+        // Inicializar contexto
     }
 
     function updateMusicUI(playing) {
@@ -668,27 +740,107 @@
 
     function toggleMusic(e) {
         if (e) e.stopPropagation();
-        if (!bgAudio) initMusicEngine();
-
         if (isMusicPlaying) {
-            if (bgAudio) bgAudio.pause();
-            updateMusicUI(false);
+            pauseMusic();
             localStorage.setItem('portfolio_music_enabled', 'false');
         } else {
-            if (bgAudio) {
-                bgAudio.play().then(() => {
-                    updateMusicUI(true);
-                }).catch(() => {});
-            }
+            playMusic();
             localStorage.setItem('portfolio_music_enabled', 'true');
         }
+    }
+
+    function playMusic() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!audioSynthCtx) audioSynthCtx = new AudioCtx();
+            if (audioSynthCtx.state === 'suspended') audioSynthCtx.resume();
+        } catch(e) {}
+
+        isMusicPlaying = true;
+        updateMusicUI(true);
+
+        if (!masterGain && audioSynthCtx) {
+            masterGain = audioSynthCtx.createGain();
+            masterGain.gain.setValueAtTime(0.5, audioSynthCtx.currentTime);
+            masterGain.connect(audioSynthCtx.destination);
+        }
+
+        playAnimeStep();
+    }
+
+    function pauseMusic() {
+        isMusicPlaying = false;
+        if (synthLoopTimer) { clearTimeout(synthLoopTimer); synthLoopTimer = null; }
+        updateMusicUI(false);
+    }
+
+    function playAnimeStep() {
+        if (!isMusicPlaying || !audioSynthCtx) return;
+        const now = audioSynthCtx.currentTime;
+        const track = ANIME_TRACKS[0];
+        const curChord = track.chords[chordStep % track.chords.length];
+        const curArp = track.arps[chordStep % track.arps.length];
+        chordStep++;
+
+        curChord.forEach((freq, idx) => {
+            try {
+                const osc = audioSynthCtx.createOscillator();
+                const oscHarm = audioSynthCtx.createOscillator();
+                const noteGain = audioSynthCtx.createGain();
+                const filter = audioSynthCtx.createBiquadFilter();
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(1600, now);
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now);
+                oscHarm.type = 'triangle';
+                oscHarm.frequency.setValueAtTime(freq * 2, now);
+
+                noteGain.gain.setValueAtTime(0.001, now);
+                noteGain.gain.linearRampToValueAtTime(0.18 / (idx + 1), now + 0.02 + idx * 0.035);
+                noteGain.gain.exponentialRampToValueAtTime(0.0001, now + (track.stepTime / 1000) * 0.95);
+
+                osc.connect(filter);
+                oscHarm.connect(filter);
+                filter.connect(noteGain);
+                noteGain.connect(masterGain);
+
+                osc.start(now + idx * 0.035);
+                oscHarm.start(now + idx * 0.035);
+                osc.stop(now + (track.stepTime / 1000));
+                oscHarm.stop(now + (track.stepTime / 1000));
+            } catch(e) {}
+        });
+
+        if (curArp) {
+            curArp.forEach((mFreq, mIdx) => {
+                const noteTime = now + 0.25 + mIdx * 0.45;
+                try {
+                    const mOsc = audioSynthCtx.createOscillator();
+                    const mGain = audioSynthCtx.createGain();
+                    mOsc.type = 'sine';
+                    mOsc.frequency.setValueAtTime(mFreq, noteTime);
+
+                    mGain.gain.setValueAtTime(0.0001, noteTime);
+                    mGain.gain.linearRampToValueAtTime(0.14, noteTime + 0.015);
+                    mGain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 1.4);
+
+                    mOsc.connect(mGain);
+                    mGain.connect(masterGain);
+                    mOsc.start(noteTime);
+                    mOsc.stop(noteTime + 1.45);
+                } catch(e) {}
+            });
+        }
+
+        synthLoopTimer = setTimeout(playAnimeStep, track.stepTime);
     }
 
     window.addEventListener('click', () => {
         const shouldPlay = localStorage.getItem('portfolio_music_enabled');
         if (shouldPlay === 'true' && !isMusicPlaying) {
-            if (!bgAudio) initMusicEngine();
-            if (bgAudio) bgAudio.play().then(() => updateMusicUI(true)).catch(() => {});
+            playMusic();
         }
     }, { once: true });
 
@@ -774,15 +926,6 @@
         requestAnimationFrame(loop);
     }
     loop();
-
-    function loginDirectoAlumna() {
-        var inp = document.getElementById('inputCodigo');
-        var form = document.getElementById('loginForm');
-        if (inp && form) {
-            inp.value = 'ADMIN949163067';
-            form.submit();
-        }
-    }
 
     window.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('portfolio_theme') || 'sakura';
