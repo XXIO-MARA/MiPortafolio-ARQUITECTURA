@@ -1451,7 +1451,7 @@
                     &#128273; CLAVE DE CONFIRMACIÓN DE ALUMNA TITULAR:
                 </label>
                 <div style="position:relative; display:flex; align-items:center;">
-                    <input type="password" id="delTokenInput" class="cyber-input" value="" placeholder="Escribe tu clave de confirmación..." autocomplete="off" style="color:#00f3ff; font-weight:700; letter-spacing:1px; width:100%; padding-right:85px;">
+                    <input type="password" id="delTokenInput" class="cyber-input" value="" placeholder="Escribe tu clave de confirmación..." autocomplete="new-password" data-lpignore="true" style="color:#00f3ff; font-weight:700; letter-spacing:1px; width:100%; padding-right:85px;">
                     <button type="button" onclick="togglePasswordVisibility('delTokenInput', 'delPassEyeIcon', 'delPassEyeLabel')" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1px solid rgba(0,243,255,0.3); color:#00f3ff; border-radius:8px; padding:5px 9px; font-size:10.5px; font-family:'Fira Code',monospace; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:4px;">
                         <i class="fas fa-eye" id="delPassEyeIcon"></i>
                         <span id="delPassEyeLabel">VER</span>
@@ -1534,7 +1534,11 @@
         </p>
 
         <!-- FORMULARIO DE ACCESO: CAMPO VACÍO PARA ESCRIBIR Y BOTÓN VER/OCULTAR CONTRASEÑA -->
-        <form action="<%= ctx %>/login" method="POST" id="modalLoginForm">
+        <form action="<%= ctx %>/login" method="POST" id="modalLoginForm" autocomplete="off">
+            <!-- Prevención de auto-rellenado del navegador -->
+            <input type="text" name="fake_user_prevent" style="display:none !important;" tabindex="-1" autocomplete="off">
+            <input type="password" name="fake_pass_prevent" style="display:none !important;" tabindex="-1" autocomplete="off">
+
             <label for="modalCodigoInput" style="font-size:11px; font-family:'Fira Code',monospace; color:var(--accent-cyan); display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
                 <span>🔐 CONTRASEÑA O CÓDIGO:</span>
                 <span style="color:var(--text-muted); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
@@ -1551,8 +1555,10 @@
                        value="" 
                        placeholder="Escribe tu contraseña o código aquí..." 
                        required 
-                       autofocus 
-                       autocomplete="current-password"
+                       autocomplete="new-password"
+                       data-lpignore="true"
+                       data-form-type="other"
+                       oninput="this.dataset.userTyped='true'"
                        style="width:100%; padding:14px 105px 14px 44px; font-family:'Fira Code',monospace; font-size:13.5px; font-weight:700; color:#fff; background:rgba(18,6,36,0.9); border:1.8px solid var(--border-color); border-radius:14px; outline:none; transition:all 0.3s ease;">
 
                 <!-- BOTÓN VER / NO VER CONTRASEÑA AL COSTADO -->
@@ -1854,7 +1860,22 @@ function openAlumnaModal(e) {
     if (m) {
         m.style.display = 'flex';
         const inp = document.getElementById('modalCodigoInput');
-        if (inp) { inp.focus(); inp.select(); }
+        if (inp) {
+            inp.value = '';
+            delete inp.dataset.userTyped;
+            // Limpieza inmediata y diferida para neutralizar el auto-rellenado del navegador
+            setTimeout(() => { 
+                if (inp && !inp.dataset.userTyped) {
+                    inp.value = ''; 
+                    inp.focus(); 
+                } 
+            }, 50);
+            setTimeout(() => { 
+                if (inp && !inp.dataset.userTyped) {
+                    inp.value = ''; 
+                } 
+            }, 180);
+        }
     } else {
         window.location.href = '<%= ctx %>/login';
     }
@@ -1863,6 +1884,11 @@ function openAlumnaModal(e) {
 function closeAlumnaModal() {
     const m = document.getElementById('alumnaModal');
     if (m) m.style.display = 'none';
+    const inp = document.getElementById('modalCodigoInput');
+    if (inp) {
+        inp.value = '';
+        delete inp.dataset.userTyped;
+    }
 }
 
 /* ── CARRUSEL DE SEMANAS ──────────────────────────────── */
@@ -2029,6 +2055,9 @@ function abrirConfirmarEliminar(id, titulo, semana, esAdmin) {
         authBox.style.display = esAdmin ? 'none' : 'block';
     }
 
+    const tokenInp = document.getElementById('delTokenInput');
+    if (tokenInp) tokenInp.value = '';
+
     const modal = document.getElementById('deleteConfirmModal');
     if (modal) modal.style.display = 'flex';
 }
@@ -2036,6 +2065,8 @@ function abrirConfirmarEliminar(id, titulo, semana, esAdmin) {
 function cerrarConfirmarEliminar() {
     const modal = document.getElementById('deleteConfirmModal');
     if (modal) modal.style.display = 'none';
+    const tokenInp = document.getElementById('delTokenInput');
+    if (tokenInp) tokenInp.value = '';
     archivoAEliminar = { id: null, semana: 1, esAdmin: false };
     const btn = document.getElementById('btnConfirmarDel');
     if (btn) {
@@ -2493,6 +2524,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Inicializar efecto 3D Tilt en tarjetas
     initCard3DTilt();
+
+    // Asegurar que el campo de clave permanezca 100% vacío
+    const modalInp = document.getElementById('modalCodigoInput');
+    if (modalInp) {
+        modalInp.value = '';
+        delete modalInp.dataset.userTyped;
+    }
 
     if (typeof selectWeek === 'function') {
         selectWeek(curWeek);

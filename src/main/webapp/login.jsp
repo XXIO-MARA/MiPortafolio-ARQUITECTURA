@@ -541,7 +541,11 @@
         </div>
         <% } %>
 
-        <form action="<%= ctx %>/login" method="POST" id="loginForm">
+        <form action="<%= ctx %>/login" method="POST" id="loginForm" autocomplete="off">
+            <!-- Prevención de auto-rellenado del navegador -->
+            <input type="text" name="fake_user_prevent" style="display:none !important;" tabindex="-1" autocomplete="off">
+            <input type="password" name="fake_pass_prevent" style="display:none !important;" tabindex="-1" autocomplete="off">
+
             <label for="inputCodigo" style="font-size:11px; font-family:'Fira Code',monospace; color:var(--accent-cyan); display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
                 <span>🔐 CONTRASEÑA O CLAVE DE ACCESO:</span>
                 <span style="color:var(--text-secondary); font-size:10px; font-weight:400;">(Escribe tu clave)</span>
@@ -556,8 +560,10 @@
                        value=""
                        placeholder="Escribe tu clave secreta aquí..."
                        required 
-                       autofocus 
-                       autocomplete="current-password"
+                       autocomplete="new-password"
+                       data-lpignore="true"
+                       data-form-type="other"
+                       oninput="this.dataset.userTyped='true'"
                        style="width:100%; padding:15px 105px 15px 48px;">
 
                 <!-- BOTÓN VER / NO VER CONTRASEÑA AL COSTADO DENTRO DEL INPUT -->
@@ -604,6 +610,16 @@
 </div>
 
 <script>
+    /* ── FORZAR CAMPO VACÍO SIN AUTO-RELLENADO DEL NAVEGADOR ── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const inp = document.getElementById('inputCodigo');
+        if (inp) {
+            inp.value = '';
+            setTimeout(() => { if (inp && !inp.dataset.userTyped) inp.value = ''; }, 60);
+            setTimeout(() => { if (inp && !inp.dataset.userTyped) inp.value = ''; }, 200);
+        }
+    });
+
     /* ── UTILIDADES & VER / OCULTAR CONTRASEÑA ──────────── */
     function togglePasswordVisibility(inputId, iconId, labelId) {
         const input = document.getElementById(inputId);
